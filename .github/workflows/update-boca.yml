@@ -1,0 +1,62 @@
+name: Actualizar datos de Boca
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: boca-data
+  cancel-in-progress: false
+jobs:
+  update:
+    if: vars.BOCA_SYNC_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verificar el sincronizador
+        run: node --test tests/sync-boca.test.mjs
+      - name: Consultar la temporada actual
+        id: sync
+        continue-on-error: true
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+        run: node scripts/sync-boca.mjs
+      - name: Guardar datos y estado sin incluir secretos
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/data/boca.json public/data/sync-status.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Actualizar datos de Boca y estado de sincronización'
+            git push origin HEAD
+          fi
+      # Deploy directly: commits made with GITHUB_TOKEN do not trigger another push workflow.
+      - name: Preparar JSON para el CDN
+        run: |
+          mkdir -p data-site
+          cp public/data/boca.json public/data/sync-status.json data-site/
+          printf '%s\n' '<!doctype html><title>Datos de Boca</title><a href="boca.json">Datos de Boca</a>' > data-site/index.html
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: data-site
+      - name: Publicar JSON
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Marcar fallo de API sin borrar la última carga válida
+        if: steps.sync.outcome == 'failure'
+        run: |
+          echo 'La API no pudo actualizarse. Revisar public/data/sync-status.json.'
+          exit 1

@@ -1,0 +1,8 @@
+{
+  "season": 2026,
+  "checkedAt": "2026-11-08T13:36:17.231Z",
+  "lastSuccessAt": null,
+  "ok": false,
+  "code": "PLAN_RESTRICTED",
+  "message": "El plan de API-Football no permite consultar el año actual."
+}

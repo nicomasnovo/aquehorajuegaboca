@@ -1,0 +1,4 @@
+import type { Metadata } from 'next';
+import './globals.css';
+export const metadata:Metadata={title:'Boca al día · Todos los torneos',description:'La agenda xeneize: partidos, competencias nacionales e internacionales y el camino de Boca en cada copa.',manifest:'/manifest.webmanifest',icons:{icon:'/icon.svg',apple:'/icon.svg'}};
+export default function Layout({children}:{children:React.ReactNode}){return <html lang="es"><body>{children}</body></html>}
