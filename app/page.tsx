@@ -12,7 +12,7 @@ export default function Page(){
  const[tab,setTab]=useState('Inicio');const[filter,setFilter]=useState('Todas');const[zone,setZone]=useState('America/Santiago');const[selected,setSelected]=useState<Competition|null>(null);const[install,setInstall]=useState(false);const[gameFilter,setGameFilter]=useState('Todos');const[data,setData]=useState<Snapshot|null>(null);const[status,setStatus]=useState<Status|null>(null);const[error,setError]=useState('');const[loading,setLoading]=useState(true);const[now,setNow]=useState(()=>new Date());
  async function refresh(){setLoading(true);setError('');try{
   const configResponse=await fetch((process.env.NEXT_PUBLIC_BASE_PATH||'')+'/data-config.json',{cache:'no-store'});if(!configResponse.ok)throw Error('No se pudo leer la configuración de datos.');
-  const config=await configResponse.json() as {baseUrl?:string};const base=(config.baseUrl||'/data').replace(/\/$/,'');
+  const config=await configResponse.json() as {baseUrl?:string};const base=(config.baseUrl||(process.env.NEXT_PUBLIC_BASE_PATH||'')+'/data').replace(/\/$/,'');
   const responses=await Promise.all([fetch(base+'/boca.json',{cache:'no-store'}),fetch(base+'/sync-status.json',{cache:'no-store'})]);
   if(responses.some(r=>!r.ok))throw Error('No se pudieron cargar los JSON. Se conserva la información ya cargada.');
   const[d,s]=await Promise.all(responses.map(r=>r.json())) as [Snapshot,Status];
