@@ -52,7 +52,7 @@ export default function BocaApp({tab}:{tab:'Inicio'|'Calendario'|'Competiciones'
    setFilter(params.get('estado')||'Todas');
    setGameFilter(params.get('torneo')||'Todos');
    const id=params.get('competicion');
-   setSelectedId(id&&/^\\d+$/.test(id)?Number(id):null);
+   setSelectedId(id&&/^\d+$/.test(id)?Number(id):null);
   };
   restore();window.addEventListener('popstate',restore);
   return()=>window.removeEventListener('popstate',restore);
