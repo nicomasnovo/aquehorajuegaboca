@@ -36,7 +36,7 @@ function Badge({small=false}:{small?:boolean}){return <div className={'badge '+(
 export default function BocaApp({tab}:{tab:'Inicio'|'Calendario'|'Competiciones'}){
  const[calendarGame,setCalendarGame]=useState<Fixture|null>(null);const[deferredInstall,setDeferredInstall]=useState<InstallPromptEvent|null>(null);const[isStandalone,setIsStandalone]=useState(false);const[filter,setFilter]=useState('Todas');const[zone,setZone]=useState('America/Santiago');const[selectedId,setSelectedId]=useState<number|null>(null);const[install,setInstall]=useState(false);const[gameFilter,setGameFilter]=useState('Todos');const[data,setData]=useState<Snapshot|null>(null);const[status,setStatus]=useState<Status|null>(null);const[error,setError]=useState('');const[loading,setLoading]=useState(true);const[now,setNow]=useState(()=>new Date());
  const basePath=process.env.NEXT_PUBLIC_BASE_PATH||'';
- const route=(name:string)=>basePath+(name==='Inicio'?'/':name==='Calendario'?'/calendario/':'/competiciones/');
+ const route=(name:string)=>basePath+(name==='Inicio'?'/':name==='Calendario'?'/calendario':'/competiciones');
  const selected=data?.competitions.find(c=>c.id===selectedId)??null;
  function updateQuery(changes:Record<string,string|null>){
   const url=new URL(window.location.href);
