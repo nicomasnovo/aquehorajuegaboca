@@ -1,0 +1,13 @@
+name = "aquehorajuegaboca-push"
+main = "src/index.js"
+compatibility_date = "2026-11-15"
+compatibility_flags = ["nodejs_compat"]
+
+[triggers]
+crons = ["*/5 * * * *"]
+
+# Add the database_id from your D1 dashboard before deploying via Wrangler.
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "aquehorajuegaboca-db"
+# database_id = "YOUR_D1_DATABASE_ID"
