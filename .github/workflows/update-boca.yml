@@ -50,10 +50,13 @@ jobs:
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
+          name: boca-pages-${{ github.run_id }}-${{ github.run_attempt }}
           path: data-site
       - name: Publicar JSON
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: boca-pages-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Marcar fallo de API sin borrar la última carga válida
         if: steps.sync.outcome == 'failure'
         run: |
