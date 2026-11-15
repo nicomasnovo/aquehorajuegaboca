@@ -5,8 +5,6 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
-  pages: write
-  id-token: write
 concurrency:
   group: boca-data
   cancel-in-progress: false
@@ -14,9 +12,6 @@ jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -34,7 +29,7 @@ jobs:
         id: sync
         continue-on-error: true
         run: node scripts/sync-boca.mjs
-      - name: Guardar datos y estado sin incluir secretos
+      - name: Guardar JSON y estado
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -43,26 +38,6 @@ jobs:
             git commit -m 'Actualizar datos de Boca y estado de sincronización'
             git push origin HEAD
           fi
-      - name: Generar aplicación estática para GitHub Pages
-        env:
-          GITHUB_PAGES: 'true'
-          NEXT_PUBLIC_BASE_PATH: /aquehorajuegaboca
-        run: |
-          pnpm exec next build
-          touch out/.nojekyll
-          test -f out/index.html
-          test -f out/data/boca.json
-          test -f out/data/sync-status.json
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          name: boca-pages-${{ github.run_id }}-${{ github.run_attempt }}
-          path: out
-      - name: Publicar JSON
-        id: deployment
-        uses: actions/deploy-pages@v4
-        with:
-          artifact_name: boca-pages-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Marcar fallo de API sin borrar la última carga válida
         if: steps.sync.outcome == 'failure'
         run: |
