@@ -1,11 +1,26 @@
 {
   "season": 2026,
-  "checkedAt": "2026-11-15T12:17:41.251Z",
-  "lastSuccessAt": "2026-11-15T12:17:41.251Z",
+  "checkedAt": "2026-11-15T12:22:40.602Z",
+  "lastSuccessAt": "2026-11-15T12:22:40.602Z",
   "source": "ESPN (API no oficial)",
   "ok": true,
   "code": null,
   "message": "Partidos y resultados actualizados desde ESPN.",
-  "requests": 24,
-  "received": 12
+  "requests": 46,
+  "received": 12,
+  "availableLeagues": [
+    "arg.1",
+    "arg.copa",
+    "conmebol.libertadores",
+    "conmebol.sudamericana",
+    "arg.supercopa",
+    "conmebol.recopa",
+    "fifa.cwc"
+  ],
+  "unavailableLeagues": [
+    "arg.trofeo-de-campeones: HTTP 400",
+    "arg.supercopa-internacional: HTTP 400",
+    "arg.recopa-de-campeones: HTTP 400",
+    "fifa.intercontinental: HTTP 400"
+  ]
 }
