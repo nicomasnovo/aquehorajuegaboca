@@ -1,65 +1,73 @@
-import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
-import { pathToFileURL } from 'node:url';
-const TEAM = 451;
-export class SyncError extends Error { constructor(code,message){super(message);this.code=code;} }
-export function validateResponse(body){
- if(!body || typeof body!=='object')throw new SyncError('INVALID_RESPONSE','Respuesta inválida de API-Football.');
- if(body.errors && Object.keys(body.errors).length){
-  if(body.errors.plan)throw new SyncError('PLAN_RESTRICTED','El plan de API-Football restringe esta consulta.');
-  throw new SyncError('API_ERROR','API-Football devolvió un error. Se conservan los datos anteriores.');
- }
- if(!Array.isArray(body.response))throw new SyncError('INVALID_RESPONSE','Respuesta incompleta de API-Football.');
- if((body.paging?.total??1)>1)throw new SyncError('PAGINATION_REQUIRED','La respuesta requiere paginación. No se publicarán datos parciales.');
- return body.response;
+import {mkdir,readFile,rename,writeFile} from 'node:fs/promises';
+import {pathToFileURL} from 'node:url';
+
+export const LEAGUES=[
+ {slug:'arg.1',id:1001,name:'Liga Argentina'},
+ {slug:'arg.copa',id:1002,name:'Copa Argentina'},
+ {slug:'conmebol.libertadores',id:1003,name:'Copa Libertadores'}
+];
+export class SyncError extends Error{constructor(code,message){super(message);this.code=code;}}
+const isBoca=team=>/\\bboca\\s+juniors\\b/i.test([team?.displayName,team?.name,team?.shortDisplayName].filter(Boolean).join(' '));
+const dateKey=date=>date.toISOString().slice(0,10).replaceAll('-','');
+const addDays=(date,n)=>new Date(date.getTime()+n*86400000);
+export function normalizeEvents(events,league){
+ if(!Array.isArray(events))throw new SyncError('INVALID_RESPONSE','ESPN no devolvió una lista de eventos.');
+ return events.flatMap(event=>{
+  const competition=event.competitions?.[0];
+  const sides=competition?.competitors??[];
+  const home=sides.find(s=>s.homeAway==='home');
+  const away=sides.find(s=>s.homeAway==='away');
+  if(!home||!away||!isBoca(home.team)&&!isBoca(away.team))return [];
+  if(!event.id||!event.date||!Number.isFinite(Date.parse(event.date)))throw new SyncError('INVALID_FIXTURE','Partido de ESPN incompleto.');
+  const state=competition.status?.type??event.status?.type??{};
+  const completed=state.completed===true||state.name==='STATUS_FINAL';
+  const status=completed?'FT':state.state==='in'?'LIVE':state.state==='pre'?'NS':'TBD';
+  const score=side=>{const n=Number(side.score);return side.score==null||side.score===''||!Number.isFinite(n)?null:n;};
+  return [{id:`espn:${league.slug}:${event.id}`,date:event.date,status,statusLabel:state.description??(completed?'Finalizado':'Por confirmar'),leagueId:league.id,season:Number(event.season?.year) || new Date(event.date).getUTCFullYear(),cup:league.name,round:competition.type?.text??event.week?.text??'',home:home.team?.displayName??home.team?.name??'',away:away.team?.displayName??away.team?.name??'',homeId:home.team?.id??null,awayId:away.team?.id??null,homeGoals:score(home),awayGoals:score(away),venue:competition.venue?.fullName??'Estadio por confirmar'}];
+ });
 }
-export function normalizeFixtures(rows){return rows.map(row=>{
- if(!Number.isInteger(row.fixture?.id)||!row.fixture?.date||!Number.isFinite(Date.parse(row.fixture.date))||!Number.isInteger(row.league?.id)||![row.teams?.home?.id,row.teams?.away?.id].includes(TEAM)||!row.teams?.home?.name||!row.teams?.away?.name)throw new SyncError('INVALID_FIXTURE','Partido inválido.');
- return {id:row.fixture.id,date:row.fixture.date,status:row.fixture.status?.short??'TBD',statusLabel:row.fixture.status?.long??'Por confirmar',leagueId:row.league.id,season:row.league.season??null,cup:row.league.name,round:row.league.round??'',home:row.teams.home.name,away:row.teams.away.name,homeId:row.teams.home.id,awayId:row.teams.away.id,homeGoals:row.goals?.home??null,awayGoals:row.goals?.away??null,venue:row.fixture.venue?.name??'Estadio por confirmar'};
-}).sort((a,b)=>a.date.localeCompare(b.date));}
-async function atomic(path,value){await writeFile(path+'.tmp',JSON.stringify(value,null,2)+'\n');await rename(path+'.tmp',path);}
-export async function sync({key=process.env.API_FOOTBALL_KEY,dir='public/data',now=new Date(),request=fetch}={}){
- const season=Number(new Intl.DateTimeFormat('en',{year:'numeric',timeZone:'America/Argentina/Buenos_Aires'}).format(now));
+async function atomic(path,value){await writeFile(path+'.tmp',JSON.stringify(value,null,2)+'\\n');await rename(path+'.tmp',path);}
+export async function sync({dir='public/data',now=new Date(),request=fetch,leagues=LEAGUES}={}){
  await mkdir(dir,{recursive:true});
  let previous;try{previous=JSON.parse(await readFile(dir+'/boca.json','utf8'));}catch{}
- const status={season,checkedAt:now.toISOString(),lastSuccessAt:previous?.updatedAt??null};
+ const season=Number(new Intl.DateTimeFormat('en',{year:'numeric',timeZone:'America/Argentina/Buenos_Aires'}).format(now));
+ const status={season,checkedAt:now.toISOString(),lastSuccessAt:previous?.updatedAt??null,source:'ESPN (API no oficial)'};
  try{
-  if(!key)throw new SyncError('MISSING_SECRET','Falta configurar el secret API_FOOTBALL_KEY.');
-  let count=0;
-  const get=async(path)=>{
-   if(++count>20)throw new SyncError('REQUEST_BUDGET','Se alcanzó el límite de 20 consultas por ejecución.');
-   let r;try{r=await request('https://v3.football.api-sports.io/'+path,{headers:{'x-apisports-key':key},signal:AbortSignal.timeout(25000)});}catch{throw new SyncError('NETWORK_ERROR','No fue posible conectar con API-Football.');}
-   if(!r.ok)throw new SyncError('HTTP_ERROR',`API-Football respondió HTTP ${r.status}.`);
-   let body;try{body=await r.json();}catch{throw new SyncError('INVALID_RESPONSE','API-Football no devolvió JSON válido.');}
-   return validateResponse(body);
-  };
-  // No season filter: preserve past snapshots as a local fixture archive.
-  const incoming=normalizeFixtures(await get(`fixtures?team=${TEAM}&next=20`));
-  const history=Array.isArray(previous?.fixtures)?previous.fixtures.filter(f=>Number.isInteger(f?.id)):[];
-  const byId=new Map(history.map(f=>[f.id,f]));
-  for(const fixture of incoming)byId.set(fixture.id,{...byId.get(fixture.id),...fixture});
-  const fixtures=[...byId.values()].sort((a,b)=>a.date.localeCompare(b.date));
-  const previousCompetitions=Array.isArray(previous?.competitions)?previous.competitions:[];
-  const competitions=[...previousCompetitions];
-  for(const fixture of incoming){
-   if(!competitions.some(c=>c.id===fixture.leagueId&&c.season===fixture.season)){
-    competitions.push({id:fixture.leagueId,season:fixture.season,name:fixture.cup,type:null,country:'',standingsAvailable:false,tables:[]});
+  // Small date windows avoid relying on undocumented season or team identifiers.
+  const start=addDays(now,-21),windows=[];
+  for(let i=0;i<4;i++){const a=addDays(start,i*30);windows.push([dateKey(a),dateKey(addDays(a,29))]);}
+  const incoming=[];let requests=0;
+  for(const league of leagues){
+   for(const [from,to] of windows){
+    const url=`https://site.api.espn.com/apis/site/v2/sports/soccer/${league.slug}/scoreboard?dates=${from}-${to}&limit=500`;
+    let response;
+    try{response=await request(url,{signal:AbortSignal.timeout(25000),headers:{'User-Agent':'aquehorajuegaboca/1.0'}});}
+    catch{throw new SyncError('NETWORK_ERROR',`No se pudo consultar ESPN (${league.slug}).`);}
+    requests++;
+    if(!response.ok)throw new SyncError('HTTP_ERROR',`ESPN ${league.slug}: HTTP ${response.status}.`);
+    let body;try{body=await response.json();}catch{throw new SyncError('INVALID_RESPONSE',`ESPN ${league.slug} devolvió JSON inválido.`);}
+    incoming.push(...normalizeEvents(body.events,league));
    }
   }
-  if(!incoming.length)throw new SyncError('EMPTY_RESPONSE','La API no devolvió próximos partidos; se conserva el historial.');
-  const data={schemaVersion:1,source:'API-Football',season,teamId:TEAM,updatedAt:now.toISOString(),fixtures,competitions};
-  // Only replace the snapshot after every request and validation succeeds.
+  if(!incoming.length)throw new SyncError('EMPTY_RESPONSE','No se encontraron partidos de Boca en las competiciones consultadas. Se conserva el historial.');
+  const history=Array.isArray(previous?.fixtures)?previous.fixtures.filter(f=>f&&f.id!=null):[];
+  const byId=new Map(history.map(f=>[String(f.id),f]));
+  for(const f of incoming)byId.set(String(f.id),{...byId.get(String(f.id)),...f});
+  const fixtures=[...byId.values()].sort((a,b)=>String(a.date).localeCompare(String(b.date)));
+  const competitions=Array.isArray(previous?.competitions)?[...previous.competitions]:[];
+  for(const league of leagues){
+   if(!competitions.some(c=>c.id===league.id))competitions.push({id:league.id,name:league.name,type:'Cup',country:league.slug.startsWith('conmebol')?'South America':'Argentina',standingsAvailable:false,tables:[]});
+  }
+  const data={schemaVersion:1,source:'ESPN (API no oficial)',season,teamId:451,updatedAt:now.toISOString(),fixtures,competitions};
   await atomic(dir+'/boca.json',data);
-  await atomic(dir+'/sync-status.json',{...status,lastSuccessAt:data.updatedAt,ok:true,code:null,message:'Datos actualizados desde API-Football.',requests:count});
+  await atomic(dir+'/sync-status.json',{...status,lastSuccessAt:data.updatedAt,ok:true,code:null,message:'Partidos y resultados actualizados desde ESPN.',requests,received:incoming.length});
   return data;
  }catch(error){
-  const safe=error instanceof SyncError?error:new SyncError('SYNC_FAILED','Falló la sincronización. Se conservan los datos anteriores.');
+  const safe=error instanceof SyncError?error:new SyncError('SYNC_FAILED','Falló la sincronización. Se conserva el historial.');
   await atomic(dir+'/sync-status.json',{...status,ok:false,code:safe.code,message:safe.message});
   throw safe;
  }
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
- // --stdin-key is for an interactive test; production reads GitHub Secrets via env.
- let key=process.env.API_FOOTBALL_KEY;
- if(process.argv.includes('--stdin-key')){key='';for await(const chunk of process.stdin)key+=chunk;key=key.trim();}
- try{const d=await sync({key});console.log(`Sincronizado ${d.season}: ${d.fixtures.length} partidos, ${d.competitions.length} competencias.`);}catch(e){console.error(`${e.code}: ${e.message}`);process.exitCode=1;}
+ try{const data=await sync();console.log(`ESPN: ${data.fixtures.length} partidos acumulados.`);}catch(error){console.error(`${error.code}: ${error.message}`);process.exitCode=1;}
 }
