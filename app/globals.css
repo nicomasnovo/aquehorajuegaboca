@@ -5,3 +5,9 @@
 
 .teamCrest{width:92px;height:103px;object-fit:contain;display:block}
 @media(max-width:600px){.teamCrest{width:70px;height:80px}}
+
+/* Match-first home screen */
+.homeControls{display:flex;align-items:center;justify-content:flex-end;gap:10px;padding:13px 0 16px}
+.homeControls .timezone{margin:0}
+.homeControls .iconButton{margin:0}
+@media(max-width:750px){.homeControls{padding:8px 0 14px}.homeControls select{font-size:11px}.heroTop{padding:17px 15px}.dashboard{margin-top:25px}}
