@@ -1,6 +1,8 @@
 name: Actualizar datos de Boca
 on:
   workflow_call:
+  schedule:
+    - cron: '0 9 * * *'
   workflow_dispatch:
 permissions:
   contents: write
