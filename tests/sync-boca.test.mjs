@@ -14,7 +14,7 @@ test('fetches next fixtures without season and preserves past',()=>temp(async di
  await writeFile(dir+'/boca.json',JSON.stringify(old));
  const urls=[];
  const d=await sync({key:'test',dir,now,request:async url=>{urls.push(url);return response([fixture]);}});
- assert.equal(urls.length,1);assert.match(urls[0],/fixtures\\?team=451&next=20/);assert.ok(!urls[0].includes('season='));
+ assert.equal(urls.length,1);assert.ok(urls[0].includes('fixtures?team=451&next=20'));assert.ok(!urls[0].includes('season='));
  assert.deepEqual(d.fixtures.map(f=>f.id),[99,1]);assert.equal(d.competitions.length,1);
 }));
 test('refreshes existing fixture without duplicating it',()=>temp(async dir=>{
