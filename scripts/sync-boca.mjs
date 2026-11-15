@@ -7,7 +7,7 @@ export const LEAGUES=[
  {slug:'conmebol.libertadores',id:1003,name:'Copa Libertadores'}
 ];
 export class SyncError extends Error{constructor(code,message){super(message);this.code=code;}}
-const isBoca=team=>/\\bboca\\s+juniors\\b/i.test([team?.displayName,team?.name,team?.shortDisplayName].filter(Boolean).join(' '));
+const isBoca=team=>/\bboca\s+juniors\b/i.test([team?.displayName,team?.name,team?.shortDisplayName].filter(Boolean).join(' '));
 const dateKey=date=>date.toISOString().slice(0,10).replaceAll('-','');
 const addDays=(date,n)=>new Date(date.getTime()+n*86400000);
 export function normalizeEvents(events,league){
@@ -26,7 +26,7 @@ export function normalizeEvents(events,league){
   return [{id:`espn:${league.slug}:${event.id}`,date:event.date,status,statusLabel:state.description??(completed?'Finalizado':'Por confirmar'),leagueId:league.id,season:Number(event.season?.year) || new Date(event.date).getUTCFullYear(),cup:league.name,round:competition.type?.text??event.week?.text??'',home:home.team?.displayName??home.team?.name??'',away:away.team?.displayName??away.team?.name??'',homeId:home.team?.id??null,awayId:away.team?.id??null,homeGoals:score(home),awayGoals:score(away),venue:competition.venue?.fullName??'Estadio por confirmar'}];
  });
 }
-async function atomic(path,value){await writeFile(path+'.tmp',JSON.stringify(value,null,2)+'\\n');await rename(path+'.tmp',path);}
+async function atomic(path,value){await writeFile(path+'.tmp',JSON.stringify(value,null,2)+'\n');await rename(path+'.tmp',path);}
 export async function sync({dir='public/data',now=new Date(),request=fetch,leagues=LEAGUES}={}){
  await mkdir(dir,{recursive:true});
  let previous;try{previous=JSON.parse(await readFile(dir+'/boca.json','utf8'));}catch{}
