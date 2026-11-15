@@ -4,7 +4,8 @@ import {pathToFileURL} from 'node:url';
 export const LEAGUES=[
  {slug:'arg.1',id:1001,name:'Liga Argentina'},
  {slug:'arg.copa',id:1002,name:'Copa Argentina'},
- {slug:'conmebol.libertadores',id:1003,name:'Copa Libertadores'}
+ {slug:'conmebol.libertadores',id:1003,name:'Copa Libertadores'},
+ {slug:'conmebol.sudamericana',id:1004,name:'Copa Sudamericana'}
 ];
 export class SyncError extends Error{constructor(code,message){super(message);this.code=code;}}
 const isBoca=team=>/\bboca\s+juniors\b/i.test([team?.displayName,team?.name,team?.shortDisplayName].filter(Boolean).join(' '));
