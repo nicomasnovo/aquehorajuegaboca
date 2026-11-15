@@ -3,7 +3,7 @@
   "source": "ESPN (API no oficial)",
   "season": 2026,
   "teamId": 5,
-  "updatedAt": "2026-11-15T20:05:43.748Z",
+  "updatedAt": "2026-11-15T20:08:26.793Z",
   "fixtures": [
     {
       "id": "espn:arg.1:401841594",
@@ -1111,6 +1111,62 @@
           ]
         }
       ]
+    },
+    {
+      "id": 1005,
+      "name": "Supercopa Argentina",
+      "type": "Cup",
+      "country": "Argentina",
+      "standingsAvailable": false,
+      "tables": []
+    },
+    {
+      "id": 1006,
+      "name": "Trofeo de Campeones",
+      "type": "Cup",
+      "country": "Argentina",
+      "standingsAvailable": false,
+      "tables": []
+    },
+    {
+      "id": 1007,
+      "name": "Supercopa Internacional",
+      "type": "Cup",
+      "country": "Argentina",
+      "standingsAvailable": false,
+      "tables": []
+    },
+    {
+      "id": 1008,
+      "name": "Recopa de Campeones",
+      "type": "Cup",
+      "country": "Argentina",
+      "standingsAvailable": false,
+      "tables": []
+    },
+    {
+      "id": 1009,
+      "name": "Recopa Sudamericana",
+      "type": "Cup",
+      "country": "South America",
+      "standingsAvailable": false,
+      "tables": []
+    },
+    {
+      "id": 1010,
+      "name": "Copa Intercontinental FIFA",
+      "type": "Cup",
+      "country": "Argentina",
+      "standingsAvailable": false,
+      "tables": []
+    },
+    {
+      "id": 1011,
+      "name": "Mundial de Clubes FIFA",
+      "type": "Cup",
+      "country": "Argentina",
+      "standingsAvailable": false,
+      "tables": []
     }
   ]
 }
