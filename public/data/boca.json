@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "source": "ESPN (API no oficial)",
   "season": 2026,
-  "teamId": 451,
-  "updatedAt": "2026-11-15T19:47:25.191Z",
+  "teamId": 5,
+  "updatedAt": "2026-11-15T19:55:10.619Z",
   "fixtures": [
     {
       "id": "espn:arg.1:401841594",
@@ -240,8 +240,259 @@
       "name": "Liga Argentina",
       "type": "Cup",
       "country": "Argentina",
-      "standingsAvailable": false,
-      "tables": []
+      "standingsAvailable": true,
+      "tables": [
+        {
+          "name": "Group A",
+          "rows": [
+            {
+              "rank": 1,
+              "teamId": "2975",
+              "name": "Instituto (Córdoba)",
+              "points": 34,
+              "played": 16,
+              "goalDiff": 11
+            },
+            {
+              "rank": 2,
+              "teamId": "5",
+              "name": "Boca Juniors",
+              "points": 33,
+              "played": 16,
+              "goalDiff": 10
+            },
+            {
+              "rank": 3,
+              "teamId": "21",
+              "name": "Vélez Sarsfield",
+              "points": 28,
+              "played": 16,
+              "goalDiff": 8
+            },
+            {
+              "rank": 4,
+              "teamId": "8950",
+              "name": "Defensa y Justicia",
+              "points": 28,
+              "played": 16,
+              "goalDiff": 6
+            },
+            {
+              "rank": 5,
+              "teamId": "12",
+              "name": "Lanús",
+              "points": 25,
+              "played": 15,
+              "goalDiff": 7
+            },
+            {
+              "rank": 6,
+              "teamId": "14",
+              "name": "Newell's Old Boys",
+              "points": 23,
+              "played": 16,
+              "goalDiff": 3
+            },
+            {
+              "rank": 7,
+              "teamId": "11",
+              "name": "Independiente",
+              "points": 23,
+              "played": 16,
+              "goalDiff": -1
+            },
+            {
+              "rank": 8,
+              "teamId": "11972",
+              "name": "Gimnasia (Mendoza)",
+              "points": 22,
+              "played": 16,
+              "goalDiff": 1
+            },
+            {
+              "rank": 9,
+              "teamId": "20",
+              "name": "Unión (Santa Fe)",
+              "points": 21,
+              "played": 16,
+              "goalDiff": 0
+            },
+            {
+              "rank": 10,
+              "teamId": "7764",
+              "name": "Platense",
+              "points": 20,
+              "played": 16,
+              "goalDiff": -2
+            },
+            {
+              "rank": 11,
+              "teamId": "18",
+              "name": "San Lorenzo",
+              "points": 19,
+              "played": 16,
+              "goalDiff": -7
+            },
+            {
+              "rank": 12,
+              "teamId": "8",
+              "name": "Estudiantes de La Plata",
+              "points": 16,
+              "played": 16,
+              "goalDiff": -1
+            },
+            {
+              "rank": 13,
+              "teamId": "19",
+              "name": "Talleres (Córdoba)",
+              "points": 13,
+              "played": 16,
+              "goalDiff": -6
+            },
+            {
+              "rank": 14,
+              "teamId": "17702",
+              "name": "Deportivo Riestra",
+              "points": 12,
+              "played": 16,
+              "goalDiff": -8
+            },
+            {
+              "rank": 15,
+              "teamId": "11989",
+              "name": "Central Córdoba (Santiago del Estero)",
+              "points": 10,
+              "played": 15,
+              "goalDiff": -14
+            }
+          ]
+        },
+        {
+          "name": "Group B",
+          "rows": [
+            {
+              "rank": 1,
+              "teamId": "17",
+              "name": "Rosario Central",
+              "points": 34,
+              "played": 16,
+              "goalDiff": 14
+            },
+            {
+              "rank": 2,
+              "teamId": "3",
+              "name": "Argentinos Juniors",
+              "points": 31,
+              "played": 16,
+              "goalDiff": 6
+            },
+            {
+              "rank": 3,
+              "teamId": "9",
+              "name": "Gimnasia La Plata",
+              "points": 31,
+              "played": 16,
+              "goalDiff": 5
+            },
+            {
+              "rank": 4,
+              "teamId": "16",
+              "name": "River Plate",
+              "points": 26,
+              "played": 16,
+              "goalDiff": 7
+            },
+            {
+              "rank": 5,
+              "teamId": "10060",
+              "name": "Barracas Central",
+              "points": 26,
+              "played": 16,
+              "goalDiff": 4
+            },
+            {
+              "rank": 6,
+              "teamId": "4",
+              "name": "Belgrano (Córdoba)",
+              "points": 23,
+              "played": 16,
+              "goalDiff": 2
+            },
+            {
+              "rank": 7,
+              "teamId": "9744",
+              "name": "Independiente Rivadavia",
+              "points": 23,
+              "played": 16,
+              "goalDiff": -3
+            },
+            {
+              "rank": 8,
+              "teamId": "10",
+              "name": "Huracán",
+              "points": 22,
+              "played": 16,
+              "goalDiff": -2
+            },
+            {
+              "rank": 9,
+              "teamId": "10158",
+              "name": "Sarmiento (Junín)",
+              "points": 21,
+              "played": 16,
+              "goalDiff": -1
+            },
+            {
+              "rank": 10,
+              "teamId": "7767",
+              "name": "Tigre",
+              "points": 19,
+              "played": 16,
+              "goalDiff": 0
+            },
+            {
+              "rank": 11,
+              "teamId": "9785",
+              "name": "Atlético Tucumán",
+              "points": 18,
+              "played": 16,
+              "goalDiff": -1
+            },
+            {
+              "rank": 12,
+              "teamId": "235",
+              "name": "Banfield",
+              "points": 15,
+              "played": 16,
+              "goalDiff": -7
+            },
+            {
+              "rank": 13,
+              "teamId": "15",
+              "name": "Racing Club",
+              "points": 15,
+              "played": 16,
+              "goalDiff": -8
+            },
+            {
+              "rank": 14,
+              "teamId": "9739",
+              "name": "Aldosivi",
+              "points": 11,
+              "played": 16,
+              "goalDiff": -10
+            },
+            {
+              "rank": 15,
+              "teamId": "19685",
+              "name": "Estudiantes de Río Cuarto",
+              "points": 9,
+              "played": 16,
+              "goalDiff": -13
+            }
+          ]
+        }
+      ]
     },
     {
       "id": 1002,
@@ -256,16 +507,610 @@
       "name": "Copa Libertadores",
       "type": "Cup",
       "country": "South America",
-      "standingsAvailable": false,
-      "tables": []
+      "standingsAvailable": true,
+      "tables": [
+        {
+          "name": "Group A",
+          "rows": [
+            {
+              "rank": 1,
+              "teamId": "819",
+              "name": "Flamengo",
+              "points": 16,
+              "played": 6,
+              "goalDiff": 12
+            },
+            {
+              "rank": 2,
+              "teamId": "8",
+              "name": "Estudiantes de La Plata",
+              "points": 9,
+              "played": 6,
+              "goalDiff": 1
+            },
+            {
+              "rank": 3,
+              "teamId": "2690",
+              "name": "Independiente Medellín",
+              "points": 7,
+              "played": 6,
+              "goalDiff": -5
+            },
+            {
+              "rank": 4,
+              "teamId": "11995",
+              "name": "Cusco FC",
+              "points": 1,
+              "played": 6,
+              "goalDiff": -8
+            }
+          ]
+        },
+        {
+          "name": "Group B",
+          "rows": [
+            {
+              "rank": 1,
+              "teamId": "8186",
+              "name": "Coquimbo Unido",
+              "points": 10,
+              "played": 6,
+              "goalDiff": 2
+            },
+            {
+              "rank": 2,
+              "teamId": "5489",
+              "name": "Deportes Tolima",
+              "points": 8,
+              "played": 6,
+              "goalDiff": 1
+            },
+            {
+              "rank": 3,
+              "teamId": "2684",
+              "name": "Nacional",
+              "points": 8,
+              "played": 6,
+              "goalDiff": -2
+            },
+            {
+              "rank": 4,
+              "teamId": "2685",
+              "name": "Universitario",
+              "points": 6,
+              "played": 6,
+              "goalDiff": -1
+            }
+          ]
+        },
+        {
+          "name": "Group C",
+          "rows": [
+            {
+              "rank": 1,
+              "teamId": "9744",
+              "name": "Independiente Rivadavia",
+              "points": 16,
+              "played": 6,
+              "goalDiff": 9
+            },
+            {
+              "rank": 2,
+              "teamId": "3445",
+              "name": "Fluminense",
+              "points": 8,
+              "played": 6,
+              "goalDiff": 0
+            },
+            {
+              "rank": 3,
+              "teamId": "2681",
+              "name": "Bolívar",
+              "points": 5,
+              "played": 6,
+              "goalDiff": -2
+            },
+            {
+              "rank": 4,
+              "teamId": "17090",
+              "name": "Deportivo La Guaira",
+              "points": 3,
+              "played": 6,
+              "goalDiff": -7
+            }
+          ]
+        },
+        {
+          "name": "Group D",
+          "rows": [
+            {
+              "rank": 1,
+              "teamId": "885",
+              "name": "Universidad Católica",
+              "points": 13,
+              "played": 6,
+              "goalDiff": 4
+            },
+            {
+              "rank": 2,
+              "teamId": "2022",
+              "name": "Cruzeiro",
+              "points": 11,
+              "played": 6,
+              "goalDiff": 5
+            },
+            {
+              "rank": 3,
+              "teamId": "5",
+              "name": "Boca Juniors",
+              "points": 7,
+              "played": 6,
+              "goalDiff": 1
+            },
+            {
+              "rank": 4,
+              "teamId": "2686",
+              "name": "Barcelona SC",
+              "points": 3,
+              "played": 6,
+              "goalDiff": -10
+            }
+          ]
+        },
+        {
+          "name": "Group E",
+          "rows": [
+            {
+              "rank": 1,
+              "teamId": "874",
+              "name": "Corinthians",
+              "points": 11,
+              "played": 6,
+              "goalDiff": 4
+            },
+            {
+              "rank": 2,
+              "teamId": "7764",
+              "name": "Platense",
+              "points": 10,
+              "played": 6,
+              "goalDiff": 1
+            },
+            {
+              "rank": 3,
+              "teamId": "5488",
+              "name": "Independiente Santa Fe",
+              "points": 8,
+              "played": 6,
+              "goalDiff": -1
+            },
+            {
+              "rank": 4,
+              "teamId": "2683",
+              "name": "Peñarol",
+              "points": 3,
+              "played": 6,
+              "goalDiff": -4
+            }
+          ]
+        },
+        {
+          "name": "Group F",
+          "rows": [
+            {
+              "rank": 1,
+              "teamId": "2671",
+              "name": "Cerro Porteño",
+              "points": 13,
+              "played": 6,
+              "goalDiff": 4
+            },
+            {
+              "rank": 2,
+              "teamId": "2029",
+              "name": "Palmeiras",
+              "points": 11,
+              "played": 6,
+              "goalDiff": 5
+            },
+            {
+              "rank": 3,
+              "teamId": "2673",
+              "name": "Sporting Cristal",
+              "points": 6,
+              "played": 6,
+              "goalDiff": -3
+            },
+            {
+              "rank": 4,
+              "teamId": "4815",
+              "name": "Atlético Junior",
+              "points": 4,
+              "played": 6,
+              "goalDiff": -6
+            }
+          ]
+        },
+        {
+          "name": "Group G",
+          "rows": [
+            {
+              "rank": 1,
+              "teamId": "4816",
+              "name": "Liga de Quito",
+              "points": 12,
+              "played": 6,
+              "goalDiff": 3
+            },
+            {
+              "rank": 2,
+              "teamId": "9169",
+              "name": "Mirassol",
+              "points": 12,
+              "played": 6,
+              "goalDiff": 3
+            },
+            {
+              "rank": 3,
+              "teamId": "12",
+              "name": "Lanús",
+              "points": 9,
+              "played": 6,
+              "goalDiff": -4
+            },
+            {
+              "rank": 4,
+              "teamId": "19425",
+              "name": "Always Ready",
+              "points": 3,
+              "played": 6,
+              "goalDiff": -2
+            }
+          ]
+        },
+        {
+          "name": "Group H",
+          "rows": [
+            {
+              "rank": 1,
+              "teamId": "17086",
+              "name": "Independiente del Valle",
+              "points": 13,
+              "played": 6,
+              "goalDiff": 5
+            },
+            {
+              "rank": 2,
+              "teamId": "17",
+              "name": "Rosario Central",
+              "points": 13,
+              "played": 6,
+              "goalDiff": 8
+            },
+            {
+              "rank": 3,
+              "teamId": "10094",
+              "name": "UCV FC",
+              "points": 9,
+              "played": 6,
+              "goalDiff": -4
+            },
+            {
+              "rank": 4,
+              "teamId": "2670",
+              "name": "Libertad",
+              "points": 0,
+              "played": 6,
+              "goalDiff": -9
+            }
+          ]
+        }
+      ]
     },
     {
       "id": 1004,
       "name": "Copa Sudamericana",
       "type": "Cup",
       "country": "South America",
-      "standingsAvailable": false,
-      "tables": []
+      "standingsAvailable": true,
+      "tables": [
+        {
+          "name": "Group A",
+          "rows": [
+            {
+              "rank": 1,
+              "teamId": "18439",
+              "name": "Macará",
+              "points": 10,
+              "played": 6,
+              "goalDiff": 3
+            },
+            {
+              "rank": 2,
+              "teamId": "7767",
+              "name": "Tigre",
+              "points": 9,
+              "played": 6,
+              "goalDiff": 3
+            },
+            {
+              "rank": 3,
+              "teamId": "8109",
+              "name": "América de Cali",
+              "points": 9,
+              "played": 6,
+              "goalDiff": 1
+            },
+            {
+              "rank": 4,
+              "teamId": "5267",
+              "name": "Alianza Atlético",
+              "points": 2,
+              "played": 6,
+              "goalDiff": -7
+            }
+          ]
+        },
+        {
+          "name": "Group B",
+          "rows": [
+            {
+              "rank": 1,
+              "teamId": "7632",
+              "name": "Atlético Mineiro",
+              "points": 10,
+              "played": 6,
+              "goalDiff": 2
+            },
+            {
+              "rank": 2,
+              "teamId": "3372",
+              "name": "Cienciano del Cusco",
+              "points": 8,
+              "played": 6,
+              "goalDiff": -2
+            },
+            {
+              "rank": 3,
+              "teamId": "8416",
+              "name": "Juventud",
+              "points": 7,
+              "played": 6,
+              "goalDiff": 3
+            },
+            {
+              "rank": 4,
+              "teamId": "18995",
+              "name": "Academia Puerto Cabello",
+              "points": 7,
+              "played": 6,
+              "goalDiff": -3
+            }
+          ]
+        },
+        {
+          "name": "Group C",
+          "rows": [
+            {
+              "rank": 1,
+              "teamId": "2026",
+              "name": "São Paulo",
+              "points": 12,
+              "played": 6,
+              "goalDiff": 5
+            },
+            {
+              "rank": 2,
+              "teamId": "6072",
+              "name": "O'Higgins",
+              "points": 10,
+              "played": 6,
+              "goalDiff": 2
+            },
+            {
+              "rank": 3,
+              "teamId": "5484",
+              "name": "Millonarios",
+              "points": 8,
+              "played": 6,
+              "goalDiff": 0
+            },
+            {
+              "rank": 4,
+              "teamId": "9999",
+              "name": "Boston River",
+              "points": 3,
+              "played": 6,
+              "goalDiff": -7
+            }
+          ]
+        },
+        {
+          "name": "Group D",
+          "rows": [
+            {
+              "rank": 1,
+              "teamId": "22517",
+              "name": "Deportivo Recoleta",
+              "points": 8,
+              "played": 6,
+              "goalDiff": 1
+            },
+            {
+              "rank": 2,
+              "teamId": "2674",
+              "name": "Santos",
+              "points": 7,
+              "played": 6,
+              "goalDiff": 2
+            },
+            {
+              "rank": 3,
+              "teamId": "18",
+              "name": "San Lorenzo",
+              "points": 7,
+              "played": 6,
+              "goalDiff": 1
+            },
+            {
+              "rank": 4,
+              "teamId": "4812",
+              "name": "Deportivo Cuenca",
+              "points": 6,
+              "played": 6,
+              "goalDiff": -4
+            }
+          ]
+        },
+        {
+          "name": "Group E",
+          "rows": [
+            {
+              "rank": 1,
+              "teamId": "6086",
+              "name": "Botafogo",
+              "points": 16,
+              "played": 6,
+              "goalDiff": 10
+            },
+            {
+              "rank": 2,
+              "teamId": "4811",
+              "name": "Caracas FC",
+              "points": 9,
+              "played": 6,
+              "goalDiff": 0
+            },
+            {
+              "rank": 3,
+              "teamId": "15",
+              "name": "Racing Club",
+              "points": 8,
+              "played": 6,
+              "goalDiff": 2
+            },
+            {
+              "rank": 4,
+              "teamId": "20889",
+              "name": "Independiente Petrolero",
+              "points": 0,
+              "played": 6,
+              "goalDiff": -12
+            }
+          ]
+        },
+        {
+          "name": "Group F",
+          "rows": [
+            {
+              "rank": 1,
+              "teamId": "19002",
+              "name": "Montevideo City Torque",
+              "points": 13,
+              "played": 6,
+              "goalDiff": 6
+            },
+            {
+              "rank": 2,
+              "teamId": "6273",
+              "name": "Grêmio",
+              "points": 11,
+              "played": 6,
+              "goalDiff": 5
+            },
+            {
+              "rank": 3,
+              "teamId": "17702",
+              "name": "Deportivo Riestra",
+              "points": 5,
+              "played": 6,
+              "goalDiff": -6
+            },
+            {
+              "rank": 4,
+              "teamId": "4422",
+              "name": "Palestino",
+              "points": 3,
+              "played": 6,
+              "goalDiff": -5
+            }
+          ]
+        },
+        {
+          "name": "Group G",
+          "rows": [
+            {
+              "rank": 1,
+              "teamId": "2675",
+              "name": "Club Olimpia",
+              "points": 13,
+              "played": 6,
+              "goalDiff": 4
+            },
+            {
+              "rank": 2,
+              "teamId": "3454",
+              "name": "Vasco da Gama",
+              "points": 10,
+              "played": 6,
+              "goalDiff": 4
+            },
+            {
+              "rank": 3,
+              "teamId": "4138",
+              "name": "Audax Italiano",
+              "points": 7,
+              "played": 6,
+              "goalDiff": -2
+            },
+            {
+              "rank": 4,
+              "teamId": "10060",
+              "name": "Barracas Central",
+              "points": 3,
+              "played": 6,
+              "goalDiff": -6
+            }
+          ]
+        },
+        {
+          "name": "Group H",
+          "rows": [
+            {
+              "rank": 1,
+              "teamId": "16",
+              "name": "River Plate",
+              "points": 14,
+              "played": 6,
+              "goalDiff": 6
+            },
+            {
+              "rank": 2,
+              "teamId": "6079",
+              "name": "Red Bull Bragantino",
+              "points": 10,
+              "played": 6,
+              "goalDiff": 7
+            },
+            {
+              "rank": 3,
+              "teamId": "6037",
+              "name": "Carabobo",
+              "points": 9,
+              "played": 6,
+              "goalDiff": 1
+            },
+            {
+              "rank": 4,
+              "teamId": "6047",
+              "name": "Blooming",
+              "points": 1,
+              "played": 6,
+              "goalDiff": -14
+            }
+          ]
+        }
+      ]
     }
   ]
 }
