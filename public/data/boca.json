@@ -3,7 +3,7 @@
   "source": "ESPN (API no oficial)",
   "season": 2026,
   "teamId": 451,
-  "updatedAt": "2026-11-15T12:29:49.864Z",
+  "updatedAt": "2026-11-15T12:40:40.110Z",
   "fixtures": [
     {
       "id": "espn:arg.1:401841594",
@@ -185,7 +185,7 @@
       "season": 2026,
       "cup": "Copa Sudamericana",
       "round": "",
-      "home": "Atlético-MG",
+      "home": "Atlético Mineiro",
       "away": "Boca Juniors",
       "homeId": "7632",
       "awayId": "5",
