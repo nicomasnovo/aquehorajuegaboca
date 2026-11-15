@@ -8,7 +8,7 @@ Web para consultar próximos partidos, resultados e historial acumulativo de Boc
 - **Actualización:** GitHub Actions ejecuta `.github/workflows/update-boca.yml` cada 6 horas o manualmente.
 - **Sincronización:** `scripts/sync-boca.mjs` consulta tres competiciones en ventanas de fechas, filtra encuentros de Boca y normaliza horarios, estado y goles.
 - **Persistencia:** combina los eventos nuevos por ID con `public/data/boca.json` y realiza un commit. El JSON es el **historial acumulativo del proyecto**, no una base histórica completa garantizada.
-- **Publicación:** el Action publica `boca.json` y `sync-status.json` mediante GitHub Pages. La interfaz consume JSON, no consulta ESPN directamente.
+- **Publicación:** el Action ejecuta `pnpm exec next build` con exportación estática y publica la aplicación completa (`out/`) junto con los JSON en GitHub Pages, bajo `/aquehorajuegaboca/`. La interfaz consume JSON, no consulta ESPN directamente.
 - **Fallos:** ante respuestas inválidas, ausencia de encuentros o errores HTTP, se conserva el último `boca.json` válido y se registra el fallo en `sync-status.json`. El Action puede quedar rojo aun cuando publique el último snapshot.
 
 ## Dependencias externas y riesgos
@@ -28,7 +28,7 @@ Web para consultar próximos partidos, resultados e historial acumulativo de Boc
 2. Ir a **Actions → Actualizar datos de Boca → Run workflow**.
 3. Verificar el log de pruebas y el paso de consulta ESPN. Revisar `public/data/sync-status.json`: `ok`, `checkedAt`, `requests`, `received` y `message`.
 4. Comprobar `public/data/boca.json` y la URL publicada por Pages.
-5. Configurar `public/data-config.json` para que la interfaz consuma la URL de los JSON y desplegar la aplicación. **Modificar este repositorio no redespliega automáticamente la web original creada en Sites.**
+5. Verificar la web publicada en `https://nicomasnovo.github.io/aquehorajuegaboca/`. `public/data-config.json` puede mantener `baseUrl` vacío: la app utiliza `/aquehorajuegaboca/data` en Pages. **La web original creada en Sites es un despliegue distinto.**
 
 **No se requiere `API_FOOTBALL_KEY` ni `BOCA_SYNC_ENABLED`.** Si quedaron configurados de la integración anterior, ya no se usan; pueden eliminarse manualmente de GitHub Settings.
 
