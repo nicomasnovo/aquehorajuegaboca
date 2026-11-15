@@ -3,7 +3,7 @@
   "source": "ESPN (API no oficial)",
   "season": 2026,
   "teamId": 451,
-  "updatedAt": "2026-11-15T12:09:47.252Z",
+  "updatedAt": "2026-11-15T12:17:41.251Z",
   "fixtures": [
     {
       "id": "espn:arg.1:401841594",
@@ -20,7 +20,9 @@
       "awayId": "20",
       "homeGoals": 3,
       "awayGoals": 0,
-      "venue": "Alberto José Armando (La Bombonera)"
+      "venue": "Alberto José Armando (La Bombonera)",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/20.png"
     },
     {
       "id": "espn:arg.1:401841607",
@@ -37,7 +39,28 @@
       "awayId": "5",
       "homeGoals": 2,
       "awayGoals": 2,
-      "venue": "Monumental Presidente Perón"
+      "venue": "Monumental Presidente Perón",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/2975.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png"
+    },
+    {
+      "id": "espn:conmebol.sudamericana:401913958",
+      "date": "2026-10-14T00:30Z",
+      "status": "FT",
+      "statusLabel": "Full Time",
+      "leagueId": 1004,
+      "season": 2026,
+      "cup": "Copa Sudamericana",
+      "round": "",
+      "home": "Boca Juniors",
+      "away": "Vasco da Gama",
+      "homeId": "5",
+      "awayId": "3454",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3454.png",
+      "homeGoals": 0,
+      "awayGoals": 1,
+      "venue": "Alberto José Armando (La Bombonera)"
     },
     {
       "id": "espn:arg.1:401841627",
@@ -54,7 +77,28 @@
       "awayId": "19",
       "homeGoals": 2,
       "awayGoals": 1,
-      "venue": "Alberto José Armando (La Bombonera)"
+      "venue": "Alberto José Armando (La Bombonera)",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/19.png"
+    },
+    {
+      "id": "espn:conmebol.sudamericana:401913957",
+      "date": "2026-10-21T00:30Z",
+      "status": "FT",
+      "statusLabel": "Full Time",
+      "leagueId": 1004,
+      "season": 2026,
+      "cup": "Copa Sudamericana",
+      "round": "",
+      "home": "Vasco da Gama",
+      "away": "Boca Juniors",
+      "homeId": "3454",
+      "awayId": "5",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3454.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
+      "homeGoals": 1,
+      "awayGoals": 3,
+      "venue": "Estadio do Maracana"
     },
     {
       "id": "espn:arg.1:401841636",
@@ -71,7 +115,9 @@
       "awayId": "5",
       "homeGoals": 0,
       "awayGoals": 1,
-      "venue": "Estadio Libertadores de América"
+      "venue": "Estadio Libertadores de América",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/11.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png"
     },
     {
       "id": "espn:arg.1:401841658",
@@ -88,7 +134,9 @@
       "awayId": "16",
       "homeGoals": 1,
       "awayGoals": 0,
-      "venue": "Alberto José Armando (La Bombonera)"
+      "venue": "Alberto José Armando (La Bombonera)",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/16.png"
     },
     {
       "id": "espn:arg.1:401841669",
@@ -105,7 +153,9 @@
       "awayId": "8950",
       "homeGoals": 1,
       "awayGoals": 0,
-      "venue": "Alberto José Armando (La Bombonera)"
+      "venue": "Alberto José Armando (La Bombonera)",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/8950.png"
     },
     {
       "id": "espn:arg.copa:401926286",
@@ -122,7 +172,28 @@
       "awayId": "5",
       "homeGoals": 0,
       "awayGoals": 3,
-      "venue": "Malvinas Argentinas (Mendoza)"
+      "venue": "Malvinas Argentinas (Mendoza)",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/235.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png"
+    },
+    {
+      "id": "espn:conmebol.sudamericana:401913961",
+      "date": "2026-11-21T22:30Z",
+      "status": "NS",
+      "statusLabel": "Scheduled",
+      "leagueId": 1004,
+      "season": 2026,
+      "cup": "Copa Sudamericana",
+      "round": "",
+      "home": "Atlético-MG",
+      "away": "Boca Juniors",
+      "homeId": "7632",
+      "awayId": "5",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/7632.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
+      "homeGoals": 0,
+      "awayGoals": 0,
+      "venue": "Metropolitano Roberto Meléndez"
     },
     {
       "id": "espn:arg.1:401933757",
@@ -139,7 +210,9 @@
       "awayId": "9744",
       "homeGoals": 0,
       "awayGoals": 0,
-      "venue": "Alberto José Armando (La Bombonera)"
+      "venue": "Alberto José Armando (La Bombonera)",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/9744.png"
     },
     {
       "id": "espn:arg.copa:401932277",
@@ -156,7 +229,9 @@
       "awayId": "7764",
       "homeGoals": 0,
       "awayGoals": 0,
-      "venue": "Estadio por confirmar"
+      "venue": "Estadio por confirmar",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/7764.png"
     }
   ],
   "competitions": [
@@ -179,6 +254,14 @@
     {
       "id": 1003,
       "name": "Copa Libertadores",
+      "type": "Cup",
+      "country": "South America",
+      "standingsAvailable": false,
+      "tables": []
+    },
+    {
+      "id": 1004,
+      "name": "Copa Sudamericana",
       "type": "Cup",
       "country": "South America",
       "standingsAvailable": false,
