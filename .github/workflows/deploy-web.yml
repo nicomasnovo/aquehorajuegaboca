@@ -1,9 +1,7 @@
 name: Build y publicar web
 on:
-  workflow_run:
-    workflows: ["Actualizar datos de Boca"]
-    types: [completed]
-    branches: [master]
+  schedule:
+    - cron: '0 9 * * *'
   workflow_dispatch:
   push:
     branches: [master]
@@ -11,15 +9,19 @@ on:
       - 'public/data/boca.json'
       - 'public/data/sync-status.json'
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 concurrency:
   group: boca-pages-deploy
   cancel-in-progress: false
 jobs:
+  sync:
+    uses: ./.github/workflows/update-boca.yml
+    permissions:
+      contents: write
   deploy:
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    needs: sync
     runs-on: ubuntu-latest
     timeout-minutes: 15
     environment:
