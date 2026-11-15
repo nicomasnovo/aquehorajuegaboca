@@ -26,3 +26,5 @@ html{background:#090f1c}body{background:#090f1c;min-height:100dvh}
 .installFooter strong{font-size:14px}.installFooter p{font-size:11px;color:var(--muted);margin-top:5px}
 .installFooter button{display:flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:6px;padding:12px 15px;background:var(--gold);color:#102144;font-weight:700;white-space:nowrap}
 @media(max-width:750px){.installFooter{flex-direction:column;align-items:stretch;text-align:center}.installFooter button{width:100%}}
+
+.calendarModal{max-width:430px}.calendarOption{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#182b48;border:1px solid #385073;border-radius:8px;padding:16px;margin-top:12px;text-align:left;font-weight:700}.calendarOption:hover{border-color:var(--gold)}
