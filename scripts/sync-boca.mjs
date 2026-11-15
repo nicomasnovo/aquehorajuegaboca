@@ -23,7 +23,7 @@ export function normalizeEvents(events,league){
   const completed=state.completed===true||state.name==='STATUS_FINAL';
   const status=completed?'FT':state.state==='in'?'LIVE':state.state==='pre'?'NS':'TBD';
   const score=side=>{const n=Number(side.score);return side.score==null||side.score===''||!Number.isFinite(n)?null:n;};
-  return [{id:`espn:${league.slug}:${event.id}`,date:event.date,status,statusLabel:state.description??(completed?'Finalizado':'Por confirmar'),leagueId:league.id,season:Number(event.season?.year) || new Date(event.date).getUTCFullYear(),cup:league.name,round:competition.type?.text??event.week?.text??'',home:home.team?.displayName??home.team?.name??'',away:away.team?.displayName??away.team?.name??'',homeId:home.team?.id??null,awayId:away.team?.id??null,homeGoals:score(home),awayGoals:score(away),venue:competition.venue?.fullName??'Estadio por confirmar'}];
+  return [{id:`espn:${league.slug}:${event.id}`,date:event.date,status,statusLabel:state.description??(completed?'Finalizado':'Por confirmar'),leagueId:league.id,season:Number(event.season?.year) || new Date(event.date).getUTCFullYear(),cup:league.name,round:competition.type?.text??event.week?.text??'',home:home.team?.displayName??home.team?.name??'',away:away.team?.displayName??away.team?.name??'',homeId:home.team?.id??null,awayId:away.team?.id??null,homeLogo:home.team?.logos?.[0]?.href??home.team?.logo??null,awayLogo:away.team?.logos?.[0]?.href??away.team?.logo??null,homeGoals:score(home),awayGoals:score(away),venue:competition.venue?.fullName??'Estadio por confirmar'}];
  });
 }
 async function atomic(path,value){await writeFile(path+'.tmp',JSON.stringify(value,null,2)+'\n');await rename(path+'.tmp',path);}
