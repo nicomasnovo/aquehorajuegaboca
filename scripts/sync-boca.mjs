@@ -8,7 +8,6 @@ export const LEAGUES=[
 ];
 export class SyncError extends Error{constructor(code,message){super(message);this.code=code;}}
 const isBoca=team=>/\bboca\s+juniors\b/i.test([team?.displayName,team?.name,team?.shortDisplayName].filter(Boolean).join(' '));
-const dateKey=date=>date.toISOString().slice(0,10).replaceAll('-','');
 const addDays=(date,n)=>new Date(date.getTime()+n*86400000);
 export function normalizeEvents(events,league){
  if(!Array.isArray(events))throw new SyncError('INVALID_RESPONSE','ESPN no devolvió una lista de eventos.');
@@ -33,13 +32,16 @@ export async function sync({dir='public/data',now=new Date(),request=fetch,leagu
  const season=Number(new Intl.DateTimeFormat('en',{year:'numeric',timeZone:'America/Argentina/Buenos_Aires'}).format(now));
  const status={season,checkedAt:now.toISOString(),lastSuccessAt:previous?.updatedAt??null,source:'ESPN (API no oficial)'};
  try{
-  // Small date windows avoid relying on undocumented season or team identifiers.
-  const start=addDays(now,-21),windows=[];
-  for(let i=0;i<4;i++){const a=addDays(start,i*30);windows.push([dateKey(a),dateKey(addDays(a,29))]);}
+  // ESPN retired YYYYMMDD-YYYYMMDD ranges; request calendar months instead.
+  const start=addDays(now,-21),months=[];
+  for(let i=0;i<6;i++){
+   const d=new Date(Date.UTC(start.getUTCFullYear(),start.getUTCMonth()+i,1));
+   months.push(String(d.getUTCFullYear())+String(d.getUTCMonth()+1).padStart(2,'0'));
+  }
   const incoming=[];let requests=0;
   for(const league of leagues){
-   for(const [from,to] of windows){
-    const url=`https://site.api.espn.com/apis/site/v2/sports/soccer/${league.slug}/scoreboard?dates=${from}-${to}&limit=500`;
+   for(const month of months){
+    const url=`https://site.api.espn.com/apis/site/v2/sports/soccer/${league.slug}/scoreboard?dates=${month}&limit=500`;
     let response;
     try{response=await request(url,{signal:AbortSignal.timeout(25000),headers:{'User-Agent':'aquehorajuegaboca/1.0'}});}
     catch{throw new SyncError('NETWORK_ERROR',`No se pudo consultar ESPN (${league.slug}).`);}
