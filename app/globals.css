@@ -20,3 +20,9 @@
 @keyframes stadiumFall{0%{transform:translate3d(0,-30px,0) rotate(0deg)}50%{transform:translate3d(35px,52vh,0) rotate(220deg)}100%{transform:translate3d(-18px,110vh,0) rotate(480deg)}}
 aside,main{position:relative;z-index:1}
 @media(prefers-reduced-motion:reduce){.stadiumConfetti span{animation:none;display:none}}
+
+html{background:#090f1c}body{background:#090f1c;min-height:100dvh}
+.installFooter{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:32px 0 12px;padding:18px 20px;border:1px solid var(--line);border-radius:10px;background:#111b2d}
+.installFooter strong{font-size:14px}.installFooter p{font-size:11px;color:var(--muted);margin-top:5px}
+.installFooter button{display:flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:6px;padding:12px 15px;background:var(--gold);color:#102144;font-weight:700;white-space:nowrap}
+@media(max-width:750px){.installFooter{flex-direction:column;align-items:stretch;text-align:center}.installFooter button{width:100%}}
