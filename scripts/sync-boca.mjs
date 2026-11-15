@@ -91,7 +91,7 @@ export async function sync({dir='public/data',now=new Date(),request=fetch,leagu
   }
   const fixtures=[...byId.values()].sort((a,b)=>String(a.date).localeCompare(String(b.date)));
   const competitions=Array.isArray(previous?.competitions)?[...previous.competitions]:[];
-  for(const league of leagues.filter(l=>!l.optional||incoming.some(f=>f.leagueId===l.id))){
+  for(const league of leagues){
    if(!competitions.some(c=>c.id===league.id))competitions.push({id:league.id,name:league.name,type:'Cup',country:league.slug.startsWith('conmebol')?'South America':'Argentina',standingsAvailable:false,tables:[]});
   }
   // Standings are best-effort: cup knockouts and unsupported leagues may not expose tables.
