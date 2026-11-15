@@ -24,6 +24,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Preparar pnpm
+        run: corepack enable
+      - name: Instalar dependencias
+        run: pnpm install --frozen-lockfile
       - name: Verificar el sincronizador
         run: node --test tests/sync-boca.test.mjs
       - name: Consultar ESPN: próximos partidos y resultados
@@ -39,17 +43,21 @@ jobs:
             git commit -m 'Actualizar datos de Boca y estado de sincronización'
             git push origin HEAD
           fi
-      # Deploy directly: commits made with GITHUB_TOKEN do not trigger another push workflow.
-      - name: Preparar JSON para el CDN
+      - name: Generar aplicación estática para GitHub Pages
+        env:
+          GITHUB_PAGES: 'true'
+          NEXT_PUBLIC_BASE_PATH: /aquehorajuegaboca
         run: |
-          mkdir -p data-site
-          cp public/data/boca.json public/data/sync-status.json data-site/
-          printf '%s\n' '<!doctype html><title>Datos de Boca</title><a href="boca.json">Datos de Boca</a>' > data-site/index.html
+          pnpm exec next build
+          touch out/.nojekyll
+          test -f out/index.html
+          test -f out/data/boca.json
+          test -f out/data/sync-status.json
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           name: boca-pages-${{ github.run_id }}-${{ github.run_attempt }}
-          path: data-site
+          path: out
       - name: Publicar JSON
         id: deployment
         uses: actions/deploy-pages@v4
