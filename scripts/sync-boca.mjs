@@ -17,6 +17,8 @@ export const LEAGUES=[
 ];
 export class SyncError extends Error{constructor(code,message){super(message);this.code=code;}}
 const isBoca=team=>/\bboca\s+juniors\b/i.test([team?.displayName,team?.name,team?.shortDisplayName].filter(Boolean).join(' '));
+const TEAM_NAMES=new Map([['5','Boca Juniors'],['7632','Atlético Mineiro']]);
+export const displayTeamName=team=>TEAM_NAMES.get(String(team?.id))??({'Atlético-MG':'Atlético Mineiro','Atlético MG':'Atlético Mineiro'}[team?.displayName]??team?.displayName??team?.name??'');
 const addDays=(date,n)=>new Date(date.getTime()+n*86400000);
 export function normalizeEvents(events,league){
  if(!Array.isArray(events))throw new SyncError('INVALID_RESPONSE','ESPN no devolvió una lista de eventos.');
@@ -31,7 +33,7 @@ export function normalizeEvents(events,league){
   const completed=state.completed===true||state.name==='STATUS_FINAL';
   const status=completed?'FT':state.state==='in'?'LIVE':state.state==='pre'?'NS':'TBD';
   const score=side=>{const n=Number(side.score);return side.score==null||side.score===''||!Number.isFinite(n)?null:n;};
-  return [{id:`espn:${league.slug}:${event.id}`,date:event.date,status,statusLabel:state.description??(completed?'Finalizado':'Por confirmar'),leagueId:league.id,season:Number(event.season?.year) || new Date(event.date).getUTCFullYear(),cup:league.name,round:competition.type?.text??event.week?.text??'',home:home.team?.displayName??home.team?.name??'',away:away.team?.displayName??away.team?.name??'',homeId:home.team?.id??null,awayId:away.team?.id??null,homeLogo:home.team?.logos?.[0]?.href??home.team?.logo??null,awayLogo:away.team?.logos?.[0]?.href??away.team?.logo??null,homeGoals:score(home),awayGoals:score(away),venue:competition.venue?.fullName??'Estadio por confirmar'}];
+  return [{id:`espn:${league.slug}:${event.id}`,date:event.date,status,statusLabel:state.description??(completed?'Finalizado':'Por confirmar'),leagueId:league.id,season:Number(event.season?.year) || new Date(event.date).getUTCFullYear(),cup:league.name,round:competition.type?.text??event.week?.text??'',home:displayTeamName(home.team),away:displayTeamName(away.team),homeId:home.team?.id??null,awayId:away.team?.id??null,homeLogo:home.team?.logos?.[0]?.href??home.team?.logo??null,awayLogo:away.team?.logos?.[0]?.href??away.team?.logo??null,homeGoals:score(home),awayGoals:score(away),venue:competition.venue?.fullName??'Estadio por confirmar'}];
  });
 }
 async function atomic(path,value){await writeFile(path+'.tmp',JSON.stringify(value,null,2)+'\n');await rename(path+'.tmp',path);}
@@ -66,6 +68,13 @@ export async function sync({dir='public/data',now=new Date(),request=fetch,leagu
   const history=Array.isArray(previous?.fixtures)?previous.fixtures.filter(f=>f&&f.id!=null):[];
   const byId=new Map(history.map(f=>[String(f.id),f]));
   for(const f of incoming)byId.set(String(f.id),{...byId.get(String(f.id)),...f});
+  // Normalize previously saved ESPN fixtures too, without changing unrelated team names.
+  for(const f of byId.values()){
+   if(String(f.id).startsWith('espn:')){
+    f.home=displayTeamName({id:f.homeId,displayName:f.home});
+    f.away=displayTeamName({id:f.awayId,displayName:f.away});
+   }
+  }
   const fixtures=[...byId.values()].sort((a,b)=>String(a.date).localeCompare(String(b.date)));
   const competitions=Array.isArray(previous?.competitions)?[...previous.competitions]:[];
   for(const league of leagues.filter(l=>!l.optional||incoming.some(f=>f.leagueId===l.id))){
