@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {mkdtemp,readFile,writeFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
-import {sync,normalizeEvents,displayTeamName,LEAGUES} from '../scripts/sync-boca.mjs';
+import {sync,normalizeEvents,normalizeStandings,displayTeamName,LEAGUES} from '../scripts/sync-boca.mjs';
 const now=new Date('2026-11-15T13:00:00Z');
 const event={id:'401',date:'2026-11-20T22:00:00Z',status:{type:{state:'pre',description:'Scheduled'}},competitions:[{competitors:[{homeAway:'home',team:{id:'1',displayName:'Boca Juniors'},score:null},{homeAway:'away',team:{id:'2',displayName:'River Plate'},score:null}],venue:{fullName:'La Bombonera'}}]};
 const response=events=>({ok:true,json:async()=>({events})});
@@ -17,3 +17,12 @@ test('empty ESPN responses preserve history',()=>temp(async dir=>{await writeFil
 test('optional unavailable competitions do not interrupt sync',()=>temp(async dir=>{const data=await sync({dir,now,leagues:[LEAGUES[0],LEAGUES.find(l=>l.optional)],request:async url=>url.includes('arg.supercopa')?{ok:false,status:404}:response([event])});assert.equal(data.fixtures.length,1);const status=JSON.parse(await readFile(dir+'/sync-status.json','utf8'));assert.equal(status.ok,true);assert.ok(status.unavailableLeagues.some(s=>s.includes('arg.supercopa')));assert.equal(data.competitions.length,1);}));
 
 test('uses friendly Atlético Mineiro name without modifying unrelated teams',()=>{assert.equal(displayTeamName({displayName:'Atlético-MG'}),'Atlético Mineiro');assert.equal(displayTeamName({displayName:'Independiente Rivadavia'}),'Independiente Rivadavia');});
+
+test('standings preserve actual rank and Boca beyond the first ten',()=>{
+ const entries=Array.from({length:14},(_,i)=>({team:{id:i===13?'5':String(i+100),displayName:i===13?'Boca Juniors':'Equipo '+(i+1)},stats:[{name:'rank',value:i+1},{name:'points',value:30-i},{name:'gamesPlayed',value:15}]}));
+ const tables=normalizeStandings({children:[{name:'Grupo A',standings:{entries}}]});
+ assert.equal(tables.length,1);
+ assert.equal(tables[0].rows.length,14);
+ assert.equal(tables[0].rows.at(-1).rank,14);
+ assert.equal(tables[0].rows.at(-1).name,'Boca Juniors');
+});
