@@ -7,7 +7,7 @@ compatibility_flags = ["nodejs_compat"]
 crons = ["*/5 * * * *"]
 
 # Add the database_id from your D1 dashboard before deploying via Wrangler.
-# [[d1_databases]]
-# binding = "DB"
-# database_name = "aquehorajuegaboca-db"
-# database_id = "YOUR_D1_DATABASE_ID"
+[[d1_databases]]
+binding = "DB"
+database_name = "aquehorajuegaboca-db"
+database_id = "18fbf4ee-acbb-42c6-8a87-241676036b2b"
