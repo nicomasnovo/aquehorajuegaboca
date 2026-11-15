@@ -30,7 +30,7 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Verificar el sincronizador
         run: node --test tests/sync-boca.test.mjs
-      - name: Consultar ESPN: próximos partidos y resultados
+      - name: 'Consultar ESPN: próximos partidos y resultados'
         id: sync
         continue-on-error: true
         run: node scripts/sync-boca.mjs
