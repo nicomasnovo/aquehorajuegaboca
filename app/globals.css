@@ -44,3 +44,20 @@ html{background:#090f1c}body{background:#090f1c;min-height:100dvh}
 .tableScroll tbody tr.bocaRow td{padding-top:16px;padding-bottom:16px}
 .tableScroll tbody tr.bocaRow td:first-child{color:#f6c945}
 @media(max-width:750px){.tableScroll tbody tr.podiumRow td{padding-top:12px;padding-bottom:12px}.tableScroll tbody tr.bocaRow td{padding-top:14px;padding-bottom:14px}}
+
+/* Knockout progression: only confirmed Boca matches, responsive and accessible. */
+.knockoutPath{display:flex;gap:15px;overflow-x:auto;padding:12px 2px 18px;scroll-snap-type:x proximity}
+.knockoutRound{flex:0 0 235px;min-width:0;scroll-snap-align:start;position:relative}
+.knockoutRound:not(:last-child):after{content:'→';position:absolute;right:-13px;top:100px;color:var(--gold);font-size:20px}
+.knockoutRoundLabel{display:flex;align-items:center;gap:9px;color:#dce7fa;font-size:12px;font-weight:800;min-height:36px}
+.knockoutRoundLabel span{background:#f6c945;color:#11213a;padding:5px 8px;border-radius:5px;font-size:11px}
+.knockoutMatch{border:1px solid #39516f;background:#14243b;border-radius:9px;padding:12px;margin:8px 0}
+.knockoutTeams{display:grid;gap:8px}
+.knockoutTeams>div{display:flex;align-items:center;gap:9px;padding:5px;border-radius:5px;font-size:12px}
+.knockoutTeams>div.knockoutBoca{background:rgba(246,201,69,.14);color:#f6c945;font-weight:800}
+.knockoutTeams .teamCrest{width:23px;height:26px;object-fit:contain;flex-shrink:0}
+.knockoutTeams .badge{transform:scale(.38);transform-origin:left center;width:23px;height:26px;flex-shrink:0}
+.knockoutTeams span{flex:1;min-width:0}
+.knockoutTeams strong{font-size:15px;font-variant-numeric:tabular-nums}
+.knockoutMatch p{font-size:11px;color:var(--muted);margin-top:9px}
+@media(max-width:600px){.knockoutRound{flex-basis:215px}}
