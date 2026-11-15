@@ -5,16 +5,16 @@ export class SyncError extends Error { constructor(code,message){super(message);
 export function validateResponse(body){
  if(!body || typeof body!=='object')throw new SyncError('INVALID_RESPONSE','Respuesta inválida de API-Football.');
  if(body.errors && Object.keys(body.errors).length){
-  if(body.errors.plan)throw new SyncError('PLAN_RESTRICTED','El plan de API-Football no permite consultar el año actual.');
+  if(body.errors.plan)throw new SyncError('PLAN_RESTRICTED','El plan de API-Football restringe esta consulta.');
   throw new SyncError('API_ERROR','API-Football devolvió un error. Se conservan los datos anteriores.');
  }
  if(!Array.isArray(body.response))throw new SyncError('INVALID_RESPONSE','Respuesta incompleta de API-Football.');
  if((body.paging?.total??1)>1)throw new SyncError('PAGINATION_REQUIRED','La respuesta requiere paginación. No se publicarán datos parciales.');
  return body.response;
 }
-export function normalizeFixtures(rows,season){return rows.map(row=>{
- if(!Number.isInteger(row.fixture?.id)||!row.fixture?.date||!Number.isFinite(Date.parse(row.fixture.date))||!Number.isInteger(row.league?.id)||row.league?.season!==season||![row.teams?.home?.id,row.teams?.away?.id].includes(TEAM)||!row.teams?.home?.name||!row.teams?.away?.name)throw new SyncError('INVALID_FIXTURE','Partido inválido o de otra temporada.');
- return {id:row.fixture.id,date:row.fixture.date,status:row.fixture.status?.short??'TBD',statusLabel:row.fixture.status?.long??'Por confirmar',leagueId:row.league.id,cup:row.league.name,round:row.league.round??'',home:row.teams.home.name,away:row.teams.away.name,homeId:row.teams.home.id,awayId:row.teams.away.id,homeGoals:row.goals?.home??null,awayGoals:row.goals?.away??null,venue:row.fixture.venue?.name??'Estadio por confirmar'};
+export function normalizeFixtures(rows){return rows.map(row=>{
+ if(!Number.isInteger(row.fixture?.id)||!row.fixture?.date||!Number.isFinite(Date.parse(row.fixture.date))||!Number.isInteger(row.league?.id)||![row.teams?.home?.id,row.teams?.away?.id].includes(TEAM)||!row.teams?.home?.name||!row.teams?.away?.name)throw new SyncError('INVALID_FIXTURE','Partido inválido.');
+ return {id:row.fixture.id,date:row.fixture.date,status:row.fixture.status?.short??'TBD',statusLabel:row.fixture.status?.long??'Por confirmar',leagueId:row.league.id,season:row.league.season??null,cup:row.league.name,round:row.league.round??'',home:row.teams.home.name,away:row.teams.away.name,homeId:row.teams.home.id,awayId:row.teams.away.id,homeGoals:row.goals?.home??null,awayGoals:row.goals?.away??null,venue:row.fixture.venue?.name??'Estadio por confirmar'};
 }).sort((a,b)=>a.date.localeCompare(b.date));}
 async function atomic(path,value){await writeFile(path+'.tmp',JSON.stringify(value,null,2)+'\n');await rename(path+'.tmp',path);}
 export async function sync({key=process.env.API_FOOTBALL_KEY,dir='public/data',now=new Date(),request=fetch}={}){
@@ -32,30 +32,20 @@ export async function sync({key=process.env.API_FOOTBALL_KEY,dir='public/data',n
    let body;try{body=await r.json();}catch{throw new SyncError('INVALID_RESPONSE','API-Football no devolvió JSON válido.');}
    return validateResponse(body);
   };
-  const fixtures=normalizeFixtures(await get(`fixtures?team=${TEAM}&season=${season}`),season);
-  const leagues=await get(`leagues?team=${TEAM}&season=${season}`);
-  const competitions=[];
-  for(const entry of leagues){
-   if(!Number.isInteger(entry.league?.id)||!entry.league?.name)throw new SyncError('INVALID_LEAGUE','Competencia inválida.');
-   const coverage=entry.seasons?.find(s=>s.year===season)?.coverage;
-   const tables=[];
-   if(coverage?.standings){
-    const rows=await get(`standings?league=${entry.league.id}&season=${season}`);
-    for(const result of rows){
-     if(result.league?.season!==season||result.league?.id!==entry.league.id)throw new SyncError('INVALID_STANDINGS','Tabla de otra competencia o temporada.');
-     for(const group of result.league.standings??[]){
-      if(!Array.isArray(group))throw new SyncError('INVALID_STANDINGS','Tabla inválida.');
-      tables.push({name:group[0]?.group??entry.league.name,rows:group.map(r=>{
-       if(!Number.isInteger(r.rank)||!r.team?.name||!Number.isFinite(r.points))throw new SyncError('INVALID_STANDINGS','Fila de posiciones inválida.');
-       return {rank:r.rank,teamId:r.team.id,name:r.team.name,points:r.points,played:r.all?.played??null,goalDiff:r.goalsDiff??null};
-      })});
-     }
-    }
+  // No season filter: preserve past snapshots as a local fixture archive.
+  const incoming=normalizeFixtures(await get(`fixtures?team=${TEAM}&next=20`));
+  const history=Array.isArray(previous?.fixtures)?previous.fixtures.filter(f=>Number.isInteger(f?.id)):[];
+  const byId=new Map(history.map(f=>[f.id,f]));
+  for(const fixture of incoming)byId.set(fixture.id,{...byId.get(fixture.id),...fixture});
+  const fixtures=[...byId.values()].sort((a,b)=>a.date.localeCompare(b.date));
+  const previousCompetitions=Array.isArray(previous?.competitions)?previous.competitions:[];
+  const competitions=[...previousCompetitions];
+  for(const fixture of incoming){
+   if(!competitions.some(c=>c.id===fixture.leagueId&&c.season===fixture.season)){
+    competitions.push({id:fixture.leagueId,season:fixture.season,name:fixture.cup,type:null,country:'',standingsAvailable:false,tables:[]});
    }
-   competitions.push({id:entry.league.id,name:entry.league.name,type:entry.league.type,country:entry.country?.name??'',standingsAvailable:!!coverage?.standings,tables});
   }
-  if(fixtures.some(f=>!competitions.some(c=>c.id===f.leagueId)))throw new SyncError('INCOMPLETE_DATA','Faltan competencias de los partidos recibidos.');
-  if(!fixtures.length&&previous?.season===season&&previous.fixtures?.length)throw new SyncError('EMPTY_RESPONSE','La API devolvió una lista vacía inesperada.');
+  if(!incoming.length)throw new SyncError('EMPTY_RESPONSE','La API no devolvió próximos partidos; se conserva el historial.');
   const data={schemaVersion:1,source:'API-Football',season,teamId:TEAM,updatedAt:now.toISOString(),fixtures,competitions};
   // Only replace the snapshot after every request and validation succeeds.
   await atomic(dir+'/boca.json',data);
