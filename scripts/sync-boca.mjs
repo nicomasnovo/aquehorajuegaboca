@@ -36,6 +36,20 @@ export function normalizeEvents(events,league){
   return [{id:`espn:${league.slug}:${event.id}`,date:event.date,status,statusLabel:state.description??(completed?'Finalizado':'Por confirmar'),leagueId:league.id,season:Number(event.season?.year) || new Date(event.date).getUTCFullYear(),cup:league.name,round:competition.type?.text??event.week?.text??'',home:displayTeamName(home.team),away:displayTeamName(away.team),homeId:home.team?.id??null,awayId:away.team?.id??null,homeLogo:home.team?.logos?.[0]?.href??home.team?.logo??null,awayLogo:away.team?.logos?.[0]?.href??away.team?.logo??null,homeGoals:score(home),awayGoals:score(away),venue:competition.venue?.fullName??'Estadio por confirmar'}];
  });
 }
+export function normalizeStandings(body){
+ const groups=Array.isArray(body?.children)&&body.children.length?body.children:[body];
+ return groups.flatMap((group,index)=>{
+  const entries=group?.standings?.entries;
+  if(!Array.isArray(entries)||!entries.length)return [];
+  const rows=entries.map((entry,i)=>{
+   const stats=entry.stats??[];
+   const stat=(...names)=>stats.find(v=>names.includes(v.name)||names.includes(v.type));
+   const num=(...names)=>{const v=stat(...names)?.value;return v==null||!Number.isFinite(Number(v))?null:Number(v)};
+   return {rank:num('rank','position')??i+1,teamId:entry.team?.id??'',name:displayTeamName(entry.team),points:num('points','point'),played:num('gamesPlayed','matchesPlayed'),goalDiff:num('pointDifferential','goalDifference','goalDifferential')};
+  }).filter(row=>row.name).sort((a,b)=>a.rank-b.rank);
+  return [{name:group.name??group.displayName??('Tabla '+(index+1)),rows}];
+ });
+}
 async function atomic(path,value){await writeFile(path+'.tmp',JSON.stringify(value,null,2)+'\n');await rename(path+'.tmp',path);}
 export async function sync({dir='public/data',now=new Date(),request=fetch,leagues=LEAGUES}={}){
  await mkdir(dir,{recursive:true});
@@ -80,7 +94,21 @@ export async function sync({dir='public/data',now=new Date(),request=fetch,leagu
   for(const league of leagues.filter(l=>!l.optional||incoming.some(f=>f.leagueId===l.id))){
    if(!competitions.some(c=>c.id===league.id))competitions.push({id:league.id,name:league.name,type:'Cup',country:league.slug.startsWith('conmebol')?'South America':'Argentina',standingsAvailable:false,tables:[]});
   }
-  const data={schemaVersion:1,source:'ESPN (API no oficial)',season,teamId:451,updatedAt:now.toISOString(),fixtures,competitions};
+  // Standings are best-effort: cup knockouts and unsupported leagues may not expose tables.
+  for(const league of leagues){
+   const competition=competitions.find(c=>c.id===league.id);
+   if(!competition)continue;
+   try{
+    const response=await request(`https://site.api.espn.com/apis/v2/sports/soccer/${league.slug}/standings?season=${season}`,{signal:AbortSignal.timeout(12000)});
+    if(!response.ok)continue;
+    const body=await response.json();
+    if(body?.season?.year!=null&&Number(body.season.year)!==season)continue;
+    const tables=normalizeStandings(body);
+    competition.tables=tables;
+    competition.standingsAvailable=tables.length>0;
+   }catch{ /* Keep fixture synchronization working when standings are unavailable. */ }
+  }
+  const data={schemaVersion:1,source:'ESPN (API no oficial)',season,teamId:5,updatedAt:now.toISOString(),fixtures,competitions};
   await atomic(dir+'/boca.json',data);
   await atomic(dir+'/sync-status.json',{...status,lastSuccessAt:data.updatedAt,ok:true,code:null,message:'Partidos y resultados actualizados desde ESPN.',requests,received:incoming.length,availableLeagues:[...supported],unavailableLeagues:unavailable});
   return data;
