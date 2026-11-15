@@ -1,8 +1,9 @@
 {
   "season": 2026,
-  "checkedAt": "2026-11-15T11:42:01.201Z",
+  "checkedAt": "2026-11-15T11:50:35.388Z",
   "lastSuccessAt": null,
+  "source": "ESPN (API no oficial)",
   "ok": false,
-  "code": "PLAN_RESTRICTED",
-  "message": "El plan de API-Football restringe esta consulta."
+  "code": "HTTP_ERROR",
+  "message": "ESPN arg.1: HTTP 400."
 }
