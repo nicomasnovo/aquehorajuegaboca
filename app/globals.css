@@ -61,3 +61,5 @@ html{background:#090f1c}body{background:#090f1c;min-height:100dvh}
 .knockoutTeams strong{font-size:15px;font-variant-numeric:tabular-nums}
 .knockoutMatch p{font-size:11px;color:var(--muted);margin-top:9px}
 @media(max-width:600px){.knockoutRound{flex-basis:215px}}
+
+.competitionReason{color:#c9d8ed;font-size:12px;line-height:1.55;min-height:38px;margin:9px 0}
