@@ -43,7 +43,7 @@ export async function sync({dir='public/data',now=new Date(),request=fetch,leagu
    for(const month of months){
     const url=`https://site.api.espn.com/apis/site/v2/sports/soccer/${league.slug}/scoreboard?dates=${month}&limit=500`;
     let response;
-    try{response=await request(url,{signal:AbortSignal.timeout(25000),headers:{'User-Agent':'aquehorajuegaboca/1.0'}});}
+    try{response=await request(url,{signal:AbortSignal.timeout(25000)});}
     catch{throw new SyncError('NETWORK_ERROR',`No se pudo consultar ESPN (${league.slug}).`);}
     requests++;
     if(!response.ok)throw new SyncError('HTTP_ERROR',`ESPN ${league.slug}: HTTP ${response.status}.`);
