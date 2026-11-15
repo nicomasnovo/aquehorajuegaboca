@@ -3,30 +3,13 @@ import assert from 'node:assert/strict';
 import {mkdtemp,readFile,writeFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
-import {sync} from '../scripts/sync-boca.mjs';
+import {sync,normalizeEvents,LEAGUES} from '../scripts/sync-boca.mjs';
 const now=new Date('2026-11-15T13:00:00Z');
-const fixture={fixture:{id:1,date:'2026-11-20T22:00:00Z',status:{short:'NS'},venue:{name:'Test'}},league:{id:10,name:'Test',season:2026,round:'Final'},teams:{home:{id:451,name:'Boca'},away:{id:2,name:'Rival'}},goals:{home:null,away:null}};
-const response=rows=>({ok:true,json:async()=>({errors:[],response:rows,paging:{total:1}})});
+const event={id:'401',date:'2026-11-20T22:00:00Z',status:{type:{state:'pre',description:'Scheduled'}},competitions:[{competitors:[{homeAway:'home',team:{id:'1',displayName:'Boca Juniors'},score:null},{homeAway:'away',team:{id:'2',displayName:'River Plate'},score:null}],venue:{fullName:'La Bombonera'}}]};
+const response=events=>({ok:true,json:async()=>({events})});
 async function temp(fn){const dir=await mkdtemp(join(tmpdir(),'boca-test-'));try{await fn(dir);}finally{await rm(dir,{recursive:true,force:true});}}
-test('plan restricted preserves history and hides secret',()=>temp(async dir=>{await writeFile(dir+'/boca.json','{"old":true}');await assert.rejects(sync({key:'secret-test',dir,now,request:async()=>({ok:true,json:async()=>({errors:{plan:'secret-test'},response:[]})})}),{code:'PLAN_RESTRICTED'});assert.equal(await readFile(dir+'/boca.json','utf8'),'{"old":true}');assert.ok(!(await readFile(dir+'/sync-status.json','utf8')).includes('secret-test'));}));
-test('fetches next fixtures without season and preserves past',()=>temp(async dir=>{
- const old={fixtures:[{id:99,date:'2026-11-01T22:00:00Z',leagueId:10,season:2026,cup:'Test'}],competitions:[{id:10,season:2026,name:'Test',tables:[]}]};
- await writeFile(dir+'/boca.json',JSON.stringify(old));
- const urls=[];
- const d=await sync({key:'test',dir,now,request:async url=>{urls.push(url);return response([fixture]);}});
- assert.equal(urls.length,1);assert.ok(urls[0].includes('fixtures?team=451&next=20'));assert.ok(!urls[0].includes('season='));
- assert.deepEqual(d.fixtures.map(f=>f.id),[99,1]);assert.equal(d.competitions.length,1);
-}));
-test('refreshes existing fixture without duplicating it',()=>temp(async dir=>{
- await writeFile(dir+'/boca.json',JSON.stringify({fixtures:[{id:1,date:'2026-11-19T22:00:00Z',venue:'Old'}],competitions:[]}));
- const d=await sync({key:'test',dir,now,request:async()=>response([fixture])});
- assert.equal(d.fixtures.length,1);assert.equal(d.fixtures[0].venue,'Test');
-}));
-test('empty response preserves previous snapshot',()=>temp(async dir=>{
- await writeFile(dir+'/boca.json','{"old":true}');
- await assert.rejects(sync({key:'test',dir,now,request:async()=>response([])}),{code:'EMPTY_RESPONSE'});
- assert.equal(await readFile(dir+'/boca.json','utf8'),'{"old":true}');
-}));
-test('does not call API without secret',()=>temp(async dir=>{
- await assert.rejects(sync({key:'',dir,now,request:()=>{throw Error('Unexpected request');}}),{code:'MISSING_SECRET'});
-}));
+test('normalizes Boca games and final scores',()=>{const rows=normalizeEvents([{...event,status:{type:{completed:true}},competitions:[{...event.competitions[0],competitors:[{...event.competitions[0].competitors[0],score:'2'},{...event.competitions[0].competitors[1],score:'1'}]}]}],LEAGUES[0]);assert.equal(rows[0].status,'FT');assert.equal(rows[0].homeGoals,2);assert.equal(rows[0].awayGoals,1);});
+test('ignores games not involving Boca',()=>{const e={...event,competitions:[{competitors:[{homeAway:'home',team:{displayName:'River'}},{homeAway:'away',team:{displayName:'Racing'}}]}]};assert.deepEqual(normalizeEvents([e],LEAGUES[0]),[]);});
+test('queries each competition without key and retains history',()=>temp(async dir=>{await writeFile(dir+'/boca.json',JSON.stringify({fixtures:[{id:'old',date:'2026-10-01T00:00:00Z'}],competitions:[]}));const urls=[];const data=await sync({dir,now,request:async url=>{urls.push(url);return response([event]);}});assert.equal(urls.length,12);assert.ok(urls.every(url=>url.includes('/scoreboard?dates=')&&!url.includes('api-sports')));assert.ok(data.fixtures.some(f=>f.id==='old'));assert.equal(data.fixtures.length,4);assert.equal(data.competitions.length,3);}));
+test('errors do not replace previous snapshot',()=>temp(async dir=>{await writeFile(dir+'/boca.json','{"old":true}');await assert.rejects(sync({dir,now,request:async()=>({ok:false,status:403})}),{code:'HTTP_ERROR'});assert.equal(await readFile(dir+'/boca.json','utf8'),'{"old":true}');}));
+test('empty ESPN responses preserve history',()=>temp(async dir=>{await writeFile(dir+'/boca.json','{"old":true}');await assert.rejects(sync({dir,now,request:async()=>response([])}),{code:'EMPTY_RESPONSE'});assert.equal(await readFile(dir+'/boca.json','utf8'),'{"old":true}');}));
