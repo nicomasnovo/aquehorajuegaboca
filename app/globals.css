@@ -30,3 +30,17 @@ html{background:#090f1c}body{background:#090f1c;min-height:100dvh}
 .calendarModal{max-width:430px}.calendarOption{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#182b48;border:1px solid #385073;border-radius:8px;padding:16px;margin-top:12px;text-align:left;font-weight:700}.calendarOption:hover{border-color:var(--gold)}
 
 .competitionPreview{margin-top:10px;font-size:11px;line-height:1.6;color:#b8c6db}.competitionPreview>div{padding:5px 0;border-top:1px solid #ffffff12}
+
+/* Standings: podium positions and Boca remain visible visual anchors. */
+.tableScroll tbody tr.podiumRow{font-size:1.06em;font-weight:750}
+.tableScroll tbody tr.podiumRow td{padding-top:15px;padding-bottom:15px}
+.tableScroll tbody tr.podium1{background:rgba(246,201,69,.13)}
+.tableScroll tbody tr.podium2{background:rgba(174,194,219,.10)}
+.tableScroll tbody tr.podium3{background:rgba(205,140,89,.10)}
+.tableScroll tbody tr.podium1 td:first-child{color:#f6c945}
+.tableScroll tbody tr.podium2 td:first-child{color:#b8c9dd}
+.tableScroll tbody tr.podium3 td:first-child{color:#dca06f}
+.tableScroll tbody tr.bocaRow{background:rgba(246,201,69,.19);color:#f6c945;font-weight:800;font-size:1.09em;box-shadow:inset 4px 0 0 #f6c945}
+.tableScroll tbody tr.bocaRow td{padding-top:16px;padding-bottom:16px}
+.tableScroll tbody tr.bocaRow td:first-child{color:#f6c945}
+@media(max-width:750px){.tableScroll tbody tr.podiumRow td{padding-top:12px;padding-bottom:12px}.tableScroll tbody tr.bocaRow td{padding-top:14px;padding-bottom:14px}}
