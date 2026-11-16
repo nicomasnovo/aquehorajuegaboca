@@ -1,2 +1,5 @@
-import BocaApp from '../BocaApp';
-export default function Page(){return <BocaApp tab="Competiciones"/>;}
+import BocaApp from '../BocaAppRefactored';
+
+export default function CompetitionsPage() {
+  return <BocaApp tab="Competiciones" />;
+}

@@ -54,3 +54,23 @@ Usar `dates=YYYYMMDD-YYYYMMDD`, cuatro ventanas de 30 días por competición, fi
 **Decisión:** el Action ya no usa `API_FOOTBALL_KEY`. No almacenar claves en código ni en JSON. Mantener el historial generado previamente y el esquema de salida para la web.
 
 **Consecuencias:** la clave puede eliminarse manualmente de GitHub Secrets. Si se vuelve a un proveedor autenticado, crear un nuevo ADR que incluya cuotas, límites, credenciales y política de fallos.
+
+## ADR-006 — Separación de componentes y hooks (2026-11-16)
+
+**Estado:** Adoptada.
+
+**Contexto:** El componente `BocaApp.tsx` original contenía ~180 líneas comprimidas en una sola línea, mezclando tipos, constantes, lógica y componentes inline.
+
+**Decisión:** Separar en estructura modular: tipos en `types/`, constantes en `constants/`, utilidades en `utils/`, hooks en `hooks/`, componentes en `components/`, y páginas en `pages/`.
+
+**Consecuencias:** Aumenta el número de archivos pero cada uno es comprensible. Los tests pueden importar funciones individuales. Los cambios son locales.
+
+## ADR-007 — Validación con timeout y esquema (2026-11-16)
+
+**Estado:** Adoptada.
+
+**Contexto:** El fetch de datos JSON no tenía timeout y la validación era manual con ifs.
+
+**Decisión:** Implementar `fetchWithTimeout()` con AbortController (15s timeout). Mantener validación manual mejorada con checks esenciales del esquema.
+
+**Consecuencias:** Las peticiones colgadas no bloquean la UI. Los datos corruptos se detectan y muestran error claro al usuario.

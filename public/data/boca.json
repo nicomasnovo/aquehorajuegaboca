@@ -3,7 +3,7 @@
   "source": "ESPN (API no oficial)",
   "season": 2026,
   "teamId": 5,
-  "updatedAt": "2026-11-16T03:05:48.293Z",
+  "updatedAt": "2026-11-16T15:07:21.447Z",
   "fixtures": [
     {
       "id": "espn:arg.1:401841594",
@@ -115,7 +115,147 @@
         "beIn Sports"
       ],
       "goals": [],
-      "clock": ""
+      "clock": "",
+      "stats": {
+        "home": {
+          "possession": 62.6,
+          "shots": 12,
+          "shotsOnTarget": 2,
+          "corners": 5,
+          "fouls": 8,
+          "yellowCards": 1,
+          "redCards": 0
+        },
+        "away": {
+          "possession": 37.4,
+          "shots": 7,
+          "shotsOnTarget": 3,
+          "corners": 5,
+          "fouls": 14,
+          "yellowCards": 2,
+          "redCards": 0
+        }
+      },
+      "lineups": {
+        "home": {
+          "starters": [
+            {
+              "name": "Léo Jardim",
+              "position": "Goalkeeper",
+              "number": "1"
+            },
+            {
+              "name": "Robert",
+              "position": "Center Left Defender",
+              "number": "30"
+            },
+            {
+              "name": "Alan Saldivia",
+              "position": "Center Right Defender",
+              "number": "4"
+            },
+            {
+              "name": "Santiago Sosa",
+              "position": "Defensive Midfielder",
+              "number": "5"
+            },
+            {
+              "name": "Cuiabano",
+              "position": "Left Back",
+              "number": "66"
+            },
+            {
+              "name": "Paulo Henrique",
+              "position": "Right Back",
+              "number": "96"
+            },
+            {
+              "name": "Thiago Mendes",
+              "position": "Center Left Midfielder",
+              "number": "23"
+            },
+            {
+              "name": "Alan Lescano",
+              "position": "Center Right Midfielder",
+              "number": "22"
+            },
+            {
+              "name": "David",
+              "position": "Left Midfielder",
+              "number": "7"
+            },
+            {
+              "name": "Adson",
+              "position": "Right Midfielder",
+              "number": "28"
+            },
+            {
+              "name": "Bruno Duarte",
+              "position": "Forward",
+              "number": "19"
+            }
+          ]
+        },
+        "away": {
+          "starters": [
+            {
+              "name": "Álvaro Montero",
+              "position": "Goalkeeper",
+              "number": "1"
+            },
+            {
+              "name": "Facundo Herrera",
+              "position": "Center Left Defender",
+              "number": "42"
+            },
+            {
+              "name": "Lautaro Di Lollo",
+              "position": "Center Right Defender",
+              "number": "2"
+            },
+            {
+              "name": "Lautaro Blanco",
+              "position": "Left Back",
+              "number": "3"
+            },
+            {
+              "name": "Leandro Lozano",
+              "position": "Right Back",
+              "number": "17"
+            },
+            {
+              "name": "Rodrigo Battaglia",
+              "position": "Center Midfielder",
+              "number": "6"
+            },
+            {
+              "name": "Milton Delgado",
+              "position": "Left Midfielder",
+              "number": "18"
+            },
+            {
+              "name": "Santiago Ascacibar",
+              "position": "Right Midfielder",
+              "number": "25"
+            },
+            {
+              "name": "Miguel Merentiel",
+              "position": "Forward",
+              "number": "16"
+            },
+            {
+              "name": "Leonel Flores",
+              "position": "Left Forward",
+              "number": "19"
+            },
+            {
+              "name": "Sebastián Villa",
+              "position": "Right Forward",
+              "number": "22"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "espn:arg.1:401841636",
@@ -137,7 +277,147 @@
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
       "broadcasts": [],
       "goals": [],
-      "clock": ""
+      "clock": "",
+      "stats": {
+        "home": {
+          "possession": 34.4,
+          "shots": 23,
+          "shotsOnTarget": 5,
+          "corners": 4,
+          "fouls": 14,
+          "yellowCards": 3,
+          "redCards": 0
+        },
+        "away": {
+          "possession": 65.6,
+          "shots": 10,
+          "shotsOnTarget": 4,
+          "corners": 3,
+          "fouls": 17,
+          "yellowCards": 4,
+          "redCards": 0
+        }
+      },
+      "lineups": {
+        "home": {
+          "starters": [
+            {
+              "name": "Santiago Mele",
+              "position": "Goalkeeper",
+              "number": "77"
+            },
+            {
+              "name": "Juan Migue Arrayago",
+              "position": "Center Left Defender",
+              "number": "35"
+            },
+            {
+              "name": "Sebastián Valdez",
+              "position": "Center Right Defender",
+              "number": "36"
+            },
+            {
+              "name": "Nahuel Banegas",
+              "position": "Left Back",
+              "number": "5"
+            },
+            {
+              "name": "Santiago Arias",
+              "position": "Right Back",
+              "number": "4"
+            },
+            {
+              "name": "Iván Marcone",
+              "position": "Center Midfielder",
+              "number": "23"
+            },
+            {
+              "name": "Maximiliano Meza",
+              "position": "Left Midfielder",
+              "number": "8"
+            },
+            {
+              "name": "Mateo Pérez",
+              "position": "Right Midfielder",
+              "number": "16"
+            },
+            {
+              "name": "Chimy Ávila",
+              "position": "Forward",
+              "number": "6"
+            },
+            {
+              "name": "Josias Palais",
+              "position": "Left Forward",
+              "number": "24"
+            },
+            {
+              "name": "Santiago Montiel",
+              "position": "Right Forward",
+              "number": "7"
+            }
+          ]
+        },
+        "away": {
+          "starters": [
+            {
+              "name": "Álvaro Montero",
+              "position": "Goalkeeper",
+              "number": "1"
+            },
+            {
+              "name": "Facundo Herrera",
+              "position": "Center Left Defender",
+              "number": "42"
+            },
+            {
+              "name": "Lautaro Di Lollo",
+              "position": "Center Right Defender",
+              "number": "2"
+            },
+            {
+              "name": "Malcom Braida",
+              "position": "Left Back",
+              "number": "27"
+            },
+            {
+              "name": "Leandro Lozano",
+              "position": "Right Back",
+              "number": "17"
+            },
+            {
+              "name": "Alan Velasco",
+              "position": "Attacking Midfielder",
+              "number": "20"
+            },
+            {
+              "name": "Milton Delgado",
+              "position": "Left Midfielder",
+              "number": "18"
+            },
+            {
+              "name": "Leandro Paredes",
+              "position": "Right Midfielder",
+              "number": "5"
+            },
+            {
+              "name": "Miguel Merentiel",
+              "position": "Forward",
+              "number": "16"
+            },
+            {
+              "name": "Leonel Flores",
+              "position": "Attacking Midfielder Left",
+              "number": "19"
+            },
+            {
+              "name": "Santiago Ascacibar",
+              "position": "Attacking Midfielder Right",
+              "number": "25"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "espn:arg.1:401841658",
@@ -159,7 +439,147 @@
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/16.png",
       "broadcasts": [],
       "goals": [],
-      "clock": ""
+      "clock": "",
+      "stats": {
+        "home": {
+          "possession": 70.8,
+          "shots": 16,
+          "shotsOnTarget": 6,
+          "corners": 10,
+          "fouls": 17,
+          "yellowCards": 7,
+          "redCards": 0
+        },
+        "away": {
+          "possession": 29.2,
+          "shots": 3,
+          "shotsOnTarget": 0,
+          "corners": 2,
+          "fouls": 8,
+          "yellowCards": 2,
+          "redCards": 2
+        }
+      },
+      "lineups": {
+        "home": {
+          "starters": [
+            {
+              "name": "Álvaro Montero",
+              "position": "Goalkeeper",
+              "number": "1"
+            },
+            {
+              "name": "Facundo Herrera",
+              "position": "Center Left Defender",
+              "number": "42"
+            },
+            {
+              "name": "Lautaro Di Lollo",
+              "position": "Center Right Defender",
+              "number": "2"
+            },
+            {
+              "name": "Lautaro Blanco",
+              "position": "Left Back",
+              "number": "3"
+            },
+            {
+              "name": "Leandro Lozano",
+              "position": "Right Back",
+              "number": "17"
+            },
+            {
+              "name": "Leandro Paredes",
+              "position": "Center Midfielder",
+              "number": "5"
+            },
+            {
+              "name": "Milton Delgado",
+              "position": "Left Midfielder",
+              "number": "18"
+            },
+            {
+              "name": "Santiago Ascacibar",
+              "position": "Right Midfielder",
+              "number": "25"
+            },
+            {
+              "name": "Miguel Merentiel",
+              "position": "Forward",
+              "number": "16"
+            },
+            {
+              "name": "Sebastián Villa",
+              "position": "Left Forward",
+              "number": "22"
+            },
+            {
+              "name": "Leonel Flores",
+              "position": "Right Forward",
+              "number": "19"
+            }
+          ]
+        },
+        "away": {
+          "starters": [
+            {
+              "name": "Santiago Beltrán",
+              "position": "Goalkeeper",
+              "number": "41"
+            },
+            {
+              "name": "Nicolás Otamendi",
+              "position": "Center Left Defender",
+              "number": "30"
+            },
+            {
+              "name": "Lucas Martínez Quarta",
+              "position": "Center Right Defender",
+              "number": "28"
+            },
+            {
+              "name": "Marcos Acuña",
+              "position": "Left Back",
+              "number": "21"
+            },
+            {
+              "name": "Gonzalo Montiel",
+              "position": "Right Back",
+              "number": "29"
+            },
+            {
+              "name": "Lucas Beltrán",
+              "position": "Midfielder",
+              "number": "18"
+            },
+            {
+              "name": "Lucas Silva",
+              "position": "Center Midfielder",
+              "number": "44"
+            },
+            {
+              "name": "Thiago Almada",
+              "position": "Attacking Midfielder",
+              "number": "23"
+            },
+            {
+              "name": "Tomás Galván",
+              "position": "Left Midfielder",
+              "number": "26"
+            },
+            {
+              "name": "Tobías Andrada",
+              "position": "Right Midfielder",
+              "number": "50"
+            },
+            {
+              "name": "Ángel Correa",
+              "position": "Center Right Forward",
+              "number": "10"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "espn:arg.1:401841669",
@@ -180,8 +600,156 @@
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/8950.png",
       "broadcasts": [],
-      "goals": [],
-      "clock": ""
+      "goals": [
+        {
+          "team": "home",
+          "player": "Enner Valencia",
+          "minute": "90'+6'",
+          "type": "Goal - Volley",
+          "assist": "Lautaro Di Lollo"
+        }
+      ],
+      "clock": "",
+      "stats": {
+        "home": {
+          "possession": 62.6,
+          "shots": 22,
+          "shotsOnTarget": 5,
+          "corners": 10,
+          "fouls": 7,
+          "yellowCards": 1,
+          "redCards": 0
+        },
+        "away": {
+          "possession": 37.4,
+          "shots": 10,
+          "shotsOnTarget": 1,
+          "corners": 2,
+          "fouls": 15,
+          "yellowCards": 4,
+          "redCards": 0
+        }
+      },
+      "lineups": {
+        "home": {
+          "starters": [
+            {
+              "name": "Álvaro Montero",
+              "position": "Goalkeeper",
+              "number": "1"
+            },
+            {
+              "name": "Facundo Herrera",
+              "position": "Center Left Defender",
+              "number": "42"
+            },
+            {
+              "name": "Lautaro Di Lollo",
+              "position": "Center Right Defender",
+              "number": "2"
+            },
+            {
+              "name": "Lautaro Blanco",
+              "position": "Left Back",
+              "number": "3"
+            },
+            {
+              "name": "Leandro Lozano",
+              "position": "Right Back",
+              "number": "17"
+            },
+            {
+              "name": "Leandro Paredes",
+              "position": "Center Midfielder",
+              "number": "5"
+            },
+            {
+              "name": "Milton Delgado",
+              "position": "Left Midfielder",
+              "number": "18"
+            },
+            {
+              "name": "Santiago Ascacibar",
+              "position": "Right Midfielder",
+              "number": "25"
+            },
+            {
+              "name": "Miguel Merentiel",
+              "position": "Forward",
+              "number": "16"
+            },
+            {
+              "name": "Sebastián Villa",
+              "position": "Left Forward",
+              "number": "22"
+            },
+            {
+              "name": "Alan Velasco",
+              "position": "Right Forward",
+              "number": "20"
+            }
+          ]
+        },
+        "away": {
+          "starters": [
+            {
+              "name": "Matias Borgogno",
+              "position": "Goalkeeper",
+              "number": "1"
+            },
+            {
+              "name": "Héctor Martínez",
+              "position": "Center Left Defender",
+              "number": "21"
+            },
+            {
+              "name": "Damián Fernández",
+              "position": "Center Right Defender",
+              "number": "29"
+            },
+            {
+              "name": "Demian Domínguez",
+              "position": "Left Back",
+              "number": "30"
+            },
+            {
+              "name": "Valentín Loza",
+              "position": "Right Back",
+              "number": "28"
+            },
+            {
+              "name": "Maximiliano Porcel",
+              "position": "Attacking Midfielder",
+              "number": "22"
+            },
+            {
+              "name": "Santiago Sosa",
+              "position": "Left Midfielder",
+              "number": "15"
+            },
+            {
+              "name": "César Pérez",
+              "position": "Right Midfielder",
+              "number": "8"
+            },
+            {
+              "name": "Leandro Miguel Fernandez",
+              "position": "Forward",
+              "number": "9"
+            },
+            {
+              "name": "Juan Gutiérrez",
+              "position": "Attacking Midfielder Left",
+              "number": "24"
+            },
+            {
+              "name": "Jeremías Lucco",
+              "position": "Attacking Midfielder Right",
+              "number": "26"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "espn:arg.copa:401926286",
@@ -202,8 +770,167 @@
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/235.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
       "broadcasts": [],
-      "goals": [],
-      "clock": ""
+      "goals": [
+        {
+          "team": "away",
+          "player": "Santiago Ascacibar",
+          "minute": "45'+1'",
+          "type": "Goal"
+        },
+        {
+          "team": "away",
+          "player": "Sebastián Villa",
+          "minute": "63'",
+          "type": "Goal"
+        },
+        {
+          "team": "away",
+          "player": "Leandro Lozano",
+          "minute": "74'",
+          "type": "Goal"
+        }
+      ],
+      "clock": "",
+      "stats": {
+        "home": {
+          "possession": 34.8,
+          "shots": 12,
+          "shotsOnTarget": 4,
+          "corners": 3,
+          "fouls": 8,
+          "yellowCards": 2,
+          "redCards": 0
+        },
+        "away": {
+          "possession": 65.2,
+          "shots": 15,
+          "shotsOnTarget": 4,
+          "corners": 2,
+          "fouls": 7,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "lineups": {
+        "home": {
+          "starters": [
+            {
+              "name": "Diego Rodríguez",
+              "position": "Goalkeeper",
+              "number": "50"
+            },
+            {
+              "name": "Nicolás Meriano",
+              "position": "Center Left Defender",
+              "number": "6"
+            },
+            {
+              "name": "Santiago Daniele",
+              "position": "Center Right Defender",
+              "number": "2"
+            },
+            {
+              "name": "Luis Abraham",
+              "position": "Left Back",
+              "number": "27"
+            },
+            {
+              "name": "Juan Alfaro",
+              "position": "Right Back",
+              "number": "4"
+            },
+            {
+              "name": "Santiago Esquivel",
+              "position": "Center Midfielder",
+              "number": "5"
+            },
+            {
+              "name": "Tomás Adoryan",
+              "position": "Left Midfielder",
+              "number": "20"
+            },
+            {
+              "name": "Lautaro Gómez",
+              "position": "Right Midfielder",
+              "number": "10"
+            },
+            {
+              "name": "Adrián Balboa",
+              "position": "Forward",
+              "number": "9"
+            },
+            {
+              "name": "Alexander Machado",
+              "position": "Left Forward",
+              "number": "22"
+            },
+            {
+              "name": "Federico Medina",
+              "position": "Right Forward",
+              "number": "18"
+            }
+          ]
+        },
+        "away": {
+          "starters": [
+            {
+              "name": "Álvaro Montero",
+              "position": "Goalkeeper",
+              "number": "1"
+            },
+            {
+              "name": "Facundo Herrera",
+              "position": "Center Left Defender",
+              "number": "42"
+            },
+            {
+              "name": "Lautaro Di Lollo",
+              "position": "Center Right Defender",
+              "number": "2"
+            },
+            {
+              "name": "Malcom Braida",
+              "position": "Left Back",
+              "number": "27"
+            },
+            {
+              "name": "Leandro Lozano",
+              "position": "Right Back",
+              "number": "17"
+            },
+            {
+              "name": "Leandro Paredes",
+              "position": "Center Midfielder",
+              "number": "5"
+            },
+            {
+              "name": "Milton Delgado",
+              "position": "Left Midfielder",
+              "number": "18"
+            },
+            {
+              "name": "Santiago Ascacibar",
+              "position": "Right Midfielder",
+              "number": "25"
+            },
+            {
+              "name": "Miguel Merentiel",
+              "position": "Forward",
+              "number": "16"
+            },
+            {
+              "name": "Alan Velasco",
+              "position": "Left Forward",
+              "number": "20"
+            },
+            {
+              "name": "Sebastián Villa",
+              "position": "Right Forward",
+              "number": "22"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "espn:conmebol.sudamericana:401913961",

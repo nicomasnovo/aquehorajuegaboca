@@ -44,14 +44,128 @@ export function normalizeEvents(events,league){
   const status=completed?'FT':state.state==='in'?'LIVE':state.state==='pre'?'NS':'TBD';
   const score=side=>{const n=Number(side.score);return side.score==null||side.score===''||!Number.isFinite(n)?null:n;};
   // Scoreboard may expose goals as details; keep only confirmed, named scoring events.
-  const goals=sides.flatMap(side=>(Array.isArray(side.details)?side.details:[]).filter(detail=>/goal/i.test(String(detail.type?.text??detail.type??''))&&!/own goal/i.test(String(detail.type?.text??detail.type??''))).map(detail=>({
-   team:side.homeAway,player:String(detail.athletes?.[0]?.athlete?.displayName??detail.athlete?.displayName??'').trim(),
-   minute:String(detail.clock?.displayValue??detail.clock??'').trim()
-  })).filter(goal=>goal.player));
+  const goals=sides.flatMap(side=>{
+   const details=Array.isArray(side.details)?side.details:[];
+   return details
+    .filter(detail=>/goal/i.test(String(detail.type?.text??detail.type??''))&&!/own goal/i.test(String(detail.type?.text??detail.type??'')))
+    .map(detail=>{
+     const athletes=Array.isArray(detail.athletes)?detail.athletes:[];
+     return{
+      team:side.homeAway,
+      player:String(athletes[0]?.athlete?.displayName??detail.athlete?.displayName??'').trim(),
+      minute:String(detail.clock?.displayValue??detail.clock??'').trim(),
+      type:String(detail.type?.text??'').trim()||undefined,
+      assist:athletes.length>1?String(athletes[1]?.athlete?.displayName??'').trim():undefined
+     };
+    });
+  }).filter(goal=>goal.player);
   const clock=state.state==='in'?String(competition.status?.displayClock??event.status?.displayClock??'').trim():'';
   return [{id:`espn:${league.slug}:${event.id}`,date:event.date,status,statusLabel:({'Scheduled':'Programado','Postponed':'Postergado','Canceled':'Cancelado','Cancelled':'Cancelado','In Progress':'En juego','Halftime':'Entretiempo'}[state.description]??state.description??(completed?'Finalizado':'Por confirmar')),leagueId:league.id,season:Number(event.season?.year) || new Date(event.date).getUTCFullYear(),cup:league.name,round:eventRound(event),home:displayTeamName(home.team),away:displayTeamName(away.team),homeId:home.team?.id??null,awayId:away.team?.id??null,homeLogo:home.team?.logos?.[0]?.href??home.team?.logo??null,awayLogo:away.team?.logos?.[0]?.href??away.team?.logo??null,homeGoals:score(home),awayGoals:score(away),venue:competition.venue?.fullName??'Estadio por confirmar',broadcasts:eventBroadcasts(event),goals,clock}];
  });
 }
+
+/**
+ * Enriquece un partido con datos detallados desde el endpoint summary de ESPN.
+ * Solo se llama para partidos finalizados y una vez por día.
+ */
+export async function enrichFixture(fixture,request=fetch){
+ if(fixture.status!=='FT' || !String(fixture.id).startsWith('espn:'))return fixture;
+
+ const match=String(fixture.id).match(/^espn:([^:]+):(\d+)$/);
+ if(!match)return fixture;
+ const[,leagueSlug,eventId]=match;
+
+ try{
+  const url=`https://site.api.espn.com/apis/site/v2/sports/soccer/${leagueSlug}/summary?event=${eventId}`;
+  const response=await request(url,{signal:AbortSignal.timeout(15000)});
+  if(!response.ok)return fixture;
+
+  const data=await response.json();
+
+  // Extraer goles desde keyEvents (más detallado que scoreboard)
+  const keyEvents=Array.isArray(data.keyEvents)?data.keyEvents:[];
+  const enrichedGoals=keyEvents
+   .filter(e=>e.scoringPlay===true)
+   .map(e=>{
+    const participants=Array.isArray(e.participants)?e.participants:[];
+    const athlete=participants[0]?.athlete;
+    const assistAthlete=participants[1]?.athlete;
+    return{
+     team:e.team?.id===String(fixture.homeId)?'home':'away',
+     player:String(athlete?.displayName??'').trim(),
+     minute:String(e.clock?.displayValue??'').trim(),
+     type:e.type?.text||undefined,
+     assist:assistAthlete?String(assistAthlete.displayName).trim():undefined
+    };
+   })
+   .filter(g=>g.player);
+
+  // Si encontramos goles en keyEvents, usar esos (son más completos)
+  const goals=enrichedGoals.length>0?enrichedGoals:fixture.goals;
+
+  // Extraer estadísticas avanzadas
+  const boxscore=Array.isArray(data.boxscore?.teams)?data.boxscore.teams:[];
+  const extractStats=teamId=>{
+   const teamData=boxscore.find(t=>String(t.team?.id)===String(teamId));
+   if(!teamData?.statistics)return{};
+   const get=(...names)=>teamData.statistics.find(s=>names.includes(s.name))?.displayValue;
+   const parseNum=v=>v!=null&&v!==''&&Number.isFinite(Number(v))?Number(v):null;
+   return{
+    possession:parseNum(get('possessionPct')),
+    shots:parseNum(get('totalShots')),
+    shotsOnTarget:parseNum(get('shotsOnTarget')),
+    corners:parseNum(get('wonCorners')),
+    fouls:parseNum(get('foulsCommitted')),
+    yellowCards:parseNum(get('yellowCards')),
+    redCards:parseNum(get('redCards'))
+   };
+  };
+
+  const homeStats=extractStats(fixture.homeId);
+  const awayStats=extractStats(fixture.awayId);
+
+  // Extraer alineaciones básicas
+  const rosters=Array.isArray(data.rosters)?data.rosters:[];
+  const extractLineup=teamId=>{
+   const roster=rosters.find(r=>String(r.team?.id)===String(teamId));
+   if(!roster?.roster)return null;
+   return{
+    formation:roster.formation?.value||undefined,
+    starters:roster.roster.filter(p=>p.starter).map(p=>({
+     name:p.athlete?.displayName||'',
+     position:p.position?.displayName||undefined,
+     number:p.jersey||undefined
+    }))
+   };
+  };
+
+  const homeLineup=extractLineup(fixture.homeId);
+  const awayLineup=extractLineup(fixture.awayId);
+
+  // Construir fixture enriquecido
+  const enriched={...fixture,goals};
+
+  if(Object.values(homeStats).some(v=>v!=null)||Object.values(awayStats).some(v=>v!=null)){
+   enriched.stats={
+    home:Object.values(homeStats).some(v=>v!=null)?homeStats:undefined,
+    away:Object.values(awayStats).some(v=>v!=null)?awayStats:undefined
+   };
+  }
+
+  if(homeLineup?.starters?.length||awayLineup?.starters?.length){
+   enriched.lineups={
+    home:homeLineup,
+    away:awayLineup
+   };
+  }
+
+  return enriched;
+ }catch{
+  // Si falla la consulta detallada, devolver fixture sin cambios
+  return fixture;
+ }
+}
+
 export function normalizeStandings(body){
  const groups=Array.isArray(body?.children)&&body.children.length?body.children:[body];
  return groups.flatMap((group,index)=>{
@@ -106,6 +220,25 @@ export async function sync({dir='public/data',now=new Date(),request=fetch,leagu
    }
   }
   const fixtures=[...byId.values()].sort((a,b)=>String(a.date).localeCompare(String(b.date)));
+
+  // Enriquecer partidos finalizados recientes (últimos 30 días) con datos detallados
+  // Limitar a máximo 3 partidos por corrida para no saturar la API
+  const thirtyDaysAgo=Date.now()-30*86400000;
+  const toEnrich=fixtures
+   .filter(f=>f.status==='FT' && Date.parse(f.date)>thirtyDaysAgo && !f.stats) // Solo los que no tienen stats aún
+   .slice(0,3);
+
+  if(toEnrich.length>0){
+   console.log(`Enriqueciendo ${toEnrich.length} partidos finalizados...`);
+   for(const fixture of toEnrich){
+    const idx=fixtures.findIndex(f=>f.id===fixture.id);
+    if(idx!==-1){
+     fixtures[idx]=await enrichFixture(fixture,request);
+     requests++; // Contar requests adicionales
+    }
+   }
+  }
+
   const competitions=Array.isArray(previous?.competitions)?[...previous.competitions]:[];
   for(const league of leagues){
    if(!competitions.some(c=>c.id===league.id))competitions.push({id:league.id,name:league.name,type:'Cup',country:league.slug.startsWith('conmebol')?'South America':'Argentina',standingsAvailable:false,tables:[]});

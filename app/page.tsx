@@ -1,2 +1,5 @@
-import BocaApp from './BocaApp';
-export default function Page(){return <BocaApp tab="Inicio"/>;}
+import BocaApp from './BocaAppRefactored';
+
+export default function Page() {
+  return <BocaApp tab="Inicio" />;
+}

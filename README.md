@@ -2,6 +2,21 @@
 
 Web para consultar próximos partidos, resultados e historial acumulativo de Boca Juniors en la Liga Argentina, Copa Argentina y Copa Libertadores.
 
+## Estructura del proyecto
+
+```
+app/
+├── types/           # Tipos TypeScript del dominio
+├── constants/       # Constantes y configuración
+├── utils/           # Funciones puras (date, match, calendar, mood)
+├── hooks/           # Hooks personalizados de React
+├── components/      # Componentes reutilizables (Badge, TeamCrest, etc.)
+│   └── modals/      # Modales (Calendar, Competition, Install)
+├── pages/           # Vistas completas (Home, Calendar, Competitions)
+├── BocaApp.tsx      # Componente principal (coordinación)
+└── page.tsx         # Entry points por ruta
+```
+
 ## Cómo funciona
 
 - **Proveedor actual:** endpoints JSON públicos **no oficiales** de ESPN (`site.api.espn.com`). No requieren API key ni registro. **No son una API oficial para desarrolladores:** pueden cambiar, bloquear consultas, omitir torneos o dejar de funcionar sin aviso.
@@ -53,7 +68,17 @@ pnpm dev
 ## Documentación
 
 - [Decisiones de arquitectura (ADR)](docs/decisions/README.md)
+- [Plan de refactorización](docs/REFACTOR_PLAN.md)
 - [Configuración de datos](DATA_SETUP.md)
+
+---
+
+**Proyecto refactorizado el 2026-11-16:**
+- Código desacoplado en módulos independientes
+- Hooks personalizados para lógica reutilizable
+- Componentes separados y testeables
+- Validación de esquema y timeout en fetch
+- Eliminación de ~60 componentes UI no utilizados
 
 ## Aviso sobre datos
 
