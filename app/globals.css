@@ -260,3 +260,10 @@ main.homePage{padding-top:clamp(28px,4vw,48px)}
 .lastMatchScore>strong{font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,7vw,66px);white-space:nowrap;font-variant-numeric:tabular-nums}
 .lastMatchPanel>.fineprint{text-align:center;margin:14px 0 0}
 @media(max-width:390px){.lastMatchPanel{padding:14px}.lastMatchScore{gap:7px}.lastMatchScore .teamCrest,.lastMatchScore .badge{width:44px;height:50px}.lastMatchScore>div>span{font-size:11px}}
+
+/* Contextual Boca mood and subtle five-tap crest easter egg. */
+.matchMood{margin:12px 0 22px;text-align:center;color:#b8c8de;font-size:13px;font-style:italic;letter-spacing:.1px}
+.footerEggTrigger{border:0;background:transparent;padding:2px 4px;vertical-align:middle;cursor:pointer}
+.footerEggTrigger img{display:inline-block;vertical-align:middle;object-fit:contain}
+.easterEgg{display:flex;align-items:center;justify-content:center;gap:12px;margin:12px auto;padding:12px 16px;border:1px solid #40577a;border-radius:12px;color:#f5d778;background:#17243b;font-size:13px;text-align:center}
+.easterEgg button{border:0;background:transparent;color:inherit;cursor:pointer;display:inline-flex}
