@@ -138,3 +138,18 @@ html{background:#0c1423}body{min-height:100dvh}@media(max-width:750px){aside.sit
 /* Emphasize kickoff time and keep calendar actions side by side. */
 .newHero .versus strong{font-size:clamp(48px,7vw,92px);font-variant-numeric:tabular-nums;letter-spacing:-.025em}
 @media(max-width:750px){.newHero .versus strong{font-size:clamp(42px,10vw,76px)}.newHero .match{grid-template-columns:minmax(0,1fr) minmax(0,1.65fr) minmax(0,1fr);gap:8px}.newHero .heroActions{display:flex;flex-wrap:nowrap;gap:10px}.newHero .heroActions button{white-space:nowrap;padding:12px 14px}}
+
+/* Shared fixture card for Home, Calendar and Competition sheets. */
+.upcomingGame .upcomingHeader{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:nowrap}
+.upcomingGame .upcomingHeader>span:first-child{min-width:0;line-height:1.45}
+.upcomingGame .upcomingBody{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center}
+.upcomingGame .upcomingTeams{min-width:0;display:grid;gap:14px}
+.upcomingGame .upcomingTeams>div{display:flex;align-items:center;gap:12px;min-width:0}
+.upcomingGame .upcomingTeams strong{min-width:0;overflow-wrap:anywhere}
+.upcomingGame .teamScore{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:700;margin-left:auto;line-height:1}
+.upcomingGame .upcomingTime{min-width:108px;align-self:center;justify-content:center;gap:5px}
+.upcomingGame .upcomingTime strong{font-size:clamp(27px,3vw,34px);font-variant-numeric:tabular-nums;line-height:1.05}
+.upcomingGame .upcomingTime.resultDate{min-width:95px}
+.upcomingGame .upcomingTime.resultDate strong:empty{display:none}
+.upcomingGame .upcomingVenue span{min-width:0;overflow-wrap:anywhere}
+@media(max-width:750px){.upcomingGame .upcomingHeader{align-items:flex-start}.upcomingGame .upcomingHeader>span:first-child{font-size:12px}.upcomingGame .upcomingBody{gap:12px}.upcomingGame .upcomingTeams strong{font-size:clamp(14px,3.7vw,18px)}.upcomingGame .upcomingTime{min-width:94px;padding-left:12px}.upcomingGame .upcomingTime strong{font-size:clamp(25px,7vw,33px)}.upcomingGame .upcomingTime.resultDate{min-width:75px}.upcomingGame .teamScore{font-size:25px}}
