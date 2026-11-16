@@ -1,12 +1,21 @@
 {
   "season": 2026,
+<<<<<<< Updated upstream
   "checkedAt": "2026-11-16T17:26:38.503Z",
   "lastSuccessAt": "2026-11-16T17:26:38.503Z",
+=======
+  "checkedAt": "2026-11-16T17:38:49.194Z",
+  "lastSuccessAt": "2026-11-16T17:38:49.194Z",
+>>>>>>> Stashed changes
   "source": "ESPN (API no oficial)",
   "ok": true,
   "code": null,
   "message": "Partidos y resultados actualizados desde ESPN.",
+<<<<<<< Updated upstream
   "requests": 46,
+=======
+  "requests": 51,
+>>>>>>> Stashed changes
   "received": 12,
   "availableLeagues": [
     "arg.1",

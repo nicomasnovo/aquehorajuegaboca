@@ -24,7 +24,41 @@ const addDays=(date,n)=>new Date(date.getTime()+n*86400000);
 const phaseText=value=>typeof value==='string'?value.trim():typeof value?.text==='string'?value.text.trim():typeof value?.displayName==='string'?value.displayName.trim():typeof value?.name==='string'?value.name.trim():'';
 export const eventRound=event=>{
  const competition=event.competitions?.[0];
- return [competition?.type,competition?.round,competition?.stage,event?.week,event?.round,event?.season?.type,event?.season?.slug].map(phaseText).find(Boolean)??'';
+ const raw=[competition?.type,competition?.round,competition?.stage,event?.week,event?.round,event?.season?.type,event?.season?.slug].map(phaseText).find(Boolean)??'';
+ // Normalizar y traducir rounds
+ const normalized=raw
+  .replace(/---+/g, ' · ')
+  .replace(/-/g, ' ')
+  .replace(/\s+/g, ' ')
+  .trim()
+  .toLowerCase();
+
+ // Traducir fases eliminatorias
+ const roundTranslations={
+  'round of 16': 'Octavos de final',
+  'round of 8': 'Cuartos de final',
+  'quarterfinals': 'Cuartos de final',
+  'quarterfinal': 'Cuartos de final',
+  'semifinals': 'Semifinal',
+  'semifinal': 'Semifinal',
+  'final': 'Final',
+  'round of 32': 'Treintaidosavos',
+  'round of 4': 'Semifinal'
+ };
+
+ for(const[key,val]of Object.entries(roundTranslations)){
+  if(normalized.includes(key))return val;
+ }
+
+ // Torneo clausura con fase específica
+ if(normalized.includes('clausura') && normalized.includes('round')){
+  return 'Torneo Clausura';
+ }
+ if(normalized.includes('clausura')){
+  return 'Torneo Clausura';
+ }
+
+ return normalized.charAt(0).toUpperCase() + normalized.slice(1);
 };
 export function eventBroadcasts(event){
  const sources=[...(Array.isArray(event.broadcasts)?event.broadcasts:[]),...(Array.isArray(event.competitions?.[0]?.broadcasts)?event.competitions[0].broadcasts:[])];
@@ -222,11 +256,11 @@ export async function sync({dir='public/data',now=new Date(),request=fetch,leagu
   const fixtures=[...byId.values()].sort((a,b)=>String(a.date).localeCompare(String(b.date)));
 
   // Enriquecer partidos finalizados recientes (últimos 30 días) con datos detallados
-  // Limitar a máximo 3 partidos por corrida para no saturar la API
+  // Limitar a máximo 5 partidos por corrida para no saturar la API
   const thirtyDaysAgo=Date.now()-30*86400000;
   const toEnrich=fixtures
-   .filter(f=>f.status==='FT' && Date.parse(f.date)>thirtyDaysAgo && !f.stats) // Solo los que no tienen stats aún
-   .slice(0,3);
+   .filter(f=>f.status==='FT' && Date.parse(f.date)>thirtyDaysAgo && (!f.stats || (f.goals && f.goals.length===0)))
+   .slice(0,5);
 
   if(toEnrich.length>0){
    console.log(`Enriqueciendo ${toEnrich.length} partidos finalizados...`);

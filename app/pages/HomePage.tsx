@@ -12,7 +12,13 @@ import {
   isBocaTeam,
   didBocaWinLast,
 } from '../utils/match';
-import { matchTime, fullDate } from '../utils/date';
+import {
+  matchTime,
+  fullDate,
+  heroDate,
+  isToday,
+  isInLiveWindow,
+} from '../utils/date';
 import { matchMood } from '../utils/mood';
 import { FINISHED_STATUSES, EXCLUDED_STATUSES } from '../constants/statuses';
 
@@ -123,17 +129,29 @@ export function HomePage({
               <span>LOCAL</span>
             </div>
             <div className="versus">
-              <strong>
+              {/* Badge EN VIVO si está dentro de los 90 minutos */}
+              {isInLiveWindow(next, now) && !showLive && (
+                <span className="liveWindowBadge">
+                  <span className="liveDot" /> EN VIVO
+                </span>
+              )}
+              {/* Badge HOY si el partido es hoy */}
+              {isToday(next, now, timeZone) &&
+                !isInLiveWindow(next, now) &&
+                !showLive && <div className="todayBadge">HOY</div>}
+              <strong className="heroKickoff">
                 {showLive && next.homeGoals !== null && next.awayGoals !== null
                   ? next.homeGoals + ' – ' + next.awayGoals
                   : matchTime(next, timeZone)}
               </strong>
-              <div>
+              <div className="heroFullDate">
                 {showLive && next.clock
                   ? 'Minuto ' + next.clock
-                  : fullDate(next, timeZone)}
+                  : heroDate(next, timeZone)}
               </div>
-              <span>{showLive ? 'MARCADOR' : 'HORA LOCAL'}</span>
+              <span className="heroLabel">
+                {showLive ? 'MARCADOR' : 'HORA LOCAL'}
+              </span>
             </div>
             <div className="club">
               <TeamCrest

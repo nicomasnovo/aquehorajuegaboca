@@ -44,6 +44,45 @@ export function fullDate(fixture: { date: string; status?: string }, timeZone: s
 }
 
 /**
+ * Devuelve fecha y hora formateadas para el hero (ej: "sábado, 21 de noviembre")
+ */
+export function heroDate(fixture: { date: string; status?: string }, timeZone: string): string {
+  if (fixture.status && !hasConfirmedKickoff(fixture as { date: string; status: string })) {
+    return 'Fecha por confirmar';
+  }
+  return formatDate(fixture.date, { weekday: 'long', day: 'numeric', month: 'long' }, timeZone);
+}
+
+/**
+ * Verifica si el partido es hoy
+ */
+export function isToday(fixture: { date: string }, now: Date, timeZone: string): boolean {
+  const today = new Intl.DateTimeFormat('en-US', {
+    timeZone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
+
+  const dayKey = (d: Date): string => {
+    const parts = today.formatToParts(d);
+    const part = (type: string) => parts.find(p => p.type === type)?.value || '00';
+    return `${part('year')}-${part('month')}-${part('day')}`;
+  };
+
+  return dayKey(now) === dayKey(new Date(fixture.date));
+}
+
+/**
+ * Verifica si el partido está en vivo (dentro de los 90 minutos posteriores al inicio)
+ */
+export function isInLiveWindow(fixture: { date: string; status: string }, now: Date): boolean {
+  const kickoff = Date.parse(fixture.date);
+  const ninetyMinutes = 90 * 60 * 1000;
+  return now.getTime() >= kickoff && now.getTime() <= kickoff + ninetyMinutes;
+}
+
+/**
  * Verifica si un partido tiene horario confirmado.
  */
 export function hasConfirmedKickoff(fixture: { date: string; status: string }): boolean {

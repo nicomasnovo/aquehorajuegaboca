@@ -2411,7 +2411,7 @@ main.homePage {
   .newHero .match {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) minmax(0, 1fr);
     gap: 6px;
-    padding: 16px 0 14px;
+    padding: 24px 0;
   }
   .newHero .club .teamCrest,
   .newHero .club .badge {
@@ -3138,6 +3138,134 @@ main.homePage {
 }
 @media (prefers-reduced-motion: reduce) {
   .fabricLayer {
+    animation: none;
+  }
+}
+
+/* Hero: fecha más grande y badges de HOY / EN VIVO */
+.heroKickoff {
+  display: block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(72px, 7.5vw, 124px);
+  letter-spacing: -0.035em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.heroFullDate {
+  font-size: 18px;
+  text-transform: capitalize;
+  margin: 14px 0 8px;
+  line-height: 1.35;
+  max-width: 175px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heroLabel {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: #8ca6cf;
+}
+
+/* Badge HOY */
+.newHero .versus .todayBadge {
+  display: inline-block;
+  background: linear-gradient(135deg, #f6c945 0%, #e5a520 100%);
+  color: #102144;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(246, 201, 69, 0.4);
+}
+
+/* Badge EN VIVO con punto animado */
+.newHero .versus .liveWindowBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  color: white;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.5);
+  animation: liveBeat 1.5s ease-in-out infinite;
+}
+
+.liveDot {
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  animation: livePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes liveBeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+@keyframes livePulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.2);
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 750px) {
+  .heroKickoff {
+    font-size: clamp(43px, 11.6vw, 78px);
+    letter-spacing: -0.055em;
+  }
+  .newHero .versus .heroFullDate {
+    font-size: 4vw;
+    max-width: 135px;
+    margin: 8px auto 5px;
+  }
+  .heroLabel {
+    font-size: 9px;
+  }
+  .todayBadge,
+  .liveWindowBadge {
+    font-size: 11px;
+    padding: 5px 10px;
+    margin-bottom: 6px;
+  }
+}
+
+@media (max-width: 390px) {
+  .heroKickoff {
+    font-size: clamp(38px, 10.7vw, 45px);
+  }
+  .heroFullDate {
+    font-size: 12px;
+    max-width: 116px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liveWindowBadge,
+  .liveDot {
     animation: none;
   }
 }

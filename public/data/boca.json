@@ -3,7 +3,11 @@
   "source": "ESPN (API no oficial)",
   "season": 2026,
   "teamId": 5,
+<<<<<<< Updated upstream
   "updatedAt": "2026-11-16T17:26:38.503Z",
+=======
+  "updatedAt": "2026-11-16T17:30:43.815Z",
+>>>>>>> Stashed changes
   "fixtures": [
     {
       "id": "espn:arg.1:401841594",
@@ -13,7 +17,7 @@
       "leagueId": 1001,
       "season": 2026,
       "cup": "Liga Argentina",
-      "round": "torneo-clausura",
+      "round": "torneo clausura",
       "home": "Boca Juniors",
       "away": "Unión (Santa Fe)",
       "homeId": "5",
@@ -35,7 +39,7 @@
       "leagueId": 1001,
       "season": 2026,
       "cup": "Liga Argentina",
-      "round": "torneo-clausura",
+      "round": "torneo clausura",
       "home": "Instituto (Córdoba)",
       "away": "Boca Juniors",
       "homeId": "2975",
@@ -79,7 +83,7 @@
       "leagueId": 1001,
       "season": 2026,
       "cup": "Liga Argentina",
-      "round": "torneo-clausura",
+      "round": "torneo clausura",
       "home": "Boca Juniors",
       "away": "Talleres (Córdoba)",
       "homeId": "5",
@@ -114,7 +118,35 @@
       "broadcasts": [
         "beIn Sports"
       ],
-      "goals": [],
+      "goals": [
+        {
+          "team": "away",
+          "player": "Lautaro Di Lollo",
+          "minute": "4'",
+          "type": "Goal - Header",
+          "assist": "Lautaro Blanco"
+        },
+        {
+          "team": "away",
+          "player": "Miguel Merentiel",
+          "minute": "34'",
+          "type": "Goal",
+          "assist": "Sebastián Villa"
+        },
+        {
+          "team": "home",
+          "player": "José Luis Rodríguez",
+          "minute": "66'",
+          "type": "Goal"
+        },
+        {
+          "team": "away",
+          "player": "Leandro Paredes",
+          "minute": "88'",
+          "type": "Goal",
+          "assist": "Milton Delgado"
+        }
+      ],
       "clock": "",
       "stats": {
         "home": {
@@ -265,7 +297,7 @@
       "leagueId": 1001,
       "season": 2026,
       "cup": "Liga Argentina",
-      "round": "torneo-clausura",
+      "round": "torneo clausura",
       "home": "Independiente",
       "away": "Boca Juniors",
       "homeId": "11",
@@ -276,7 +308,15 @@
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/11.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
       "broadcasts": [],
-      "goals": [],
+      "goals": [
+        {
+          "team": "away",
+          "player": "Facundo Herrera",
+          "minute": "88'",
+          "type": "Goal - Header",
+          "assist": "Sebastián Villa"
+        }
+      ],
       "clock": "",
       "stats": {
         "home": {
@@ -427,7 +467,7 @@
       "leagueId": 1001,
       "season": 2026,
       "cup": "Liga Argentina",
-      "round": "torneo-clausura",
+      "round": "torneo clausura",
       "home": "Boca Juniors",
       "away": "River Plate",
       "homeId": "5",
@@ -438,7 +478,15 @@
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/16.png",
       "broadcasts": [],
-      "goals": [],
+      "goals": [
+        {
+          "team": "home",
+          "player": "Lautaro Di Lollo",
+          "minute": "27'",
+          "type": "Goal - Header",
+          "assist": "Sebastián Villa"
+        }
+      ],
       "clock": "",
       "stats": {
         "home": {
@@ -589,7 +637,7 @@
       "leagueId": 1001,
       "season": 2026,
       "cup": "Liga Argentina",
-      "round": "torneo-clausura",
+      "round": "torneo clausura",
       "home": "Boca Juniors",
       "away": "Defensa y Justicia",
       "homeId": "5",
@@ -935,7 +983,7 @@
       "leagueId": 1001,
       "season": 2026,
       "cup": "Liga Argentina",
-      "round": "clausura---round-of-16",
+      "round": "clausura · round of 16",
       "home": "Boca Juniors",
       "away": "Independiente Rivadavia",
       "homeId": "5",
