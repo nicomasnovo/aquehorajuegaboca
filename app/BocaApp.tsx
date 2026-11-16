@@ -9,7 +9,7 @@ type Competition={id:number,name:string,type:string,country:string,standingsAvai
 type Snapshot={schemaVersion:number,source:string,season:number,teamId:number,updatedAt:string|null,fixtures:Fixture[],competitions:Competition[]};
 type Status={season:number,checkedAt:string|null,lastSuccessAt:string|null,ok:boolean,code:string|null,message:string};
 const isBocaFixtureTeam=(name:string,id:number|string)=>String(id)==='5'||/\bboca\s+juniors\b/i.test(name);
-function TeamCrest({name,id,logo}:{name:string,id:number|string,logo?:string|null}){const [failed,setFailed]=useState(false);return logo&&!failed?<img src={logo} alt={'Escudo de '+name} className="teamCrest" onError={()=>setFailed(true)}/>:isBocaFixtureTeam(name,id)?<Badge/>:<div className="rivalBadge">{name.charAt(0)}</div>}
+function TeamCrest({name,id,logo}:{name:string,id:number|string,logo?:string|null}){const [failed,setFailed]=useState(false);return (isBocaFixtureTeam(name,id)?(process.env.NEXT_PUBLIC_BASE_PATH||'')+'/images/boca.png':logo)&&!failed?<img src={isBocaFixtureTeam(name,id)?(process.env.NEXT_PUBLIC_BASE_PATH||'')+'/images/boca.png':logo||''} alt={'Escudo de '+name} className="teamCrest" onError={()=>setFailed(true)}/>:isBocaFixtureTeam(name,id)?<Badge/>:<div className="rivalBadge">{name.charAt(0)}</div>}
 type CompetitionState='En juego'|'Próximamente'|'Finalizada'|'Pendiente'|'Sin confirmar';
 type CompetitionInfo={state:CompetitionState,reason:string,verified?:string,source?:string};
 const verified2026:Record<number,CompetitionInfo>={
@@ -32,7 +32,7 @@ function competitionInfo(c:Competition,games:Fixture[],now:Date,season:number):C
  return {state:'Sin confirmar',reason:'No hay partidos de Boca disponibles en ESPN. Esto no confirma que la competición no haya comenzado ni que Boca esté fuera.'};
 }
 const finished=['FT','AET','PEN','AWD','WO'];const excluded=['CANC','ABD'];
-function Badge({small=false}:{small?:boolean}){return <div className={'badge '+(small?'small':'')} aria-label="Boca"><span>★ ★ ★</span><b>BOCA</b><span>★ ★ ★</span></div>}
+function Badge({small=false}:{small?:boolean}){const base=process.env.NEXT_PUBLIC_BASE_PATH||'';return <img className={'badge '+(small?'small':'')} src={base+'/images/boca.png'} alt="Escudo de Boca Juniors"/>}
 export default function BocaApp({tab}:{tab:'Inicio'|'Calendario'|'Competiciones'}){
  const[calendarGame,setCalendarGame]=useState<Fixture|null>(null);const[deferredInstall,setDeferredInstall]=useState<InstallPromptEvent|null>(null);const[isStandalone,setIsStandalone]=useState(false);const[filter,setFilter]=useState('Todas');const[zone,setZone]=useState('America/Santiago');const[selectedId,setSelectedId]=useState<number|null>(null);const[install,setInstall]=useState(false);const[gameFilter,setGameFilter]=useState('Todos');const[data,setData]=useState<Snapshot|null>(null);const[status,setStatus]=useState<Status|null>(null);const[error,setError]=useState('');const[loading,setLoading]=useState(true);const[now,setNow]=useState(()=>new Date());
  const basePath=process.env.NEXT_PUBLIC_BASE_PATH||'';
