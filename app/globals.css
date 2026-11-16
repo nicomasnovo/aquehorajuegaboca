@@ -214,3 +214,9 @@ main.homePage{padding-top:clamp(28px,4vw,48px)}
 /* Phase 2: stable, compact real-time kickoff countdown. */
 .newHero .countdownTimer{display:inline-block;font-variant-numeric:tabular-nums;white-space:nowrap;min-width:9ch;text-align:center;letter-spacing:.025em}
 @media(max-width:390px){.newHero .countdownTimer{font-size:10px;letter-spacing:0;padding:5px 7px}}
+
+/* Phase 3: broadcast information sits below the venue without moving calendar actions. */
+.newHero .heroBroadcast{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 0 16px;color:#c8d5e9;font-size:13px;line-height:1.4}
+.newHero .heroBroadcast strong{font-size:10px;letter-spacing:1.2px;color:var(--gold)}
+.newHero .heroBroadcast span{overflow-wrap:anywhere}
+@media(max-width:750px){.newHero .heroBroadcast{gap:5px 9px;margin-bottom:11px;font-size:12px}.newHero .heroBroadcast strong{font-size:9px}}
