@@ -3,7 +3,7 @@
   "source": "ESPN (API no oficial)",
   "season": 2026,
   "teamId": 5,
-  "updatedAt": "2026-11-16T01:34:32.923Z",
+  "updatedAt": "2026-11-16T01:39:01.466Z",
   "fixtures": [
     {
       "id": "espn:arg.1:401841594",
@@ -22,7 +22,8 @@
       "awayGoals": 0,
       "venue": "Alberto José Armando (La Bombonera)",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/20.png"
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/20.png",
+      "broadcasts": []
     },
     {
       "id": "espn:arg.1:401841607",
@@ -41,7 +42,8 @@
       "awayGoals": 2,
       "venue": "Monumental Presidente Perón",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/2975.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png"
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
+      "broadcasts": []
     },
     {
       "id": "espn:conmebol.sudamericana:401913958",
@@ -60,7 +62,8 @@
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3454.png",
       "homeGoals": 0,
       "awayGoals": 1,
-      "venue": "Alberto José Armando (La Bombonera)"
+      "venue": "Alberto José Armando (La Bombonera)",
+      "broadcasts": []
     },
     {
       "id": "espn:arg.1:401841627",
@@ -79,7 +82,8 @@
       "awayGoals": 1,
       "venue": "Alberto José Armando (La Bombonera)",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/19.png"
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/19.png",
+      "broadcasts": []
     },
     {
       "id": "espn:conmebol.sudamericana:401913957",
@@ -98,7 +102,10 @@
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
       "homeGoals": 1,
       "awayGoals": 3,
-      "venue": "Estadio do Maracana"
+      "venue": "Estadio do Maracana",
+      "broadcasts": [
+        "beIn Sports"
+      ]
     },
     {
       "id": "espn:arg.1:401841636",
@@ -117,7 +124,8 @@
       "awayGoals": 1,
       "venue": "Estadio Libertadores de América",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/11.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png"
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
+      "broadcasts": []
     },
     {
       "id": "espn:arg.1:401841658",
@@ -136,7 +144,8 @@
       "awayGoals": 0,
       "venue": "Alberto José Armando (La Bombonera)",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/16.png"
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/16.png",
+      "broadcasts": []
     },
     {
       "id": "espn:arg.1:401841669",
@@ -155,7 +164,8 @@
       "awayGoals": 0,
       "venue": "Alberto José Armando (La Bombonera)",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/8950.png"
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/8950.png",
+      "broadcasts": []
     },
     {
       "id": "espn:arg.copa:401926286",
@@ -174,7 +184,8 @@
       "awayGoals": 3,
       "venue": "Malvinas Argentinas (Mendoza)",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/235.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png"
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
+      "broadcasts": []
     },
     {
       "id": "espn:conmebol.sudamericana:401913961",
@@ -193,7 +204,8 @@
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
       "homeGoals": 0,
       "awayGoals": 0,
-      "venue": "Metropolitano Roberto Meléndez"
+      "venue": "Metropolitano Roberto Meléndez",
+      "broadcasts": []
     },
     {
       "id": "espn:arg.1:401933757",
@@ -212,7 +224,8 @@
       "awayGoals": 0,
       "venue": "Alberto José Armando (La Bombonera)",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/9744.png"
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/9744.png",
+      "broadcasts": []
     },
     {
       "id": "espn:arg.copa:401932277",
@@ -231,7 +244,8 @@
       "awayGoals": 0,
       "venue": "Estadio por confirmar",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/7764.png"
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/7764.png",
+      "broadcasts": []
     }
   ],
   "competitions": [
