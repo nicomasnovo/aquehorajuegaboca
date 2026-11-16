@@ -153,3 +153,7 @@ html{background:#0c1423}body{min-height:100dvh}@media(max-width:750px){aside.sit
 .upcomingGame .upcomingTime.resultDate strong:empty{display:none}
 .upcomingGame .upcomingVenue span{min-width:0;overflow-wrap:anywhere}
 @media(max-width:750px){.upcomingGame .upcomingHeader{align-items:flex-start}.upcomingGame .upcomingHeader>span:first-child{font-size:12px}.upcomingGame .upcomingBody{gap:12px}.upcomingGame .upcomingTeams strong{font-size:clamp(14px,3.7vw,18px)}.upcomingGame .upcomingTime{min-width:94px;padding-left:12px}.upcomingGame .upcomingTime strong{font-size:clamp(25px,7vw,33px)}.upcomingGame .upcomingTime.resultDate{min-width:75px}.upcomingGame .teamScore{font-size:25px}}
+
+/* Breathing room above the home hero without changing other pages. */
+main.homePage{padding-top:clamp(28px,4vw,48px)}
+@media(max-width:750px){main.homePage{padding-top:28px}}
