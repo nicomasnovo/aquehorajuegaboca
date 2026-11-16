@@ -93,7 +93,7 @@ function matchMood(next:Fixture|undefined,last:Fixture|undefined,now:Date){
  if(next){
   const state=getMatchViewState(next);
   if(state==='live'||state==='halftime')category='live';
-  else if(/\\briver\\b/i.test(next.home+' '+next.away))category='superclasico';
+  else if(/\briver\b/i.test(next.home+' '+next.away))category='superclasico';
   else if(hasConfirmedKickoff(next)&&Date.parse(next.date)-now.getTime()<=3600000&&Date.parse(next.date)>=now.getTime())category='soon';
   else if(hasConfirmedKickoff(next)&&new Intl.DateTimeFormat('en-CA',{timeZone:'America/Argentina/Buenos_Aires',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(next.date))===new Intl.DateTimeFormat('en-CA',{timeZone:'America/Argentina/Buenos_Aires',year:'numeric',month:'2-digit',day:'2-digit'}).format(now))category='today';
   else category='upcoming';
