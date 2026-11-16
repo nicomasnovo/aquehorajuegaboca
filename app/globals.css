@@ -281,3 +281,8 @@ main.homePage{padding-top:clamp(28px,4vw,48px)}
  .newHero .versus strong{font-size:clamp(38px,10.7vw,45px)}
  .newHero .club .teamCrest,.newHero .club .badge{width:clamp(55px,15.5vw,64px);height:clamp(64px,18vw,73px)}
 }
+
+/* Keep the hero date compact and balanced over two lines without shrinking the kickoff time. */
+.newHero .versus>div{max-width:175px;margin:12px auto 8px;text-wrap:balance;line-height:1.35}
+@media(max-width:750px){.newHero .versus>div{max-width:135px;margin:8px auto 5px;line-height:1.3}}
+@media(max-width:390px){.newHero .versus>div{max-width:116px}}
