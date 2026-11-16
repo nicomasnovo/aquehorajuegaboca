@@ -305,3 +305,7 @@ body::before{content:"";position:fixed;right:-18vw;bottom:-22vh;width:90vw;heigh
 .lastMatchWin>.lastMatchConfetti~*{position:relative;z-index:1}
 @keyframes lastMatchConfettiFall{0%{transform:translate3d(0,-20px,0) rotate(0)}50%{transform:translate3d(20px,120px,0) rotate(220deg)}100%{transform:translate3d(-15px,340px,0) rotate(480deg)}}
 @media(prefers-reduced-motion:reduce){.lastMatchConfetti span{animation:none;display:none}}
+
+/* Give the main match card more breathing room from the top edge. */
+main.homePage{padding-top:clamp(40px,5vw,64px)}
+@media(max-width:750px){main.homePage{padding-top:28px}}
