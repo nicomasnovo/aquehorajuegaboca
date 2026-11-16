@@ -43,7 +43,13 @@ export function normalizeEvents(events,league){
   const completed=state.completed===true||state.name==='STATUS_FINAL';
   const status=completed?'FT':state.state==='in'?'LIVE':state.state==='pre'?'NS':'TBD';
   const score=side=>{const n=Number(side.score);return side.score==null||side.score===''||!Number.isFinite(n)?null:n;};
-  return [{id:`espn:${league.slug}:${event.id}`,date:event.date,status,statusLabel:({'Scheduled':'Programado','Postponed':'Postergado','Canceled':'Cancelado','Cancelled':'Cancelado','In Progress':'En juego','Halftime':'Entretiempo'}[state.description]??state.description??(completed?'Finalizado':'Por confirmar')),leagueId:league.id,season:Number(event.season?.year) || new Date(event.date).getUTCFullYear(),cup:league.name,round:eventRound(event),home:displayTeamName(home.team),away:displayTeamName(away.team),homeId:home.team?.id??null,awayId:away.team?.id??null,homeLogo:home.team?.logos?.[0]?.href??home.team?.logo??null,awayLogo:away.team?.logos?.[0]?.href??away.team?.logo??null,homeGoals:score(home),awayGoals:score(away),venue:competition.venue?.fullName??'Estadio por confirmar',broadcasts:eventBroadcasts(event)}];
+  // Scoreboard may expose goals as details; keep only confirmed, named scoring events.
+  const goals=sides.flatMap(side=>(Array.isArray(side.details)?side.details:[]).filter(detail=>/goal/i.test(String(detail.type?.text??detail.type??''))&&!/own goal/i.test(String(detail.type?.text??detail.type??''))).map(detail=>({
+   team:side.homeAway,player:String(detail.athletes?.[0]?.athlete?.displayName??detail.athlete?.displayName??'').trim(),
+   minute:String(detail.clock?.displayValue??detail.clock??'').trim()
+  })).filter(goal=>goal.player));
+  const clock=state.state==='in'?String(competition.status?.displayClock??event.status?.displayClock??'').trim():'';
+  return [{id:`espn:${league.slug}:${event.id}`,date:event.date,status,statusLabel:({'Scheduled':'Programado','Postponed':'Postergado','Canceled':'Cancelado','Cancelled':'Cancelado','In Progress':'En juego','Halftime':'Entretiempo'}[state.description]??state.description??(completed?'Finalizado':'Por confirmar')),leagueId:league.id,season:Number(event.season?.year) || new Date(event.date).getUTCFullYear(),cup:league.name,round:eventRound(event),home:displayTeamName(home.team),away:displayTeamName(away.team),homeId:home.team?.id??null,awayId:away.team?.id??null,homeLogo:home.team?.logos?.[0]?.href??home.team?.logo??null,awayLogo:away.team?.logos?.[0]?.href??away.team?.logo??null,homeGoals:score(home),awayGoals:score(away),venue:competition.venue?.fullName??'Estadio por confirmar',broadcasts:eventBroadcasts(event),goals,clock}];
  });
 }
 export function normalizeStandings(body){
