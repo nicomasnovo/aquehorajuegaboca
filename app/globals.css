@@ -180,3 +180,33 @@ main.homePage{padding-top:clamp(28px,4vw,48px)}
 .newHero .match{padding-top:26px;padding-bottom:22px}
 .newHero{padding-bottom:18px}
 @media(max-width:750px){.upcomingGame{padding:13px 14px;margin-bottom:9px}.upcomingGame .upcomingBody{margin:10px 0}.upcomingGame .upcomingTeams{gap:7px}.upcomingGame .upcomingTeams .teamCrest,.upcomingGame .upcomingTeams .badge{width:27px;height:31px}.newHero .match{padding-top:23px;padding-bottom:19px}.newHero{padding-bottom:16px}}
+
+/* Phase 1: mobile-first hierarchy. Scope changes to the home hero only. */
+@media(max-width:750px){
+ main.homePage{padding-top:12px}
+ .newHero{padding:0 16px 14px;border-radius:20px}
+ .newHero .heroTop{padding:15px 0 8px;gap:8px;font-size:11px}
+ .newHero .countdown{padding:5px 9px;font-size:11px;white-space:nowrap}
+ .newHero .heroCompetition{font-size:14px;line-height:1.3;overflow-wrap:anywhere}
+ .newHero .match{grid-template-columns:minmax(0,1fr) minmax(0,1.5fr) minmax(0,1fr);gap:6px;padding:16px 0 14px}
+ .newHero .club .teamCrest,.newHero .club .badge{width:48px;height:56px;object-fit:contain}
+ .newHero .club h2{font-size:clamp(13px,3.7vw,18px);line-height:1.12;margin-top:6px}
+ .newHero .club>span{font-size:9px;letter-spacing:.7px}
+ .newHero .versus strong{font-size:clamp(32px,9vw,54px);line-height:1.05;white-space:nowrap;overflow-wrap:normal}
+ .newHero .versus>div{font-size:clamp(10px,2.9vw,13px);line-height:1.3;margin:7px 0 4px}
+ .newHero .versus>span{font-size:9px;letter-spacing:.6px}
+ .newHero .heroBottom{padding-top:11px}
+ .newHero .heroVenue{margin-bottom:10px;gap:7px;font-size:12px;line-height:1.3}
+ .newHero .heroVenue svg{width:15px;height:15px}
+ .newHero .heroActions{gap:8px}
+ .newHero .heroActions button{padding:9px 11px;font-size:12px}
+ .newHero .heroActions button svg{width:16px;height:16px}
+}
+@media(max-width:390px){
+ .newHero{padding-left:12px;padding-right:12px}
+ .newHero .heroTop{font-size:10px}
+ .newHero .match{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) minmax(0,1fr);gap:4px}
+ .newHero .club .teamCrest,.newHero .club .badge{width:42px;height:49px}
+ .newHero .versus strong{font-size:clamp(29px,8.5vw,35px)}
+ .newHero .heroActions button{padding:8px 10px}
+}
