@@ -314,3 +314,7 @@ main.homePage{padding-top:clamp(40px,5vw,64px)}
 /* Slightly more separation between upcoming fixture cards. */
 .dashboard .upcomingGame{margin-bottom:16px}
 @media(max-width:750px){.dashboard .upcomingGame{margin-bottom:14px}}
+
+/* Match the upcoming-card spacing on the Calendar page. */
+.calendarFilters~.upcomingGame{margin-bottom:16px}
+@media(max-width:750px){.calendarFilters~.upcomingGame{margin-bottom:14px}}
