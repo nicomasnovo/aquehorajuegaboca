@@ -162,3 +162,21 @@ main.homePage{padding-top:clamp(28px,4vw,48px)}
 .upcomingStatus.upcomingSoon{background:#f6c945;color:#12223c;font-weight:800}
 .upcomingGame .upcomingTime strong{overflow-wrap:anywhere}
 @media(max-width:750px){.upcomingGame .upcomingTime strong{font-size:clamp(19px,6vw,33px)}.newHero .versus strong{white-space:normal;overflow-wrap:anywhere}.newHero .versus strong:not(:empty){line-height:1.1}}
+
+/* Home hero: left-aligned calendar actions sized to their labels. */
+.newHero .heroBottom{align-items:flex-start}
+.newHero .heroActions{display:flex;justify-content:flex-start;align-items:center;align-self:flex-start;width:max-content;max-width:100%;gap:10px}
+.newHero .heroActions button{flex:0 0 auto;width:auto;min-width:0;max-width:100%;white-space:nowrap}
+@media(max-width:750px){.newHero .heroActions{width:auto;max-width:100%;justify-content:flex-start}.newHero .heroActions button{flex:0 0 auto;width:auto}}
+
+/* Compact match cards to match the reference proportions. */
+.upcomingGame{padding:15px 18px;margin-bottom:10px}
+.upcomingGame .upcomingBody{margin:12px 0;gap:12px}
+.upcomingGame .upcomingTeams{gap:8px}
+.upcomingGame .upcomingTeams>div{gap:9px}
+.upcomingGame .upcomingTeams .teamCrest,.upcomingGame .upcomingTeams .badge{width:29px;height:33px;object-fit:contain}
+.upcomingGame .upcomingVenue{padding-top:10px;gap:8px}
+.upcomingGame .upcomingStatus{padding:4px 9px}
+.newHero .match{padding-top:26px;padding-bottom:22px}
+.newHero{padding-bottom:18px}
+@media(max-width:750px){.upcomingGame{padding:13px 14px;margin-bottom:9px}.upcomingGame .upcomingBody{margin:10px 0}.upcomingGame .upcomingTeams{gap:7px}.upcomingGame .upcomingTeams .teamCrest,.upcomingGame .upcomingTeams .badge{width:27px;height:31px}.newHero .match{padding-top:23px;padding-bottom:19px}.newHero{padding-bottom:16px}}
