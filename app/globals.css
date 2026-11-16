@@ -227,3 +227,9 @@ main.homePage{padding-top:clamp(28px,4vw,48px)}
 .newHero .matchStateTag.finished{color:#aab7ca}
 .newHero .matchStateTag.postponed,.newHero .matchStateTag.cancelled{border-color:#87663c;color:#f3d39a}
 @media(max-width:390px){.newHero .matchStateTag{margin-left:4px;padding:3px 6px;font-size:9px}}
+
+/* Phase 5: keyboard access and reduced-motion support. */
+.skipLink{position:fixed;z-index:9999;top:10px;left:10px;transform:translateY(-160%);background:var(--gold);color:#090f1c;padding:12px 16px;border-radius:8px;font-weight:700}
+.skipLink:focus{transform:translateY(0)}
+:where(button,a,select,input):focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.stadiumConfetti{display:none}}
