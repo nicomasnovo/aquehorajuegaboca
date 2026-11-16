@@ -63,3 +63,41 @@ html{background:#090f1c}body{background:#090f1c;min-height:100dvh}
 @media(max-width:600px){.knockoutRound{flex-basis:215px}}
 
 .competitionReason{color:#c9d8ed;font-size:12px;line-height:1.55;min-height:38px;margin:9px 0}
+
+/* Official Boca crest, served locally after the asset download workflow. */
+img.badge{display:block;object-fit:contain;background:transparent;border:0;border-radius:0;box-shadow:none}img.badge.small{border:0;border-radius:0}.teamCrest{object-fit:contain}
+
+/* Home redesign: compact scoreboard inspired by the supplied reference. */
+.homeControls{justify-content:space-between;padding:22px 0 24px}
+.zoneSwitch{display:flex;gap:4px;padding:5px;background:#121c2d;border:1px solid #2b3548;border-radius:999px}
+.zoneSwitch button{border:0;background:transparent;color:#94a1b8;border-radius:999px;padding:12px 23px;font-weight:600}
+.zoneSwitch button.active{background:var(--gold);color:#101a2b}
+.refreshButton{display:grid;place-items:center;width:50px;height:50px;border-radius:50%;border:1px solid #2b3548;background:#121c2d;color:#94a1b8}
+.newHero{background:linear-gradient(160deg,#1c407f 0%,#111b2d 62%);border-radius:24px;border-color:#2d3950;padding:0 26px 26px}
+.newHero:before{content:'';position:absolute;inset:0 0 auto;height:5px;background:linear-gradient(90deg,#244c92,var(--gold),#244c92)}
+.newHero .heroTop{padding:28px 0 12px;font-size:13px;letter-spacing:0}
+.heroEyebrow{color:var(--gold);font-weight:800;letter-spacing:2px}
+.countdown{color:var(--gold);background:#172338;border-radius:30px;padding:7px 12px;font-weight:700}
+.heroCompetition{font-size:16px;color:#e7ecf6}.heroCompetition span{color:#9baac1}
+.newHero .match{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr) minmax(0,1fr);gap:12px;padding:46px 0 36px;align-items:center}
+.newHero .club{min-width:0}.newHero .club h2{font-size:23px;overflow-wrap:anywhere}.newHero .club>span{font-size:11px;color:#95a4bb;letter-spacing:1.4px}
+.newHero .versus strong{font-size:clamp(40px,5vw,74px);color:var(--gold);white-space:nowrap;line-height:1}
+.newHero .versus>div{font-size:14px;letter-spacing:0;text-transform:capitalize;color:#e4eaf4;margin:14px 0 8px}
+.newHero .versus>span{font-size:11px;letter-spacing:1.5px}
+.newHero .heroBottom{background:none;border-top:1px solid #334158;padding:24px 0 0;display:block}
+.heroVenue{display:flex;gap:12px;align-items:center;color:#98a7be;line-height:1.5;margin-bottom:20px}
+.heroVenue svg{flex-shrink:0}.heroActions{display:flex;gap:10px;flex-wrap:wrap}
+.heroActions button{border-radius:999px;padding:13px 20px;font-size:14px}
+.heroActions button.secondaryAction{background:transparent;border:1px solid #334158;color:#dce5f4}
+.dashboard{display:block}.dashboard .sectionTitle h2{font-family:'Barlow Condensed',sans-serif;font-size:26px;letter-spacing:.4px}
+.upcomingGame{display:block;border-radius:20px;padding:22px;margin-bottom:14px}
+.upcomingHeader{display:flex;justify-content:space-between;gap:10px;align-items:center;color:#aebbd0;font-size:13px}
+.upcomingStatus{white-space:nowrap;color:var(--gold);background:#1b283d;border-radius:30px;padding:6px 10px;font-size:11px}
+.upcomingBody{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:20px 0}
+.upcomingTeams{display:grid;gap:13px;min-width:0}.upcomingTeams>div{display:flex;align-items:center;gap:13px}.upcomingTeams strong{font-size:17px;font-weight:600}
+.upcomingTeams .teamCrest,.upcomingTeams .badge{width:35px;height:40px}
+.upcomingTime{display:grid;gap:5px;text-align:right;border-left:1px solid #334158;padding-left:18px;flex-shrink:0}
+.upcomingTime strong{font-size:27px}.upcomingTime span{font-size:12px;color:#93a2b9}
+.upcomingVenue{display:flex;gap:10px;align-items:center;border-top:1px solid #334158;padding-top:16px;color:#92a0b7;font-size:12px}
+@media(max-width:750px){.homeControls{padding:14px 0 20px}.zoneSwitch button{padding:10px 17px}.newHero{padding:0 20px 22px}.newHero .match{gap:7px;padding:40px 0 35px}.newHero .club h2{font-size:19px}.newHero .versus strong{font-size:clamp(28px,8vw,54px)}.newHero .versus>div{font-size:11px}.newHero .versus>span{font-size:9px}.newHero .club .teamCrest,.newHero .club .badge{width:66px;height:78px}.newHero .heroBottom{padding-top:20px}.heroActions button{font-size:12px}.upcomingGame{padding:18px}.upcomingHeader{font-size:11px}.upcomingTeams strong{font-size:14px}.upcomingTime strong{font-size:23px}.dashboard .sectionTitle h2{font-size:24px}}
+@media(max-width:390px){.newHero{padding-left:12px;padding-right:12px}.newHero .match{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,1fr)}.newHero .club h2{font-size:16px}.newHero .versus strong{font-size:27px}.upcomingHeader{flex-wrap:wrap}.heroActions button{padding:11px 14px}}

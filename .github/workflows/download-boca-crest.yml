@@ -1,0 +1,30 @@
+name: Download Boca crest
+on:
+  push:
+    branches: [feature/ui-improvements]
+    paths:
+      - '.github/workflows/download-boca-crest.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/ui-improvements
+      - name: Download and validate official ESPN crest
+        run: |
+          mkdir -p public/images
+          curl --fail --location --retry 3 --silent --show-error 'https://a.espncdn.com/i/teamlogos/soccer/500/5.png' -o public/images/boca.png
+          file public/images/boca.png | grep -q 'PNG image data'
+      - name: Commit image to feature branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/images/boca.png
+          if ! git diff --cached --quiet; then
+            git commit -m 'assets: save official Boca crest from ESPN'
+            git push origin HEAD:feature/ui-improvements
+          fi
