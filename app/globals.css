@@ -157,3 +157,8 @@ html{background:#0c1423}body{min-height:100dvh}@media(max-width:750px){aside.sit
 /* Breathing room above the home hero without changing other pages. */
 main.homePage{padding-top:clamp(28px,4vw,48px)}
 @media(max-width:750px){main.homePage{padding-top:28px}}
+
+/* Urgent fixture and unconfirmed kickoff states. */
+.upcomingStatus.upcomingSoon{background:#f6c945;color:#12223c;font-weight:800}
+.upcomingGame .upcomingTime strong{overflow-wrap:anywhere}
+@media(max-width:750px){.upcomingGame .upcomingTime strong{font-size:clamp(19px,6vw,33px)}.newHero .versus strong{white-space:normal;overflow-wrap:anywhere}.newHero .versus strong:not(:empty){line-height:1.1}}
