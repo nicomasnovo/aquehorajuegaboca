@@ -233,3 +233,16 @@ main.homePage{padding-top:clamp(28px,4vw,48px)}
 .skipLink:focus{transform:translateY(0)}
 :where(button,a,select,input):focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.stadiumConfetti{display:none}}
+
+/* Hero: larger kickoff time and team crests, without affecting shared fixture cards. */
+.newHero .versus strong{font-size:clamp(54px,6.2vw,100px);line-height:1;white-space:nowrap;overflow-wrap:normal;font-variant-numeric:tabular-nums}
+.newHero .club .teamCrest,.newHero .club .badge{width:clamp(88px,9vw,120px);height:clamp(98px,10vw,136px);max-width:100%;object-fit:contain}
+@media(max-width:750px){
+ .newHero .match{grid-template-columns:minmax(0,1fr) minmax(0,1.65fr) minmax(0,1fr);gap:4px}
+ .newHero .versus strong{font-size:clamp(36px,10vw,64px);letter-spacing:-.04em}
+ .newHero .club .teamCrest,.newHero .club .badge{width:clamp(56px,15vw,88px);height:clamp(64px,17vw,98px)}
+}
+@media(max-width:390px){
+ .newHero .versus strong{font-size:clamp(32px,9.5vw,38px)}
+ .newHero .club .teamCrest,.newHero .club .badge{width:52px;height:61px}
+}
