@@ -289,3 +289,9 @@ main.homePage{padding-top:clamp(28px,4vw,48px)}
 @keyframes crestWatermarkReveal{from{opacity:0;filter:grayscale(1) blur(9px)}to{opacity:.085;filter:grayscale(1) contrast(1.2) blur(0)}}
 @media(max-width:750px){.pageCrestWatermark{width:min(100vw,520px);opacity:.065;animation:none}}
 @media(prefers-reduced-motion:reduce){.pageCrestWatermark{animation:none}}
+
+/* Ambient gold glow: soft, slow movement behind the content and crest watermark. */
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 42vw 38vw at 72% 72%,rgba(246,201,69,.075) 0%,rgba(246,201,69,.025) 38%,transparent 72%);transform:translate3d(0,0,0);animation:ambientGoldDrift 24s ease-in-out infinite alternate;will-change:transform}
+@keyframes ambientGoldDrift{0%{transform:translate3d(-9vw,5vh,0)}50%{transform:translate3d(4vw,-8vh,0)}100%{transform:translate3d(12vw,3vh,0)}}
+@media(max-width:750px){body::before{background:radial-gradient(ellipse 75vw 65vw at 65% 75%,rgba(246,201,69,.055),transparent 72%);animation-duration:30s;will-change:auto}}
+@media(prefers-reduced-motion:reduce){body::before{animation:none;transform:none;will-change:auto}}
