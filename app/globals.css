@@ -309,3 +309,7 @@ body::before{content:"";position:fixed;right:-18vw;bottom:-22vh;width:90vw;heigh
 /* Give the main match card more breathing room from the top edge. */
 main.homePage{padding-top:clamp(40px,5vw,64px)}
 @media(max-width:750px){main.homePage{padding-top:28px}}
+
+/* Slightly more separation between upcoming fixture cards. */
+.dashboard .upcomingGame{margin-bottom:16px}
+@media(max-width:750px){.dashboard .upcomingGame{margin-bottom:14px}}
