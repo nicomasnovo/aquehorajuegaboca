@@ -320,14 +320,12 @@ main.homePage{padding-top:clamp(40px,5vw,64px)}
 @media(max-width:750px){.calendarFilters~.upcomingGame{margin-bottom:14px}}
 
 /* Blue-and-gold fabric streamers inspired by Boca's stadium stands. */
-.tribunaStreamers{height:88px;position:relative;overflow:hidden;isolation:isolate;pointer-events:none;margin:0 0 -5px;mask-image:linear-gradient(to bottom,transparent 0%,#000 18%,#000 80%,transparent 100%)}
-.tribunaStreamers span{position:absolute;left:-12%;width:125%;height:15px;top:35px;transform-origin:center;opacity:.82;border-radius:50% 10% 50% 10%;filter:drop-shadow(0 4px 4px rgba(0,0,0,.24));animation:tribunaFabricSway 6s ease-in-out infinite alternate}
-.tribunaStreamers span:nth-child(1){background:linear-gradient(180deg,#315da8,#0c3479 55%,#08295b);transform:rotate(-7deg) skewX(-14deg);top:20px;animation-delay:-1s}
-.tribunaStreamers span:nth-child(2){background:linear-gradient(180deg,#ffe17b,#f4c542 55%,#b68b1c);transform:rotate(7deg) skewX(12deg);top:25px;animation-delay:-3s}
-.tribunaStreamers span:nth-child(3){background:linear-gradient(180deg,#3465ae,#124084 55%,#08295b);transform:rotate(-3deg);top:47px;animation-delay:-2s}
-.tribunaStreamers span:nth-child(4){background:linear-gradient(180deg,#ffe27d,#e9b832 55%,#ac7b16);transform:rotate(4deg);top:56px;animation-delay:-4s}
-.tribunaStreamers span:nth-child(5){background:linear-gradient(180deg,#28539a,#123a7a 55%,#08295b);transform:rotate(-11deg);top:75px;opacity:.6;animation-delay:-1.5s}
-.tribunaStreamers span:nth-child(6){background:linear-gradient(180deg,#ffdf6b,#edbc37 55%,#a77813);transform:rotate(12deg);top:4px;opacity:.6;animation-delay:-5s}
-@keyframes tribunaFabricSway{from{translate:0 -3px;scale:1 1}to{translate:0 4px;scale:1 1.08}}
-@media(max-width:750px){.tribunaStreamers{height:68px;margin-bottom:-4px}.tribunaStreamers span{height:11px;width:145%;left:-22%;opacity:.75}.tribunaStreamers span:nth-child(5){top:58px}.tribunaStreamers span:nth-child(4){top:48px}}
-@media(prefers-reduced-motion:reduce){.tribunaStreamers span{animation:none}}
+.tribunaStreamers{height:66px;position:relative;overflow:hidden;pointer-events:none;margin:2px 0 4px;mask-image:linear-gradient(to bottom,transparent,#000 18%,#000 80%,transparent)}
+.tribunaStreamers svg{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 5px 5px rgba(0,0,0,.2))}
+.fabricLayer{transform-origin:50% 50%;animation:fabricFloat 8s ease-in-out infinite alternate}
+.fabricLayerBack{opacity:.72;animation-delay:-3s}
+.fabricLayerFront{opacity:.9;animation-duration:10s}
+@keyframes fabricFloat{from{transform:translateY(-2px) scaleY(.97)}to{transform:translateY(3px) scaleY(1.04)}}
+@media(max-width:750px){.tribunaStreamers{height:48px;margin:0 0 3px}}
+@media(prefers-reduced-motion:reduce){.fabricLayer{animation:none}}
+
