@@ -3,7 +3,7 @@
   "source": "ESPN (API no oficial)",
   "season": 2026,
   "teamId": 5,
-  "updatedAt": "2026-11-16T02:04:12.039Z",
+  "updatedAt": "2026-11-16T02:11:08.323Z",
   "fixtures": [
     {
       "id": "espn:arg.1:401841594",
@@ -23,7 +23,9 @@
       "venue": "Alberto José Armando (La Bombonera)",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/20.png",
-      "broadcasts": []
+      "broadcasts": [],
+      "goals": [],
+      "clock": ""
     },
     {
       "id": "espn:arg.1:401841607",
@@ -43,7 +45,9 @@
       "venue": "Monumental Presidente Perón",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/2975.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
-      "broadcasts": []
+      "broadcasts": [],
+      "goals": [],
+      "clock": ""
     },
     {
       "id": "espn:conmebol.sudamericana:401913958",
@@ -63,7 +67,9 @@
       "homeGoals": 0,
       "awayGoals": 1,
       "venue": "Alberto José Armando (La Bombonera)",
-      "broadcasts": []
+      "broadcasts": [],
+      "goals": [],
+      "clock": ""
     },
     {
       "id": "espn:arg.1:401841627",
@@ -83,7 +89,9 @@
       "venue": "Alberto José Armando (La Bombonera)",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/19.png",
-      "broadcasts": []
+      "broadcasts": [],
+      "goals": [],
+      "clock": ""
     },
     {
       "id": "espn:conmebol.sudamericana:401913957",
@@ -105,7 +113,9 @@
       "venue": "Estadio do Maracana",
       "broadcasts": [
         "beIn Sports"
-      ]
+      ],
+      "goals": [],
+      "clock": ""
     },
     {
       "id": "espn:arg.1:401841636",
@@ -125,7 +135,9 @@
       "venue": "Estadio Libertadores de América",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/11.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
-      "broadcasts": []
+      "broadcasts": [],
+      "goals": [],
+      "clock": ""
     },
     {
       "id": "espn:arg.1:401841658",
@@ -145,7 +157,9 @@
       "venue": "Alberto José Armando (La Bombonera)",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/16.png",
-      "broadcasts": []
+      "broadcasts": [],
+      "goals": [],
+      "clock": ""
     },
     {
       "id": "espn:arg.1:401841669",
@@ -165,7 +179,9 @@
       "venue": "Alberto José Armando (La Bombonera)",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/8950.png",
-      "broadcasts": []
+      "broadcasts": [],
+      "goals": [],
+      "clock": ""
     },
     {
       "id": "espn:arg.copa:401926286",
@@ -185,7 +201,9 @@
       "venue": "Malvinas Argentinas (Mendoza)",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/235.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
-      "broadcasts": []
+      "broadcasts": [],
+      "goals": [],
+      "clock": ""
     },
     {
       "id": "espn:conmebol.sudamericana:401913961",
@@ -205,7 +223,9 @@
       "homeGoals": 0,
       "awayGoals": 0,
       "venue": "Metropolitano Roberto Meléndez",
-      "broadcasts": []
+      "broadcasts": [],
+      "goals": [],
+      "clock": ""
     },
     {
       "id": "espn:arg.1:401933757",
@@ -225,7 +245,9 @@
       "venue": "Alberto José Armando (La Bombonera)",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/9744.png",
-      "broadcasts": []
+      "broadcasts": [],
+      "goals": [],
+      "clock": ""
     },
     {
       "id": "espn:arg.copa:401932277",
@@ -245,7 +267,9 @@
       "venue": "Estadio por confirmar",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/7764.png",
-      "broadcasts": []
+      "broadcasts": [],
+      "goals": [],
+      "clock": ""
     }
   ],
   "competitions": [
