@@ -63,3 +63,6 @@ html{background:#090f1c}body{background:#090f1c;min-height:100dvh}
 @media(max-width:600px){.knockoutRound{flex-basis:215px}}
 
 .competitionReason{color:#c9d8ed;font-size:12px;line-height:1.55;min-height:38px;margin:9px 0}
+
+/* Official Boca crest, served locally after the asset download workflow. */
+img.badge{display:block;object-fit:contain;background:transparent;border:0;border-radius:0;box-shadow:none}img.badge.small{border:0;border-radius:0}.teamCrest{object-fit:contain}
