@@ -220,3 +220,10 @@ main.homePage{padding-top:clamp(28px,4vw,48px)}
 .newHero .heroBroadcast strong{font-size:10px;letter-spacing:1.2px;color:var(--gold)}
 .newHero .heroBroadcast span{overflow-wrap:anywhere}
 @media(max-width:750px){.newHero .heroBroadcast{gap:5px 9px;margin-bottom:11px;font-size:12px}.newHero .heroBroadcast strong{font-size:9px}}
+
+/* Phase 4: provider-confirmed match state, without changing the hero layout. */
+.newHero .matchStateTag{display:inline-block;margin-left:8px;padding:4px 8px;border:1px solid #3b506c;border-radius:99px;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.2px;color:#c5d2e4;vertical-align:middle}
+.newHero .matchStateTag.live,.newHero .matchStateTag.halftime{background:#173c32;border-color:#2e8b6c;color:#b9f2d6}
+.newHero .matchStateTag.finished{color:#aab7ca}
+.newHero .matchStateTag.postponed,.newHero .matchStateTag.cancelled{border-color:#87663c;color:#f3d39a}
+@media(max-width:390px){.newHero .matchStateTag{margin-left:4px;padding:3px 6px;font-size:9px}}
