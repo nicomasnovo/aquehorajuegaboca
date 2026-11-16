@@ -1,12 +1,12 @@
 {
   "season": 2026,
-  "checkedAt": "2026-11-16T15:07:21.447Z",
-  "lastSuccessAt": "2026-11-16T15:07:21.447Z",
+  "checkedAt": "2026-11-16T17:26:38.503Z",
+  "lastSuccessAt": "2026-11-16T17:26:38.503Z",
   "source": "ESPN (API no oficial)",
   "ok": true,
   "code": null,
   "message": "Partidos y resultados actualizados desde ESPN.",
-  "requests": 48,
+  "requests": 46,
   "received": 12,
   "availableLeagues": [
     "arg.1",

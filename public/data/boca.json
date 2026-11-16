@@ -3,7 +3,7 @@
   "source": "ESPN (API no oficial)",
   "season": 2026,
   "teamId": 5,
-  "updatedAt": "2026-11-16T15:07:21.447Z",
+  "updatedAt": "2026-11-16T17:26:38.503Z",
   "fixtures": [
     {
       "id": "espn:arg.1:401841594",
@@ -600,15 +600,7 @@
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/8950.png",
       "broadcasts": [],
-      "goals": [
-        {
-          "team": "home",
-          "player": "Enner Valencia",
-          "minute": "90'+6'",
-          "type": "Goal - Volley",
-          "assist": "Lautaro Di Lollo"
-        }
-      ],
+      "goals": [],
       "clock": "",
       "stats": {
         "home": {
@@ -770,26 +762,7 @@
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/235.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
       "broadcasts": [],
-      "goals": [
-        {
-          "team": "away",
-          "player": "Santiago Ascacibar",
-          "minute": "45'+1'",
-          "type": "Goal"
-        },
-        {
-          "team": "away",
-          "player": "Sebastián Villa",
-          "minute": "63'",
-          "type": "Goal"
-        },
-        {
-          "team": "away",
-          "player": "Leandro Lozano",
-          "minute": "74'",
-          "type": "Goal"
-        }
-      ],
+      "goals": [],
       "clock": "",
       "stats": {
         "home": {
