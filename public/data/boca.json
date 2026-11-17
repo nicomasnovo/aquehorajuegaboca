@@ -3,7 +3,7 @@
   "source": "ESPN (API no oficial)",
   "season": 2026,
   "teamId": 5,
-  "updatedAt": "2026-11-16T19:00:21.092Z",
+  "updatedAt": "2026-11-17T17:58:05.987Z",
   "fixtures": [
     {
       "id": "espn:arg.1:401841594",
@@ -348,7 +348,7 @@
               "number": "35"
             },
             {
-              "name": "Sebastián Valdez",
+              "name": "Sebastian Valdez",
               "position": "Center Right Defender",
               "number": "36"
             },
