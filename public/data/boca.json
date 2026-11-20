@@ -3,7 +3,7 @@
   "source": "ESPN (API no oficial)",
   "season": 2026,
   "teamId": 5,
-  "updatedAt": "2026-11-19T17:48:46.184Z",
+  "updatedAt": "2026-11-20T17:25:12.536Z",
   "fixtures": [
     {
       "id": "espn:arg.1:401841594",
@@ -114,35 +114,7 @@
       "broadcasts": [
         "beIn Sports"
       ],
-      "goals": [
-        {
-          "team": "away",
-          "player": "Lautaro Di Lollo",
-          "minute": "4'",
-          "type": "Goal - Header",
-          "assist": "Lautaro Blanco"
-        },
-        {
-          "team": "away",
-          "player": "Miguel Merentiel",
-          "minute": "34'",
-          "type": "Goal",
-          "assist": "Sebastián Villa"
-        },
-        {
-          "team": "home",
-          "player": "José Luis Rodríguez",
-          "minute": "66'",
-          "type": "Goal"
-        },
-        {
-          "team": "away",
-          "player": "Leandro Paredes",
-          "minute": "88'",
-          "type": "Goal",
-          "assist": "Milton Delgado"
-        }
-      ],
+      "goals": [],
       "clock": "",
       "stats": {
         "home": {
