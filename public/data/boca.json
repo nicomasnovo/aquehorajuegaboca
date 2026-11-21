@@ -3,7 +3,7 @@
   "source": "ESPN (API no oficial)",
   "season": 2026,
   "teamId": 5,
-  "updatedAt": "2026-11-20T17:25:12.536Z",
+  "updatedAt": "2026-11-21T16:28:52.139Z",
   "fixtures": [
     {
       "id": "espn:arg.1:401841594",
@@ -966,7 +966,9 @@
       "homeGoals": 0,
       "awayGoals": 0,
       "venue": "Metropolitano Roberto Meléndez",
-      "broadcasts": [],
+      "broadcasts": [
+        "beIn Sports"
+      ],
       "goals": [],
       "clock": ""
     },
@@ -1062,8 +1064,8 @@
               "rank": 5,
               "teamId": "12",
               "name": "Lanús",
-              "points": 25,
-              "played": 15,
+              "points": 26,
+              "played": 16,
               "goalDiff": 7
             },
             {
@@ -1142,8 +1144,8 @@
               "rank": 15,
               "teamId": "11989",
               "name": "Central Córdoba (Santiago del Estero)",
-              "points": 10,
-              "played": 15,
+              "points": 11,
+              "played": 16,
               "goalDiff": -14
             }
           ]
