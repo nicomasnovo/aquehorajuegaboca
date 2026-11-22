@@ -3438,3 +3438,53 @@ main.homePage {
 @media (prefers-reduced-motion:reduce) {
   .championBanner,.championBanner::before,.championBannerLights,.championBannerRays,.championBannerSweep,.championBannerConfetti i {animation:none;}
 }
+
+/* Lightweight radial fireworks, kept behind banner copy. */
+.championBannerFireworks {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.championFirework {
+  position: absolute;
+  left: var(--fx);
+  top: var(--fy);
+  width: 0;
+  height: 0;
+  animation: championBurstFlash 5.6s linear var(--delay) infinite;
+}
+.championFirework i {
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  width: 4px;
+  height: 9px;
+  border-radius: 50%;
+  background: #ffd447;
+  box-shadow: 0 0 7px currentColor;
+  color: #ffd447;
+  opacity: 0;
+  transform: rotate(var(--angle)) translateY(0) scale(.2);
+  animation: championFireworkParticle 5.6s ease-out var(--delay) infinite;
+}
+.championFirework i:nth-child(3n) {background:#fff8dc;color:#fff8dc;}
+.championFirework i:nth-child(4n) {background:#4b9aff;color:#4b9aff;}
+@keyframes championFireworkParticle {
+  0%, 5% {opacity:0;transform:rotate(var(--angle)) translateY(0) scale(.2);}
+  9% {opacity:1;transform:rotate(var(--angle)) translateY(calc(var(--distance) * -.25)) scale(1);}
+  25% {opacity:.95;transform:rotate(var(--angle)) translateY(calc(var(--distance) * -1)) scale(.9);}
+  37%, 100% {opacity:0;transform:rotate(var(--angle)) translateY(calc(var(--distance) * -1.3)) scale(.2);}
+}
+@keyframes championBurstFlash {
+  0%, 7% {filter:brightness(1);}
+  10% {filter:brightness(1.7);}
+  18%, 100% {filter:brightness(1);}
+}
+@media (max-width:750px) {
+  .championFirework {transform:scale(.8);}
+}
+@media (prefers-reduced-motion:reduce) {
+  .championFirework,.championFirework i {animation:none;display:none;}
+}
