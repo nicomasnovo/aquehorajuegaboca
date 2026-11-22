@@ -3271,24 +3271,170 @@ main.homePage {
 }
 
 
-/* Celebración de títulos: se monta antes del contenido principal sin alterar el hero. */
+/* Champion celebration: layered lights, moving gold sweep and fast border shimmer. */
 .championBanner {
-  position: relative; isolation: isolate; overflow: hidden; text-align: center;
-  margin: 22px auto 28px; padding: clamp(22px, 5vw, 38px) 16px;
-  max-width: 1100px; border: 2px solid #f5c542; border-radius: 18px;
-  background: radial-gradient(ellipse at 50% 110%, #2059a3 0%, #072b71 48%, #061735 100%);
-  box-shadow: 0 0 14px #ffc928a8, 0 0 38px #ffbd004d, 0 0 80px #ffae002b;
-  animation: championGlow 3s ease-in-out infinite alternate;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  text-align: center;
+  margin: 22px auto 28px;
+  padding: clamp(26px, 5vw, 42px) 16px 32px;
+  max-width: 1100px;
+  border: 2px solid #f5c542;
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse at 50% 115%, #2458ac 0%, transparent 65%),
+    radial-gradient(ellipse at 50% -30%, #1a397b 0%, transparent 70%),
+    linear-gradient(140deg, #06132f, #09275e 55%, #04142f);
+  box-shadow: 0 0 15px #ffc9289c, 0 0 38px #ffbd004d, 0 20px 44px #0008;
+  animation: championGlow 1.65s ease-in-out infinite alternate;
 }
-.championBannerLights {position:absolute;inset:0;z-index:-1;pointer-events:none;background:repeating-conic-gradient(from 0deg at 50% 100%,transparent 0deg 13deg,#ffdc4222 15deg 17deg,transparent 19deg 32deg);}
-.championBannerTrophy {display:block;font-size:clamp(32px,6vw,56px);filter:drop-shadow(0 0 14px #ffd85c);margin-bottom:4px;}
-.championBannerTitle {color:#ffd34c;font-size:clamp(27px,7vw,64px);font-weight:1000;line-height:1.05;letter-spacing:.02em;text-shadow:0 2px 0 #8e5b00,0 5px 18px #ffc400a8;}
-.championBannerCompetition {color:white;font-size:clamp(12px,2.6vw,22px);font-weight:800;letter-spacing:.13em;margin-top:12px;}
-.championBannerStars {color:#ffdc56;letter-spacing:1em;margin-top:14px;padding-left:1em;}
-.championBannerConfetti {position:absolute;inset:0;overflow:hidden;pointer-events:none;}
-.championBannerConfetti i {position:absolute;left:var(--x);top:-15px;width:7px;height:13px;background:#ffd22f;transform:rotate(calc(var(--i) * 31deg));animation:championFall 5s linear var(--d) infinite;}
+.championBanner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 4;
+  background: linear-gradient(115deg, transparent 22%, #fff0 36%, #fff7dfbd 49%, #ffd34d7a 52%, transparent 66%);
+  background-size: 250% 100%;
+  background-position: 160% 0;
+  mix-blend-mode: screen;
+  animation: championBorderShine 3.1s ease-in-out infinite;
+}
+.championBanner::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid #ffdd7761;
+  border-radius: 16px;
+  pointer-events: none;
+  z-index: 3;
+}
+.championBannerLights {
+  position: absolute;
+  inset: -45%;
+  z-index: -1;
+  pointer-events: none;
+  background: repeating-conic-gradient(from 0deg at 50% 65%, transparent 0deg 15deg, #ffdc421d 17deg 20deg, transparent 23deg 36deg);
+  transform-origin: 50% 65%;
+  animation: championRaysTurn 14s linear infinite;
+}
+.championBannerRays {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(ellipse at 50% 85%, #ffc72e35, transparent 65%);
+  animation: championRaysPulse 2.2s ease-in-out infinite alternate;
+}
+.championBannerSweep {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  top: -60%;
+  bottom: -60%;
+  left: -70%;
+  width: 35%;
+  background: linear-gradient(90deg, transparent, #ffe58b12 28%, #fff0b95c 50%, #ffe58b12 72%, transparent);
+  filter: blur(12px);
+  transform: rotate(25deg);
+  animation: championSweep 2.7s ease-in-out infinite;
+}
+.championBannerEmblem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 12px;
+  border: 1px solid #f8d4668c;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f3c44c2b, #0b2d68 72%);
+  box-shadow: 0 0 22px #f8cb4b45, inset 0 0 18px #f9d35c25;
+}
+.championBannerTrophy {
+  display: block;
+  font-size: 42px;
+  line-height: 1;
+  filter: drop-shadow(0 0 9px #ffd85c);
+}
+.championBannerTitle {
+  position: relative;
+  z-index: 1;
+  color: #ffd34c;
+  font-size: clamp(27px, 7vw, 64px);
+  font-weight: 1000;
+  line-height: 1.06;
+  letter-spacing: .015em;
+  text-shadow: 0 2px 0 #815200, 0 4px 20px #ffc4007d;
+}
+.championBannerCompetition {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-size: clamp(11px, 2.6vw, 20px);
+  font-weight: 800;
+  letter-spacing: .13em;
+  margin-top: 16px;
+}
+.championBannerCompetition::before,
+.championBannerCompetition::after {
+  content: "";
+  width: clamp(14px, 6vw, 55px);
+  height: 2px;
+  flex-shrink: 0;
+  background: linear-gradient(90deg, transparent, #f9ca46);
+}
+.championBannerCompetition::after {transform: rotate(180deg);}
+.championBannerBottomStripe {
+  width: 108px;
+  height: 4px;
+  border-radius: 99px;
+  margin: 22px auto 0;
+  background: linear-gradient(90deg, transparent, #fbd34c 35%, #fff4c1 50%, #fbd34c 65%, transparent);
+  box-shadow: 0 0 12px #ffd54b88;
+}
+.championBannerConfetti {position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:2;}
+.championBannerConfetti i {
+  position:absolute;
+  left:var(--x);
+  top:-15px;
+  width:7px;
+  height:13px;
+  background:#ffd22f;
+  transform:rotate(calc(var(--i) * 31deg));
+  animation:championFall 4s linear var(--d) infinite;
+}
 .championBannerConfetti i:nth-child(3n) {background:#fff;}
 .championBannerConfetti i:nth-child(4n) {background:#3b8bff;}
 @keyframes championFall {to {top:110%;transform:translateX(50px) rotate(720deg);}}
-@keyframes championGlow {to {box-shadow:0 0 24px #ffd54be6,0 0 54px #ffbd008c,0 0 90px #ffae004d;}}
-@media (prefers-reduced-motion:reduce) {.championBanner,.championBannerConfetti i {animation:none;}}
+@keyframes championGlow {
+  to {box-shadow:0 0 26px #ffda60e0,0 0 58px #ffbd0088,0 20px 52px #0009;}
+}
+@keyframes championSweep {
+  0%, 12% {left:-70%;opacity:0;}
+  23% {opacity:.9;}
+  66% {left:130%;opacity:.8;}
+  82%, 100% {left:130%;opacity:0;}
+}
+@keyframes championBorderShine {
+  0%, 10% {background-position:160% 0;opacity:.15;}
+  48% {opacity:.9;}
+  75%, 100% {background-position:-160% 0;opacity:.12;}
+}
+@keyframes championRaysTurn {to {transform:rotate(360deg);}}
+@keyframes championRaysPulse {to {opacity:.45;transform:scale(1.15);}}
+@media (max-width:750px) {
+  .championBanner {margin:16px 16px 26px;padding:26px 14px 24px;}
+  .championBannerEmblem {width:60px;height:60px;margin-bottom:12px;}
+  .championBannerTrophy {font-size:36px;}
+  .championBannerCompetition {gap:7px;letter-spacing:.08em;}
+  .championBannerBottomStripe {margin-top:19px;}
+}
+@media (prefers-reduced-motion:reduce) {
+  .championBanner,.championBanner::before,.championBannerLights,.championBannerRays,.championBannerSweep,.championBannerConfetti i {animation:none;}
+}
