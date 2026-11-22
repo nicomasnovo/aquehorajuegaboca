@@ -40,8 +40,8 @@ export default function BocaApp({ tab = 'Inicio' }: BocaAppProps) {
   const [champion, setChampion] = useState<Champion | null>(null);
   useEffect(() => {
     fetch((process.env.NEXT_PUBLIC_BASE_PATH || '') + '/data/champion.json', { cache: 'no-store' })
-      .then(r => r.ok ? r.json() : null)
-      .then(setChampion)
+      .then(async r => r.ok ? (await r.json()) as Champion : null)
+      .then(value => setChampion(value && typeof value.id === 'string' && typeof value.competition === 'string' && typeof value.confirmed === 'boolean' ? value : null))
       .catch(() => setChampion(null));
   }, []);
 
