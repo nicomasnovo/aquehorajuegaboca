@@ -1,5 +1,6 @@
 'use client';
 import type { CSSProperties } from 'react';
+import { competitionLogo } from '../utils/competitionLogo';
 
 export type Champion = {
   id: string;
@@ -30,7 +31,7 @@ export function ChampionBanner({ champion, now }: { champion: Champion | null; n
       <div className="championBannerConfetti" aria-hidden="true">
         {Array.from({ length: 18 }, (_, i) => <i key={i} style={{ '--i': i, '--x': ((i * 37 + 11) % 100) + '%', '--d': ((i * 7) % 9) + 's' } as CSSProperties} />)}
       </div>
-      <div className="championBannerEmblem" aria-hidden="true"><span className="championBannerTrophy">🏆</span></div>
+      <div className="championBannerEmblem" aria-hidden="true">{competitionLogo(champion.competition) ? <img className="championBannerLeagueLogo" src={competitionLogo(champion.competition)!} alt="" onError={(event) => { event.currentTarget.style.display = "none"; }} /> : <span className="championBannerTrophy">🏆</span>}</div>
       <div className="championBannerTitle">¡BOCA CAMPEÓN!</div>
       <div className="championBannerCompetition"><span>{champion.competition.toUpperCase()} {champion.year}</span></div>
       <div className="championBannerBottomStripe" aria-hidden="true" />
