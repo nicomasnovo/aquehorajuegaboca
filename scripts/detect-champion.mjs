@@ -49,7 +49,7 @@ export async function updateFinalFixture(event, cup, file = 'public/data/boca.js
   if (JSON.stringify(fixture) === JSON.stringify(next)) return false;
   Object.assign(fixture, next);
   snapshot.updatedAt = new Date().toISOString();
-  await writeFile(file, JSON.stringify(snapshot, null, 2) + '\\n');
+  await writeFile(file, JSON.stringify(snapshot, null, 2) + '\n');
   return true;
 }
 export async function run({ request = fetch, now = new Date(), file = 'public/data/champion.json', fixturesFile = 'public/data/boca.json' } = {}) {
