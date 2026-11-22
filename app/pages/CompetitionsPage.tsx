@@ -1,6 +1,7 @@
 // Página de competiciones
 
 import type { Competition, Fixture, Snapshot } from '../types';
+import { competitionLogo } from '../utils/competitionLogo';
 import { getCompetitionInfo, roundLabel } from '../utils/match';
 import { FINISHED_STATUSES, EXCLUDED_STATUSES } from '../constants/statuses';
 
@@ -116,9 +117,12 @@ export function CompetitionsPage({
                     key={c.id}
                     onClick={() => onSelectCompetition(c)}
                   >
-                    <div className="competitionListTitle">
+                    <div className="competitionListMain">
+                      {competitionLogo(c.name) && <img className="competitionListLogo" src={competitionLogo(c.name)!} alt="" loading="lazy" onError={(event) => { event.currentTarget.style.display = "none"; }} />}
+                      <div className="competitionListTitle">
                       <strong>{c.name}</strong>
                       <span className="competitionTypeBadge">{category}</span>
+                      </div>
                     </div>
                     <p>
                       {played} jugados · {upcoming} por jugar
