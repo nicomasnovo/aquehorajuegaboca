@@ -3,7 +3,7 @@
   "source": "ESPN (API no oficial)",
   "season": 2026,
   "teamId": 5,
-  "updatedAt": "2026-11-21T16:28:52.139Z",
+  "updatedAt": "2026-11-22T16:46:39.629Z",
   "fixtures": [
     {
       "id": "espn:arg.1:401841594",
@@ -972,18 +972,159 @@
       "goals": [
         {
           "team": "away",
-          "player": "Santiago Ascacíbar",
-          "minute": "16",
+          "player": "Santiago Ascacibar",
+          "minute": "16'",
           "type": "Goal"
         },
         {
           "team": "away",
           "player": "Miguel Merentiel",
-          "minute": "48",
-          "type": "Goal"
+          "minute": "48'",
+          "type": "Goal",
+          "assist": "Sebastián Villa"
         }
       ],
-      "clock": ""
+      "clock": "",
+      "stats": {
+        "home": {
+          "possession": 43.3,
+          "shots": 9,
+          "shotsOnTarget": 2,
+          "corners": 4,
+          "fouls": 10,
+          "yellowCards": 3,
+          "redCards": 0
+        },
+        "away": {
+          "possession": 56.7,
+          "shots": 16,
+          "shotsOnTarget": 7,
+          "corners": 4,
+          "fouls": 9,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "lineups": {
+        "home": {
+          "starters": [
+            {
+              "name": "Éverson",
+              "position": "Goalkeeper",
+              "number": "22"
+            },
+            {
+              "name": "Ruan",
+              "position": "Center Left Defender",
+              "number": "4"
+            },
+            {
+              "name": "Vitão",
+              "position": "Center Right Defender",
+              "number": "40"
+            },
+            {
+              "name": "Renan Lodi",
+              "position": "Left Back",
+              "number": "6"
+            },
+            {
+              "name": "Natanael",
+              "position": "Right Back",
+              "number": "2"
+            },
+            {
+              "name": "Fred",
+              "position": "Attacking Midfielder",
+              "number": "7"
+            },
+            {
+              "name": "Kevin Castaño",
+              "position": "Left Midfielder",
+              "number": "15"
+            },
+            {
+              "name": "Mamady Cissé",
+              "position": "Right Midfielder",
+              "number": "39"
+            },
+            {
+              "name": "Bernard",
+              "position": "Forward",
+              "number": "11"
+            },
+            {
+              "name": "Kauã Pascini",
+              "position": "Attacking Midfielder Left",
+              "number": "36"
+            },
+            {
+              "name": "Tomás Cuello",
+              "position": "Attacking Midfielder Right",
+              "number": "28"
+            }
+          ]
+        },
+        "away": {
+          "starters": [
+            {
+              "name": "Álvaro Montero",
+              "position": "Goalkeeper",
+              "number": "1"
+            },
+            {
+              "name": "Facundo Herrera",
+              "position": "Center Left Defender",
+              "number": "42"
+            },
+            {
+              "name": "Lautaro Di Lollo",
+              "position": "Center Right Defender",
+              "number": "2"
+            },
+            {
+              "name": "Lautaro Blanco",
+              "position": "Left Back",
+              "number": "3"
+            },
+            {
+              "name": "Leandro Lozano",
+              "position": "Right Back",
+              "number": "17"
+            },
+            {
+              "name": "Leandro Paredes",
+              "position": "Center Midfielder",
+              "number": "5"
+            },
+            {
+              "name": "Milton Delgado",
+              "position": "Left Midfielder",
+              "number": "18"
+            },
+            {
+              "name": "Santiago Ascacibar",
+              "position": "Right Midfielder",
+              "number": "25"
+            },
+            {
+              "name": "Miguel Merentiel",
+              "position": "Forward",
+              "number": "16"
+            },
+            {
+              "name": "Sebastián Villa",
+              "position": "Left Forward",
+              "number": "22"
+            },
+            {
+              "name": "Tomás Aranda",
+              "position": "Right Forward",
+              "number": "10"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "espn:arg.1:401933757",
