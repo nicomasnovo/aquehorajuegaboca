@@ -3269,3 +3269,26 @@ main.homePage {
     animation: none;
   }
 }
+
+
+/* Celebración de títulos: se monta antes del contenido principal sin alterar el hero. */
+.championBanner {
+  position: relative; isolation: isolate; overflow: hidden; text-align: center;
+  margin: 22px auto 28px; padding: clamp(22px, 5vw, 38px) 16px;
+  max-width: 1100px; border: 2px solid #f5c542; border-radius: 18px;
+  background: radial-gradient(ellipse at 50% 110%, #2059a3 0%, #072b71 48%, #061735 100%);
+  box-shadow: 0 0 14px #ffc928a8, 0 0 38px #ffbd004d, 0 0 80px #ffae002b;
+  animation: championGlow 3s ease-in-out infinite alternate;
+}
+.championBannerLights {position:absolute;inset:0;z-index:-1;pointer-events:none;background:repeating-conic-gradient(from 0deg at 50% 100%,transparent 0deg 13deg,#ffdc4222 15deg 17deg,transparent 19deg 32deg);}
+.championBannerTrophy {display:block;font-size:clamp(32px,6vw,56px);filter:drop-shadow(0 0 14px #ffd85c);margin-bottom:4px;}
+.championBannerTitle {color:#ffd34c;font-size:clamp(27px,7vw,64px);font-weight:1000;line-height:1.05;letter-spacing:.02em;text-shadow:0 2px 0 #8e5b00,0 5px 18px #ffc400a8;}
+.championBannerCompetition {color:white;font-size:clamp(12px,2.6vw,22px);font-weight:800;letter-spacing:.13em;margin-top:12px;}
+.championBannerStars {color:#ffdc56;letter-spacing:1em;margin-top:14px;padding-left:1em;}
+.championBannerConfetti {position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+.championBannerConfetti i {position:absolute;left:var(--x);top:-15px;width:7px;height:13px;background:#ffd22f;transform:rotate(calc(var(--i) * 31deg));animation:championFall 5s linear var(--d) infinite;}
+.championBannerConfetti i:nth-child(3n) {background:#fff;}
+.championBannerConfetti i:nth-child(4n) {background:#3b8bff;}
+@keyframes championFall {to {top:110%;transform:translateX(50px) rotate(720deg);}}
+@keyframes championGlow {to {box-shadow:0 0 24px #ffd54be6,0 0 54px #ffbd008c,0 0 90px #ffae004d;}}
+@media (prefers-reduced-motion:reduce) {.championBanner,.championBannerConfetti i {animation:none;}}
