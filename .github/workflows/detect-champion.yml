@@ -1,0 +1,31 @@
+name: Detectar campeonato de Boca
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+permissions:
+  contents: write
+concurrency:
+  group: boca-champion
+  cancel-in-progress: false
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Confirmar campeón desde ESPN
+        run: node scripts/detect-champion.mjs
+      - name: Guardar celebración
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/data/champion.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Actualizar celebración de campeonato'
+            git push origin HEAD
+          fi

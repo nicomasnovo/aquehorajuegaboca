@@ -8,6 +8,7 @@
  */
 import { useState, useEffect } from 'react';
 import { Download } from 'lucide-react';
+import { ChampionBanner, type Champion } from './components/ChampionBanner';
 import type { CSSProperties } from 'react';
 import type { Fixture, Competition, Snapshot, Status } from './types';
 import { useBocaData } from './hooks/useBocaData';
@@ -36,6 +37,13 @@ export default function BocaApp({ tab = 'Inicio' }: BocaAppProps) {
   const [selectedCompetition, setSelectedCompetition] =
     useState<Competition | null>(null);
   const [showInstallModal, setShowInstallModal] = useState(false);
+  const [champion, setChampion] = useState<Champion | null>(null);
+  useEffect(() => {
+    fetch((process.env.NEXT_PUBLIC_BASE_PATH || '') + '/data/champion.json', { cache: 'no-store' })
+      .then(r => r.ok ? r.json() : null)
+      .then(setChampion)
+      .catch(() => setChampion(null));
+  }, []);
 
   // Estado de filtros
   const [filter, setFilter] = useState('Todas');
@@ -188,6 +196,7 @@ export default function BocaApp({ tab = 'Inicio' }: BocaAppProps) {
         id="contenido-principal"
         className={activeTab === 'Inicio' ? 'homePage' : undefined}
       >
+        {activeTab === 'Inicio' && <ChampionBanner champion={champion} now={now} />}
         {activeTab === 'Inicio' && (
           <HomePage
             data={data}

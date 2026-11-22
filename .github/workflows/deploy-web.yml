@@ -6,6 +6,7 @@ on:
     paths-ignore:
       - 'public/data/boca.json'
       - 'public/data/sync-status.json'
+      # champion.json changes must trigger a new Pages deployment
 permissions:
   contents: write
   pages: write
@@ -14,12 +15,7 @@ concurrency:
   group: boca-pages-deploy
   cancel-in-progress: false
 jobs:
-  sync:
-    uses: ./.github/workflows/update-boca.yml
-    permissions:
-      contents: write
   deploy:
-    needs: sync
     runs-on: ubuntu-latest
     timeout-minutes: 15
     environment:
