@@ -951,8 +951,8 @@
     {
       "id": "espn:conmebol.sudamericana:401913961",
       "date": "2026-11-21T22:30Z",
-      "status": "NS",
-      "statusLabel": "Programado",
+      "status": "FT",
+      "statusLabel": "Full Time",
       "leagueId": 1004,
       "season": 2026,
       "cup": "Copa Sudamericana",
@@ -964,12 +964,25 @@
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/7632.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
       "homeGoals": 0,
-      "awayGoals": 0,
+      "awayGoals": 2,
       "venue": "Metropolitano Roberto Meléndez",
       "broadcasts": [
         "beIn Sports"
       ],
-      "goals": [],
+      "goals": [
+        {
+          "team": "away",
+          "player": "Santiago Ascacíbar",
+          "minute": "16",
+          "type": "Goal"
+        },
+        {
+          "team": "away",
+          "player": "Miguel Merentiel",
+          "minute": "48",
+          "type": "Goal"
+        }
+      ],
       "clock": ""
     },
     {
