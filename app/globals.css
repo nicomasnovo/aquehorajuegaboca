@@ -3488,3 +3488,14 @@ main.homePage {
 @media (prefers-reduced-motion:reduce) {
   .championFirework,.championFirework i {animation:none;display:none;}
 }
+
+
+/* Logos de competiciones: transparentes, sin placa, en las tarjetas y celebración */
+.competitionListMain { display: flex; align-items: center; gap: 13px; min-width: 0; padding-right: 18px; }
+.competitionListLogo { width: 43px; height: 43px; object-fit: contain; flex: 0 0 43px; }
+.competitionListMain .competitionListTitle { min-width: 0; }
+.championBannerLeagueLogo { width: 76%; height: 76%; object-fit: contain; filter: drop-shadow(0 0 12px rgba(246,201,69,.4)); }
+@media (max-width: 600px) {
+  .competitionListMain { gap: 11px; }
+  .competitionListLogo { width: 38px; height: 38px; flex-basis: 38px; }
+}
