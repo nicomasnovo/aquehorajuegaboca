@@ -3,7 +3,7 @@
   "source": "ESPN (API no oficial)",
   "season": 2026,
   "teamId": 5,
-  "updatedAt": "2026-11-26T10:36:19.354Z",
+  "updatedAt": "2026-11-26T18:42:39.204Z",
   "fixtures": [
     {
       "id": "espn:arg.1:401841594",
@@ -1301,6 +1301,28 @@
           ]
         }
       }
+    },
+    {
+      "id": "espn:arg.1:401936657",
+      "date": "2026-11-29T23:30Z",
+      "status": "NS",
+      "statusLabel": "Programado",
+      "leagueId": 1001,
+      "season": 2026,
+      "cup": "Liga Argentina",
+      "round": "Cuartos de final",
+      "home": "Boca Juniors",
+      "away": "Gimnasia La Plata",
+      "homeId": "5",
+      "awayId": "9",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/9.png",
+      "homeGoals": 0,
+      "awayGoals": 0,
+      "venue": "Alberto José Armando (La Bombonera)",
+      "broadcasts": [],
+      "goals": [],
+      "clock": ""
     },
     {
       "id": "espn:arg.copa:401932277",
