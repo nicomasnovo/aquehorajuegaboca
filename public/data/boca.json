@@ -3,7 +3,7 @@
   "source": "ESPN (API no oficial)",
   "season": 2026,
   "teamId": 5,
-  "updatedAt": "2026-11-25T18:53:17.977Z",
+  "updatedAt": "2026-11-26T10:36:19.354Z",
   "fixtures": [
     {
       "id": "espn:arg.1:401841594",
@@ -1129,8 +1129,8 @@
     {
       "id": "espn:arg.1:401933757",
       "date": "2026-11-26T00:00Z",
-      "status": "NS",
-      "statusLabel": "Programado",
+      "status": "FT",
+      "statusLabel": "Full Time",
       "leagueId": 1001,
       "season": 2026,
       "cup": "Liga Argentina",
@@ -1141,16 +1141,170 @@
       "awayId": "9744",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/9744.png",
-      "homeGoals": 0,
+      "homeGoals": 2,
       "awayGoals": 0,
       "venue": "Alberto José Armando (La Bombonera)",
       "broadcasts": [],
-      "goals": [],
-      "clock": ""
+      "goals": [
+        {
+          "team": "home",
+          "player": "Leandro Paredes",
+          "minute": "18'",
+          "type": "Penalty - Scored"
+        },
+        {
+          "team": "home",
+          "player": "Miguel Merentiel",
+          "minute": "53'",
+          "type": "Goal - Volley",
+          "assist": "Leandro Lozano"
+        }
+      ],
+      "clock": "",
+      "stats": {
+        "home": {
+          "possession": 64.7,
+          "shots": 21,
+          "shotsOnTarget": 9,
+          "corners": 11,
+          "fouls": 9,
+          "yellowCards": 2,
+          "redCards": 0
+        },
+        "away": {
+          "possession": 35.3,
+          "shots": 11,
+          "shotsOnTarget": 2,
+          "corners": 1,
+          "fouls": 13,
+          "yellowCards": 4,
+          "redCards": 0
+        }
+      },
+      "lineups": {
+        "home": {
+          "starters": [
+            {
+              "name": "Álvaro Montero",
+              "position": "Goalkeeper",
+              "number": "1"
+            },
+            {
+              "name": "Facundo Herrera",
+              "position": "Center Left Defender",
+              "number": "42"
+            },
+            {
+              "name": "Lautaro Di Lollo",
+              "position": "Center Right Defender",
+              "number": "2"
+            },
+            {
+              "name": "Lautaro Blanco",
+              "position": "Left Back",
+              "number": "3"
+            },
+            {
+              "name": "Leandro Lozano",
+              "position": "Right Back",
+              "number": "17"
+            },
+            {
+              "name": "Leandro Paredes",
+              "position": "Center Midfielder",
+              "number": "5"
+            },
+            {
+              "name": "Milton Delgado",
+              "position": "Left Midfielder",
+              "number": "18"
+            },
+            {
+              "name": "Tomás Belmonte",
+              "position": "Right Midfielder",
+              "number": "8"
+            },
+            {
+              "name": "Miguel Merentiel",
+              "position": "Forward",
+              "number": "16"
+            },
+            {
+              "name": "Sebastián Villa",
+              "position": "Left Forward",
+              "number": "22"
+            },
+            {
+              "name": "Tomás Aranda",
+              "position": "Right Forward",
+              "number": "10"
+            }
+          ]
+        },
+        "away": {
+          "starters": [
+            {
+              "name": "Emmanuel Gómez Riga",
+              "position": "Goalkeeper",
+              "number": "21"
+            },
+            {
+              "name": "Sheyko Studer",
+              "position": "Center Left Defender",
+              "number": "42"
+            },
+            {
+              "name": "Ivan Villalba",
+              "position": "Center Right Defender",
+              "number": "40"
+            },
+            {
+              "name": "Juan Manuel Elordi",
+              "position": "Left Back",
+              "number": "3"
+            },
+            {
+              "name": "Ezequiel Bonifacio",
+              "position": "Right Back",
+              "number": "36"
+            },
+            {
+              "name": "Luis Sequeira",
+              "position": "Attacking Midfielder",
+              "number": "77"
+            },
+            {
+              "name": "Gonzalo Rios",
+              "position": "Left Midfielder",
+              "number": "11"
+            },
+            {
+              "name": "Leonard Costa",
+              "position": "Right Midfielder",
+              "number": "2"
+            },
+            {
+              "name": "Alex Arce",
+              "position": "Forward",
+              "number": "9"
+            },
+            {
+              "name": "Matías Fernández",
+              "position": "Attacking Midfielder Left",
+              "number": "10"
+            },
+            {
+              "name": "Rodrigo Atencio",
+              "position": "Attacking Midfielder Right",
+              "number": "19"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "espn:arg.copa:401932277",
-      "date": "2026-12-02T20:00Z",
+      "date": "2026-12-02T23:00Z",
       "status": "NS",
       "statusLabel": "Programado",
       "leagueId": 1002,
@@ -1165,7 +1319,7 @@
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/7764.png",
       "homeGoals": 0,
       "awayGoals": 0,
-      "venue": "Estadio por confirmar",
+      "venue": "'Estadio Único Madre de Ciudades",
       "broadcasts": [],
       "goals": [],
       "clock": ""
